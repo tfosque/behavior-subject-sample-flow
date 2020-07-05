@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Alert } from './models/alert';
+import { AlertService } from './services/alert.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-mongo-ngxs';
+
+  alertStatus: Alert;
+
+  constructor(alertService: AlertService) {
+    this.alertStatus = {
+      show: false,
+      msg: '',
+      category: 'primary'
+    };
+  }
 }
