@@ -1,3 +1,5 @@
 {
-  "jira-plugin.workingProject": ""
+  "jira-plugin.workingProject": "",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "files.trimTrailingWhitespace": true
 }

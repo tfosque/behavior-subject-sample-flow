@@ -1,9 +1,10 @@
 <div class="input-group">
  <!--  <span class="input-group-addon" id="basic-addon1">@</span> -->
-  <input 
-    type="search" 
+  <input
+    (keyup)="trackFilterStr(form.searchInput)"
+    type="search"
     class="form-control"
-    placeholder="Type here to filter cart" 
+    placeholder="Type here to filter cart"
     aria-describedby="basic-addon1"
     name="searchInput"
     #searchInput

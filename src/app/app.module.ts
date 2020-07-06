@@ -27,6 +27,8 @@ import { LineItemComponent } from './shared-components/line-item/line-item/line-
 import { FilterInputComponent } from './shared-components/filter-input/filter-input/filter-input.component';
 import { ModalComponent } from './shared-components/modal/modal/modal.component';
 import { SpinnerComponent } from './shared-components/spinner/spinner/spinner.component';
+import { ChildToParentComponent } from './shared-components/child-to-parent/child-to-parent/child-to-parent.component';
+import { ParentToChildComponent } from './shared-components/parent-to-child/parent-to-child/parent-to-child.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { SpinnerComponent } from './shared-components/spinner/spinner/spinner.co
     LineItemComponent,
     FilterInputComponent,
     ModalComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ChildToParentComponent,
+    ParentToChildComponent
   ],
   imports: [
     BrowserModule,

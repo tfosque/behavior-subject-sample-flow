@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { BehaviorSubject } from 'rxjs';
 import { CartItem } from '../models/shopping-cart-model';
-// import { FilterInputComponent } from '../shared-components/filter-input/filter-input/filter-input.component';
+import { FilterInputComponent } from '../shared-components/filter-input/filter-input/filter-input.component';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -12,10 +13,14 @@ import { CartItem } from '../models/shopping-cart-model';
 export class ShoppingCartComponent implements OnInit {
   public cart = new BehaviorSubject<CartItem[]>([]);
 
-  // @ViewChild('FilterInputComponent') FilterInputComponent: any;
-  // filterIComp: FilterInputComponent;
+  searchTxt: string;
 
-  constructor(private readonly cartService: ShoppingCartService) { }
+  @ViewChild(FilterInputComponent) child;
+
+  constructor(
+    private readonly cartService: ShoppingCartService,
+    private readonly searchService: SearchService
+  ) { }
 
   ngOnInit(): void {
     this.cartService.getCartsItems();
@@ -24,7 +29,10 @@ export class ShoppingCartComponent implements OnInit {
       this.cart.next(items);
     });
 
-    // console.log('comp:', this.FilterInputComponent);
+    this.searchService.txtStr.subscribe(str => {
+      this.searchTxt = str;
+    });
   }
 
 }
+

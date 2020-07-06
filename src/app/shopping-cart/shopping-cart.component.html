@@ -18,7 +18,9 @@
     <div class="col-sm-12 col-lg-9">
       <div class="row">
         <!-- Input -->
-        <div class="col"><app-filter-input #FilterInputComponent></app-filter-input></div>
+        <div class="col">
+          <app-filter-input></app-filter-input>
+        </div>
         <div class="col btn-group">
           <button type="button" class="btn btn-primary">Add Product</button>
           <button type="button" class="btn btn-secondary">
@@ -28,8 +30,8 @@
       </div>
 
       <!-- Cart Line Items -->
-      <div class="list-group-item" *ngFor="let item of cart | async">
-        <img [src]="item.product" class="rounded" /> 
+      <div class="list-group-item" *ngFor="let item of cart | async | filterSearch:searchTxt:'itemOrProductDescription'">
+        <img [src]="item.product" class="rounded" />
         {{ item.details.itemOrProductDescription }}
         | &nbsp;
         #{{ item.details.productId }}
