@@ -1,5 +1,6 @@
 export interface CartItem {
   product: string;
+  mongoId?: {};
   details: {
     itemOrProductDescription: string;
     catalogRefId: string;

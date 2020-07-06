@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgxsModule } from '@ngxs/store';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -18,6 +20,10 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { BreadCrumbsComponent } from './nav/bread-crumbs/bread-crumbs/bread-crumbs.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { TemplatesComponent } from './templates/templates.component';
+import { StepperComponent } from './shared-components/steppeer/stepper/stepper.component';
+import { ModalSimpleComponent } from './shared-components/modal-simple/modal-simple/modal-simple.component';
+import { SuggestiveItemsComponent } from './shared-components/suggestive-items/suggestive-items/suggestive-items.component';
+import { LineItemComponent } from './shared-components/line-item/line-item/line-item.component';
 
 @NgModule({
   declarations: [
@@ -34,12 +40,17 @@ import { TemplatesComponent } from './templates/templates.component';
     OrderSummaryComponent,
     BreadCrumbsComponent,
     OrderHistoryComponent,
-    TemplatesComponent
+    TemplatesComponent,
+    StepperComponent,
+    ModalSimpleComponent,
+    SuggestiveItemsComponent,
+    LineItemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     NgxsModule.forRoot([])
   ],
   providers: [],
