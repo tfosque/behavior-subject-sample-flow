@@ -1,10 +1,43 @@
-<!-- As a heading -->
+<!-- Menu Header -->
 <nav class="navbar navbar-light bg-light">
   <span class="navbar-brand mb-0 h1">BehaviorSubjects Flow - <small>Using MongoDB</small></span>
 
+  <!-- Menu Search -->
   <form class="form-inline my-2 my-lg-0">
     <input size="38" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
   </form>
 </nav>
+
+  <!-- Menu Links -->
+<nav class="navbar navbar-light bg-dark">
+  <ul class="nav nav-pills" style="visibility: hidden;">
+    <li class="nav-item">
+      <a class="nav-link" href="#">Order History</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Templates</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Cart</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#">Disabled</a>
+    </li>
+  </ul>
+
+  <ul class="nav nav-pills" style="font-size: .8075rem;">
+    <li class="nav-item">
+      <a class="nav-link" href="#">Order History</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Templates</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="#">&nbsp; <i class="fa fa-shopping-cart"></i> Cart</a>
+    </li>
+  </ul>
+</nav>
+
+<!-- Bread Crumbs Bar -->
 <app-bread-crumbs></app-bread-crumbs>

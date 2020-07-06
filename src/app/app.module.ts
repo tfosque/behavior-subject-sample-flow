@@ -29,6 +29,7 @@ import { ModalComponent } from './shared-components/modal/modal/modal.component'
 import { SpinnerComponent } from './shared-components/spinner/spinner/spinner.component';
 import { ChildToParentComponent } from './shared-components/child-to-parent/child-to-parent/child-to-parent.component';
 import { ParentToChildComponent } from './shared-components/parent-to-child/parent-to-child/parent-to-child.component';
+import { SidebarComponent } from './nav/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { ParentToChildComponent } from './shared-components/parent-to-child/pare
     ModalComponent,
     SpinnerComponent,
     ChildToParentComponent,
-    ParentToChildComponent
+    ParentToChildComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
