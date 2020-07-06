@@ -24,6 +24,7 @@ import { StepperComponent } from './shared-components/steppeer/stepper/stepper.c
 import { ModalSimpleComponent } from './shared-components/modal-simple/modal-simple/modal-simple.component';
 import { SuggestiveItemsComponent } from './shared-components/suggestive-items/suggestive-items/suggestive-items.component';
 import { LineItemComponent } from './shared-components/line-item/line-item/line-item.component';
+import { FilterInputComponent } from './shared-components/filter-input/filter-input/filter-input.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { LineItemComponent } from './shared-components/line-item/line-item/line-
     StepperComponent,
     ModalSimpleComponent,
     SuggestiveItemsComponent,
-    LineItemComponent
+    LineItemComponent,
+    FilterInputComponent
   ],
   imports: [
     BrowserModule,
