@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-line-item',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./line-item.component.scss']
 })
 export class LineItemComponent implements OnInit {
+  @Input() dataSrc = new BehaviorSubject<any[]>([]);
 
   constructor() { }
 

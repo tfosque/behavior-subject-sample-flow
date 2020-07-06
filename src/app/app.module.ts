@@ -25,6 +25,8 @@ import { ModalSimpleComponent } from './shared-components/modal-simple/modal-sim
 import { SuggestiveItemsComponent } from './shared-components/suggestive-items/suggestive-items/suggestive-items.component';
 import { LineItemComponent } from './shared-components/line-item/line-item/line-item.component';
 import { FilterInputComponent } from './shared-components/filter-input/filter-input/filter-input.component';
+import { ModalComponent } from './shared-components/modal/modal/modal.component';
+import { SpinnerComponent } from './shared-components/spinner/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { FilterInputComponent } from './shared-components/filter-input/filter-in
     ModalSimpleComponent,
     SuggestiveItemsComponent,
     LineItemComponent,
-    FilterInputComponent
+    FilterInputComponent,
+    ModalComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

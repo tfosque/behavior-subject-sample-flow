@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filter-input.component.scss']
 })
 export class FilterInputComponent implements OnInit {
+  form: any = {};
 
-  constructor() { }
+  constructor() {
+    this.form.searchInput = '';
+   }
 
   ngOnInit(): void {
   }

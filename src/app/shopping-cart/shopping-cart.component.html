@@ -1,3 +1,4 @@
+
 <div class="row">
   <div class="col-md-12">
     <p>
@@ -6,22 +7,40 @@
     </p>
   </div>
 
-  <div class="col-sm-12 col-lg-9">
-    <div class="row">
-      <div class="col"><app-filter-input></app-filter-input></div>
-      <div class="col btn-group">        
+  <ng-template #spinner>
+    <div class="col-12">
+      <app-spinner></app-spinner>
+    </div>
+  </ng-template>
+
+   <!-- Search Input -->
+  <ng-container *ngIf="(cart | async)?.length; else spinner">
+    <div class="col-sm-12 col-lg-9">
+      <div class="row">
+        <!-- Input -->
+        <div class="col"><app-filter-input #FilterInputComponent></app-filter-input></div>
+        <div class="col btn-group">
           <button type="button" class="btn btn-primary">Add Product</button>
-          <button type="button" class="btn btn-secondary">Pick From Template</button>        
+          <button type="button" class="btn btn-secondary">
+            Pick From Template
+          </button>
+        </div>
+      </div>
+
+      <!-- Cart Line Items -->
+      <div class="list-group-item" *ngFor="let item of cart | async">
+        <img [src]="item.product" class="rounded" /> 
+        {{ item.details.itemOrProductDescription }}
+        | &nbsp;
+        #{{ item.details.productId }}
       </div>
     </div>
 
-    <div class="list-group-item" *ngFor="let item of cart | async">
-      {{ item.details.itemOrProductDescription }}
+    <div class="col-sm-12 col-lg-3 hidden-up sidebar">
+      <!-- <div style="margin: 10px 0px;">&nbsp;</div> -->
+      <app-order-summary></app-order-summary>
+      <div class="mt-1 MB-1">&nbsp;</div>
+      <app-suggestive-items></app-suggestive-items>
     </div>
-  </div>
-
-  <div class="col-sm-12 col-lg-3 hidden-up sidebar">
-    <!-- <div style="margin: 10px 0px;">&nbsp;</div> -->
-    <app-order-summary></app-order-summary>
-  </div>
+  </ng-container>
 </div>
