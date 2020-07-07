@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Alert } from '../models/alert';
 import { AlertService } from '../services/alert.service';
 import { BehaviorSubject } from 'rxjs';
 
@@ -10,20 +9,27 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AlertComponent implements OnInit {
   public alertStatus = new BehaviorSubject<any>([]);
-  // public alertStatus = this.alertService.alertStatus.subscribe();
+  public progressNow = 0;
 
   constructor(private readonly alertService: AlertService) { }
 
   ngOnInit(): void {
     this.alertService.alertStatus.subscribe(res => {
       this.alertStatus.next(res);
-      // console.log({res});
-      console.log('this:::', this.alertStatus);
+      // console.log('this:::', this.alertStatus);
     });
 
-    setTimeout(() => {
-      console.log('timeout:::', this.alertStatus);
-    }, 2500);
-  }
+    setInterval(() => {
+      if (this.alertStatus.value.msg && this.progressNow < 100) {
+          this.progressNow = this.progressNow + 10;
+          console.log('pNow:', this.progressNow);
+      } else if (this.alertStatus.value.msg && this.progressNow === 100) {
+        // alert('terminate alert');
 
+        this.alertService.send(null, '');
+        this.progressNow = 0;
+      }
+    }, 1000);
+
+  }
 }

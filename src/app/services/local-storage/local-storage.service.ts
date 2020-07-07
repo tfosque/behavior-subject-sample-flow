@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { size } from 'lodash';
 
 interface Config {
   storagetype: string;
@@ -65,21 +66,21 @@ export class LocalStorageService {
   /**
    * Check Local Storage to see if data exist (and if storage space is available 5MB max)
    */
-  startLocalDb() {
+  startLocalDb(): void {
     // only configure if db is empty
-    if (this.locDbExist()) {
+    if (this.locDbExist() && size(this.localDbSize()) > 0) {
       console.log('localDb successfully started....', this.currStorage);
       this.LOC_DATA.next(this.currStorage);
-    } else {
+    } else if(this.locDbExist() && size(this.localDbSize()) < 1) {
       console.log('No Db was found Initializing localDb....');
       this.initLocalDb();
     }
   }
 
-  localDbSize() {
+  localDbSize(): any {
     // this will produce an error if localDb does not exist
     const storage = JSON.parse(localStorage.localDb);
-    const chkSize = storage.db.length;
+    const chkSize = size(storage.db);
     console.log({ chkSize });
     return chkSize;
   }

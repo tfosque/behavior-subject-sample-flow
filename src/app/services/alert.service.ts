@@ -15,7 +15,7 @@ export class AlertService {
   // default status
   default() {
     return {
-      msg: '',
+      msg: null,
       status: null
     };
   }
