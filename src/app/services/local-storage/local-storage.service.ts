@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { size } from 'lodash';
 
@@ -10,7 +10,7 @@ interface Config {
   configured: boolean;
 }
 
-enum Storage_Type {
+/* enum Storage_Type {
   local = 'local',
   session = 'session'
 }
@@ -18,7 +18,7 @@ enum Storage_Type {
 enum Data_Type {
   json = 'json',
   xml = 'xml'
-}
+} */
 
 @Injectable({
   providedIn: 'root'
@@ -34,29 +34,27 @@ export class LocalStorageService {
     private readonly http: HttpClient,
   ) { }
 
-  configDb() {
-    const stor = JSON.parse(localStorage.getItem('localDbConfig'));
-    const configValue = stor.configured;
-    console.log({ configValue });
+  /*   configDb() {
+      const stor = JSON.parse(localStorage.getItem('localDbConfig'));
+      const configValue = stor.configured;
+      console.log({ configValue });
 
-    if (configValue) {
-      // this.hasLocalData();
-      return;
-    }
+      if (configValue) {
+        return;
+      }
 
-    // set config
-    let localDbConfig: Config;
+      // set config
+      let localDbConfig: Config;
 
-    const storagetype = 'local';
-    const datatype = 'json';
-    const msg = 'Welcome to localDb (Fake Data Persistence)';
-    const configured = true;
+      const storagetype = 'local';
+      const datatype = 'json';
+      const msg = 'Welcome to localDb (Fake Data Persistence)';
+      const configured = true;
 
-    localDbConfig = { storagetype, datatype, msg, configured };
-    // this.setConfiguration(localDbConfig);
-    return localDbConfig;
-  }
-
+      localDbConfig = { storagetype, datatype, msg, configured };
+      // this.setConfiguration(localDbConfig);
+      return localDbConfig;
+    } */
 
   // Configuration
   setConfiguration(localDbConfig: any): any {
@@ -68,46 +66,48 @@ export class LocalStorageService {
    */
   startLocalDb(): void {
     // only configure if db is empty
-    if (this.locDbExist() && size(this.localDbSize()) > 0) {
-      console.log('localDb successfully started....', this.currStorage);
+    console.log('equation:', this.locDbExist() && this.localDbSize() > 0);
+
+    console.log('LOC_DATA:OBSERVABLE', this.LOC_DATA);
+    console.log('currStorage:ARRAY[]', this.currStorage);
+
+    if (this.locDbExist() && this.localDbSize() > 0) {
       this.LOC_DATA.next(this.currStorage);
-    } else if(this.locDbExist() && size(this.localDbSize()) < 1) {
-      console.log('No Db was found Initializing localDb....');
-      this.initLocalDb();
+      setTimeout(() => {
+        console.log('LOC_DATA:OBSERVABLE', this.LOC_DATA);
+      }, 1000);
     }
   }
 
   localDbSize(): any {
     // this will produce an error if localDb does not exist
-    const storage = JSON.parse(localStorage.localDb);
-    const chkSize = size(storage.db);
+    const storage = this.currStorage;
+    const chkSize = size(storage);
     console.log({ chkSize });
     return chkSize;
   }
 
   initLocalDb() {
-    console.log('init:LOC:DATA');
-
     this.http.get(this.apiBaseUrl)
       .subscribe(data => {
-        console.log({ data });
+        // console.log({ data });
         this.LOC_DATA.next(data);
         localStorage.setItem('localDb', JSON.stringify(data));
       });
-
+      // TODO: Remove timeout and replace with observable
     setTimeout(() => {
-      console.log('timeout:loc:data', this.LOC_DATA);
-    }, 2000);
+      console.log('98:currStorage', this.currStorage);
+    }, 3000);
   }
 
   locDbExist() {
-    const evalDb = JSON.parse(localStorage.getItem('localDb'));
+    const evalDb = this.currStorage;
     return evalDb;
   }
 
-  emptyDbAction(exit: boolean) {
-    // if db is empty send developer a message to continue with empty data or fetch fresh data;
-    // const msg = prompt(`Your localDb size is - ${this.localDbSize()}`, 'Hello');
-  }
+  /*  emptyDbAction(exit: boolean) {
+     if db is empty send developer a message to continue with empty data or fetch fresh data;
+     const msg = prompt(`Your localDb size is - ${this.localDbSize()}`, 'Hello');
+   } */
 
 }

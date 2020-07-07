@@ -22,7 +22,7 @@ export class AlertComponent implements OnInit {
     setInterval(() => {
       if (this.alertStatus.value.msg && this.progressNow < 100) {
           this.progressNow = this.progressNow + 10;
-          console.log('pNow:', this.progressNow);
+          // for testing console.log('pNow:', this.progressNow);
       } else if (this.alertStatus.value.msg && this.progressNow === 100) {
         // alert('terminate alert');
 

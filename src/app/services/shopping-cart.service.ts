@@ -10,7 +10,8 @@ import { AlertService } from './alert.service';
 })
 export class ShoppingCartService {
   // Store Items
-  public cartItems = new BehaviorSubject<CartItem[]>([]);
+  // public cartItems = new BehaviorSubject<CartItem[]>([]);
+  public cartItems = new BehaviorSubject<any>([]);
 
   private apiBaseUrl = 'https://my.api.mockaroo.com/cartitem_schema.json?key=c1a35bd0';
 
@@ -19,6 +20,10 @@ export class ShoppingCartService {
     private readonly storageService: LocalStorageService,
     private readonly alertService: AlertService
   ) {
+    this.storageService.LOC_DATA.subscribe(res => {
+      this.cartItems.next(res);
+    });
+
     this.storageService.LOC_DATA.subscribe(res => {
       this.cartItems.next(res);
     });
@@ -39,15 +44,16 @@ export class ShoppingCartService {
     // delete fro db
     localStorage.setItem('localDb', JSON.stringify(result));
 
-    // update cartItems
+    // update cartItems TODO: Remove timeout and use observable
     setTimeout(() => {
-      this.cartItems.next(result);
-      // need to return true;
+      this.storageService.LOC_DATA.next(result);
+
+      // msg service
+      const alertStr = 'Cart Item was deleted successfully';
+      this.alertService.send(alertStr, 'success');
     }, 1000);
 
-    // msg service
-    const alertStr = 'Cart Item was deleted successfully';
-    this.alertService.send(alertStr, 'success');
+
   }
 
 

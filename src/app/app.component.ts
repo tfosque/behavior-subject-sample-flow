@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from './services/alert.service';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
+import { size } from 'lodash';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,5 @@ export class AppComponent implements OnInit {
       this.alertStatus = alert;
     });
   }
-
 
 }
