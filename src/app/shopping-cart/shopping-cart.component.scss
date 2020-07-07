@@ -5,3 +5,13 @@
     border-bottom-right-radius: 0;
   }
 }
+
+.line-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  * {
+    margin-right: 12px;
+  }
+}

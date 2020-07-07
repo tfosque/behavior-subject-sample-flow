@@ -1,4 +1,5 @@
 export interface CartItem {
+  id?: number;
   product: string;
   mongoId?: {};
   details: {

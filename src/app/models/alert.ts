@@ -1,7 +1,6 @@
 export interface Alert {
-  show: boolean;
   msg: string;
-  category: string;
+  status: string;
 }
 
 export enum Categories {

@@ -1,10 +1,18 @@
 <!-- Add primary classes here -->
-<div class="alert alert-danger" *ngIf="alertStatus.show">
-  <p>
-    <strong>User Alert:</strong> &nbsp;
-    <span>{{alertStatus.msg}}</span>
-  </p>
-
+<div
+  class="alert"
+  [ngClass]="{
+    'alert-info': alertStatus.value.status === 'info',
+    'alert-success': alertStatus.value.status === 'success',
+    'alert-danger': alertStatus.value.status === 'danger',
+    'alert-warning': alertStatus.value.status === 'warning'
+   }"
+    *ngIf="alertStatus.value.msg"
+>
+  <div>
+    <strong>Alert:</strong> &nbsp;
+    <span>{{ alertStatus.value.msg }}</span>
+  </div>
 </div>
 
 

@@ -4,6 +4,8 @@
     <p>
       <i class="fa fa-shopping-cart"></i>&nbsp;
       <span class="h5">Shopping Cart</span>
+      &nbsp;
+      <span class="badge badge-primary">{{ (cart | async)?.length }}</span>
     </p>
   </div>
 
@@ -30,11 +32,11 @@
       </div>
 
       <!-- Cart Line Items -->
-      <div class="list-group-item" *ngFor="let item of cart | async | filterSearch:searchTxt:'itemOrProductDescription'">
+      <div class="list-group-item line-item" *ngFor="let item of cart | async | filterSearch:searchTxt:'itemOrProductDescription'">
         <img [src]="item.product" class="rounded" />
-        {{ item.details.itemOrProductDescription }}
-        | &nbsp;
-        #{{ item.details.productId }}
+        <div>{{ item.details.itemOrProductDescription }}</div>
+        <div>#{{ item.details.productId }}</div>
+        <div (click)="deleteItem(item)" class="float-right col-1"><i class="fa fa-trash"></i></div>
       </div>
     </div>
 
