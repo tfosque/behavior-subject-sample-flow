@@ -6,19 +6,13 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AlertService {
-  public alertStatus = new BehaviorSubject<Alert>(this.default());
+  public alertStatus = new BehaviorSubject<Alert>(null);
 
   constructor() { }
 
 
   // Custom Definitions
   // default status
-  default() {
-    return {
-      msg: null,
-      status: null
-    };
-  }
 
   send(msg: string, status: string): void {
     this.alertStatus.next({ msg, status });

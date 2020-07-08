@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from './services/alert.service';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,22 +10,27 @@ import { LocalStorageService } from './services/local-storage/local-storage.serv
 })
 export class AppComponent implements OnInit {
 
-  public alertStatus = {};
+  public alertStatus = new BehaviorSubject<any>([]);
 
   constructor(
     private readonly locStorageService: LocalStorageService,
     private readonly alertService: AlertService
   ) {
-      this.alertService.default();
-    }
+    this.alertService.send('', '');
+  }
 
 
   ngOnInit(): void {
     this.locStorageService.startLocalDb();
     // follow alert changes
     this.alertService.alertStatus.subscribe(alert => {
-      this.alertStatus = alert;
+      console.log({alert});
+      this.alertStatus.next(alert);
     });
-  }
 
+    // Fake Store Api
+   /*  fetch('https://roofingx.free.beeceptor.com')
+      .then(res => res.json())
+      .then(json => console.log(json)); */
+  }
 }

@@ -11,12 +11,18 @@ export class AlertComponent implements OnInit {
   public alertStatus = new BehaviorSubject<any>([]);
   public progressNow = 0;
 
+  // handle multiple alerts
+  public alertList = [];
+
   constructor(private readonly alertService: AlertService) { }
 
   ngOnInit(): void {
     this.alertService.alertStatus.subscribe(res => {
+      res.msg ? this.alertList.push(res) : null;
       this.alertStatus.next(res);
       // console.log('this:::', this.alertStatus);
+      console.log('alertList:', this.alertList);
+
     });
 
     setInterval(() => {
