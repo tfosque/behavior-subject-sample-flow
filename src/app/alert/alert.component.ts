@@ -29,7 +29,7 @@ export class AlertComponent implements OnInit {
         this.alertService.send(null, '');
         this.progressNow = 0;
       }
-    }, 1000);
+    }, Math.floor(Math.random() * 444) + 555);
 
   }
 }

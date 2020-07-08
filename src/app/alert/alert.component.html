@@ -9,9 +9,9 @@
     <strong>Alert:</strong> &nbsp;
     <span>{{ alertStatus.value.msg }}</span>
     &nbsp;
-    <span>{{progressNow}}</span>
+    <span>{{progressNow / 10}} %</span>
   </div>
-  <div class="progress" style="height: 4px; border-radius: 0;">
+  <div class="progress" style="height: 5px; border-radius: 0;">
     <div class="progress-bar bg-success" role="progressbar" style="border-radius: 0;"
       [ngStyle]="{'width': progressNow + '%'}" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
   </div>

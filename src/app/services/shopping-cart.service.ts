@@ -1,9 +1,9 @@
 import { Injectable, } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { CartItem } from '../models/shopping-cart-model';
 import { LocalStorageService } from './local-storage/local-storage.service';
 import { AlertService } from './alert.service';
+import { CartItem } from '../models/shopping-cart-model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,8 @@ import { AlertService } from './alert.service';
 export class ShoppingCartService {
   // Store Items
   // public cartItems = new BehaviorSubject<CartItem[]>([]);
-  public cartItems = new BehaviorSubject<any>([]);
+  public cartItems = new BehaviorSubject<CartItem[]>([]);
+  // public xItems = new BehaviorSubject<any>(this.storageService.LOC_DATA.subscribe(res => res));
 
   private apiBaseUrl = 'https://my.api.mockaroo.com/cartitem_schema.json?key=c1a35bd0';
 
@@ -23,6 +24,11 @@ export class ShoppingCartService {
     this.storageService.LOC_DATA.subscribe(res => {
       this.cartItems.next(res);
     });
+
+    /* this.xItems.subscribe(s => {
+      this.xItems.next(s);
+      console.log('ss::', s.value);
+    }); */
 
     this.storageService.LOC_DATA.subscribe(res => {
       this.cartItems.next(res);

@@ -77,6 +77,11 @@ export class LocalStorageService {
         console.log('LOC_DATA:OBSERVABLE', this.LOC_DATA);
       }, 1000);
     }
+
+    // TODO: test for better implementation
+    if (this.locDbExist() && this.localDbSize() < 1) {
+      this.initLocalDb();
+    }
   }
 
   localDbSize(): any {

@@ -30,6 +30,7 @@ import { SpinnerComponent } from './shared-components/spinner/spinner/spinner.co
 import { ChildToParentComponent } from './shared-components/child-to-parent/child-to-parent/child-to-parent.component';
 import { ParentToChildComponent } from './shared-components/parent-to-child/parent-to-child/parent-to-child.component';
 import { SidebarComponent } from './nav/sidebar/sidebar.component';
+import { PaginationComponent } from './shared-components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { SidebarComponent } from './nav/sidebar/sidebar.component';
     SpinnerComponent,
     ChildToParentComponent,
     ParentToChildComponent,
-    SidebarComponent
+    SidebarComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
