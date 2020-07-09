@@ -1,13 +1,11 @@
 <!-- Add primary classes here -->
 <ng-container>
-  <div
-    class="alert" [ngClass]="{
+  <div class="alert" [ngClass]="{
     'alert-info': alertItem.status === 'info',
     'alert-success': alertItem.status === 'success',
     'alert-danger': alertItem.status === 'danger',
     'alert-warning': alertItem.status === 'warning'
-   }"
-  >
+   }">
     <div>
       <strong>Message:</strong> &nbsp;
       <span>{{ alertItem.msg }}</span>

@@ -21,20 +21,18 @@ enum Data_Type {
 } */
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalStorageService {
-
-  private readonly apiBaseUrl = 'https://my.api.mockaroo.com/cartitem_schema.json?key=c1a35bd0';
+  private readonly apiBaseUrl =
+    'https://my.api.mockaroo.com/cartitem_schema.json?key=c1a35bd0';
 
   public LOC_DATA = new BehaviorSubject<any>([]);
   public currStorage = JSON.parse(localStorage.getItem('localDb'));
 
-  constructor(
-    private readonly http: HttpClient,
-  ) {
-      // localDb.localStorage.size
-      // console.log('keys:', this.getLocalStorage());
+  constructor(private readonly http: HttpClient) {
+    // localDb.localStorage.size
+    // console.log('keys:', this.getLocalStorage());
   }
 
   /*   configDb() {
@@ -70,13 +68,13 @@ export class LocalStorageService {
   startLocalDb(): void {
     // Scan for localDb..
     if (this.currStorage) {
-        console.log('localDb is live!', this.currStorage);
-        console.groupEnd();
-        console.log('localDb logs:', 'completed');
-        setTimeout(() => {
-          this.LOC_DATA.next(this.currStorage);
-        }, 1000);
-        return;
+      console.log('localDb is live!', this.currStorage);
+      console.groupEnd();
+      console.log('localDb logs:', 'completed');
+      setTimeout(() => {
+        this.LOC_DATA.next(this.currStorage);
+      }, 1000);
+      return;
     }
     if (!this.currStorage) {
       console.log('No localDb found');
@@ -88,8 +86,6 @@ export class LocalStorageService {
     console.groupEnd();
   }
 
-
-
   localDbSize(): any {
     // this will produce an error if localDb does not exist
     const storage = this.currStorage;
@@ -98,12 +94,11 @@ export class LocalStorageService {
   }
 
   initLocalDb() {
-    this.http.get(this.apiBaseUrl)
-      .subscribe(data => {
-        // console.log({ data });
-        this.LOC_DATA.next(data);
-        localStorage.setItem('localDb', JSON.stringify(data));
-      });
+    this.http.get(this.apiBaseUrl).subscribe((data) => {
+      // console.log({ data });
+      this.LOC_DATA.next(data);
+      localStorage.setItem('localDb', JSON.stringify(data));
+    });
   }
 
   /**
@@ -113,11 +108,11 @@ export class LocalStorageService {
     let total = 0;
     // tslint:disable-next-line: forin
     for (let x in localStorage) {
-        // Value is multiplied by 2 due to data being stored in `utf-16` format, which requires twice the space.
-        const amount = (localStorage[x].length * 2) / 1024 / 1024;
-        // console.log({amount});
+      // Value is multiplied by 2 due to data being stored in `utf-16` format, which requires twice the space.
+      const amount = (localStorage[x].length * 2) / 1024 / 1024;
+      // console.log({amount});
 
-        total += amount;
+      total += amount;
     }
     return total.toFixed(2);
   }
@@ -126,5 +121,4 @@ export class LocalStorageService {
      if db is empty send developer a message to continue with empty data or fetch fresh data;
      const msg = prompt(`Your localDb size is - ${this.localDbSize()}`, 'Hello');
    } */
-
 }

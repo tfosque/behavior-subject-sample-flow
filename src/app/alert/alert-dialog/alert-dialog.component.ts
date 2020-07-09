@@ -6,7 +6,7 @@ import { Alert } from 'src/app/models/alert';
 @Component({
   selector: 'app-alert-dialog',
   templateUrl: './alert-dialog.component.html',
-  styleUrls: ['./alert-dialog.component.scss']
+  styleUrls: ['./alert-dialog.component.scss'],
 })
 export class AlertDialogComponent implements OnInit {
   alertList = [];
@@ -15,10 +15,7 @@ export class AlertDialogComponent implements OnInit {
   public alertStatus = new BehaviorSubject<any>([]);
   public progressNow = 0;
 
-  constructor(private readonly alertService: AlertService) { }
+  constructor(private readonly alertService: AlertService) {}
 
-  ngOnInit(): void {
-
-  }
-
+  ngOnInit(): void {}
 }
