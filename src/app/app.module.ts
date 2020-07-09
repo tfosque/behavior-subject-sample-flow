@@ -31,6 +31,14 @@ import { ChildToParentComponent } from './shared-components/child-to-parent/chil
 import { ParentToChildComponent } from './shared-components/parent-to-child/parent-to-child/parent-to-child.component';
 import { SidebarComponent } from './nav/sidebar/sidebar.component';
 import { PaginationComponent } from './shared-components/pagination/pagination.component';
+import { AlertDialogComponent } from './alert/alert-dialog/alert-dialog.component';
+import { SplashScreenComponent } from './splash-screen/splash-screen.component';
+import { LocalDbComponent } from './_app/local-db/local-db.component';
+import { AppStartComponent } from './_app/app-start/app-start.component';
+import { SearchService } from './services/search.service';
+import { ShoppingCartService } from './services/shopping-cart.service';
+import { AlertService } from './services/alert.service';
+import { LocalStorageService } from './services/local-storage/local-storage.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +66,11 @@ import { PaginationComponent } from './shared-components/pagination/pagination.c
     ChildToParentComponent,
     ParentToChildComponent,
     SidebarComponent,
-    PaginationComponent
+    PaginationComponent,
+    AlertDialogComponent,
+    SplashScreenComponent,
+    LocalDbComponent,
+    AppStartComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +79,8 @@ import { PaginationComponent } from './shared-components/pagination/pagination.c
     HttpClientModule,
     NgxsModule.forRoot([])
   ],
-  providers: [],
+  providers: [SearchService, ShoppingCartService, AlertService, LocalStorageService],
+  exports: [FilterSearchPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

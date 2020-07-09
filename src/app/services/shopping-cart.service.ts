@@ -44,32 +44,36 @@ export class ShoppingCartService {
     console.log('add item');
   }
 
-  deleteItem(id: number) {
-    const result = this.filter(this.cartItems.value, id);
+  deleteItem(key: any) {
+    const results = this.deleteFilter(this.cartItems.value, key);
+    // console.log({key});
+    // console.log({results});
 
-    // delete fro db
-    localStorage.setItem('localDb', JSON.stringify(result));
+
+    // delete from db
+    localStorage.setItem('localDb', JSON.stringify(results));
 
     // update cartItems TODO: Remove timeout and use observable
     setTimeout(() => {
-      this.storageService.LOC_DATA.next(result);
+      // update localDb
+      this.storageService.LOC_DATA.next(results);
 
-      // msg service
-      const alertStr = 'Cart Item was deleted successfully';
-      this.alertService.send(alertStr, 'success');
+      // send msg to alert service (200)
+      // const alertMsg = `Cart Item ${ result.details.productId } was deleted successfully`;
+      // this.alertService.send(alertMsg, 'success', result.id, result);
     }, 1000);
-
 
   }
 
 
 
   // Helpers
-  filter(items, key = 1) {
-    const myFilter = items.filter(f => {
+  deleteFilter(items: any, key: number) {
+    // console.log({items}, {key});
+
+    return items.filter((f: any) => {
       return f.id !== key;
     });
-    return myFilter;
   }
 
 }

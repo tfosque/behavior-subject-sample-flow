@@ -10,13 +10,16 @@ export class AlertService {
 
   constructor() { }
 
-
   // Custom Definitions
-  // default status
 
-  send(msg: string, status: string): void {
-    this.alertStatus.next({ msg, status });
-    // console.log('alertService:', this.alertStatus.value);
+  // Incoming message
+  send(msg: string, status: string, token: any, currNow?: number): void {
+    this.alertStatus.next({ msg, status, token, currNow });
+    // console.log('alertService:Receive:', {msg}, {token}, this.alertStatus.value);
+  }
+
+  dismiss(token: any) {
+    // console.log('dismiss', {token});
   }
 
   timer() {

@@ -8,34 +8,38 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./alert.component.scss']
 })
 export class AlertComponent implements OnInit {
+  alertList = [];
   public alertStatus = new BehaviorSubject<any>([]);
-  public progressNow = 0;
+/*   public progressNow = 0; */
 
   // handle multiple alerts
-  public alertList = [];
+ /*  public alertList = []; */
 
-  constructor(private readonly alertService: AlertService) { }
+  constructor(
+    private readonly alertService: AlertService
+    ) { }
 
   ngOnInit(): void {
-    this.alertService.alertStatus.subscribe(res => {
+    /* this.alertService.alertStatus.subscribe(res => {
       res.msg ? this.alertList.push(res) : null;
       this.alertStatus.next(res);
-      // console.log('this:::', this.alertStatus);
       console.log('alertList:', this.alertList);
 
-    });
+    }); */
 
-    setInterval(() => {
+/*     setInterval(() => {
       if (this.alertStatus.value.msg && this.progressNow < 100) {
-          this.progressNow = this.progressNow + 10;
-          // for testing console.log('pNow:', this.progressNow);
-      } else if (this.alertStatus.value.msg && this.progressNow === 100) {
-        // alert('terminate alert');
 
+        // alert timer
+        this.progressNow = this.progressNow + 10;
+      } else if (this.alertStatus.value.msg && this.progressNow === 100) {
+
+        // dismmiss alert;
         this.alertService.send(null, '');
         this.progressNow = 0;
+        this.alertService.dismiss('id:1');
       }
-    }, Math.floor(Math.random() * 444) + 555);
+    }, Math.floor(Math.random() * 444) + 555); */
 
   }
 }

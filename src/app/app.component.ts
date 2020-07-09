@@ -16,15 +16,17 @@ export class AppComponent implements OnInit {
     private readonly locStorageService: LocalStorageService,
     private readonly alertService: AlertService
   ) {
-    this.alertService.send('', '');
+    this.alertService.send('', '', {}, 0);
   }
 
 
   ngOnInit(): void {
+    // start localDb
     this.locStorageService.startLocalDb();
+
     // follow alert changes
     this.alertService.alertStatus.subscribe(alert => {
-      console.log({alert});
+      // console.log({alert});
       this.alertStatus.next(alert);
     });
 

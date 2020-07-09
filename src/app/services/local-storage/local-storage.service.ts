@@ -32,7 +32,10 @@ export class LocalStorageService {
 
   constructor(
     private readonly http: HttpClient,
-  ) { }
+  ) {
+      // localDb.localStorage.size
+      // console.log('keys:', this.getLocalStorage());
+  }
 
   /*   configDb() {
       const stor = JSON.parse(localStorage.getItem('localDbConfig'));
@@ -65,30 +68,32 @@ export class LocalStorageService {
    * Check Local Storage to see if data exist (and if storage space is available 5MB max)
    */
   startLocalDb(): void {
-    // only configure if db is empty
-    console.log('equation:', this.locDbExist() && this.localDbSize() > 0);
-
-    console.log('LOC_DATA:OBSERVABLE', this.LOC_DATA);
-    console.log('currStorage:ARRAY[]', this.currStorage);
-
-    if (this.locDbExist() && this.localDbSize() > 0) {
-      this.LOC_DATA.next(this.currStorage);
-      setTimeout(() => {
-        console.log('LOC_DATA:OBSERVABLE', this.LOC_DATA);
-      }, 1000);
+    // Scan for localDb..
+    if (this.currStorage) {
+        console.log('localDb is live!', this.currStorage);
+        console.groupEnd();
+        console.log('localDb logs:', 'completed');
+        setTimeout(() => {
+          this.LOC_DATA.next(this.currStorage);
+        }, 1000);
+        return;
     }
-
-    // TODO: test for better implementation
-    if (this.locDbExist() && this.localDbSize() < 1) {
+    if (!this.currStorage) {
+      console.log('No localDb found');
       this.initLocalDb();
+      return;
     }
+
+    console.group('Application Logs');
+    console.groupEnd();
   }
+
+
 
   localDbSize(): any {
     // this will produce an error if localDb does not exist
     const storage = this.currStorage;
     const chkSize = size(storage);
-    console.log({ chkSize });
     return chkSize;
   }
 
@@ -99,15 +104,22 @@ export class LocalStorageService {
         this.LOC_DATA.next(data);
         localStorage.setItem('localDb', JSON.stringify(data));
       });
-      // TODO: Remove timeout and replace with observable
-    setTimeout(() => {
-      console.log('98:currStorage', this.currStorage);
-    }, 3000);
   }
 
-  locDbExist() {
-    const evalDb = this.currStorage;
-    return evalDb;
+  /**
+   * Returns the total amount of disk space used (in MB) by localStorage for the current domain.
+   */
+  getLocalStorage() {
+    let total = 0;
+    // tslint:disable-next-line: forin
+    for (let x in localStorage) {
+        // Value is multiplied by 2 due to data being stored in `utf-16` format, which requires twice the space.
+        const amount = (localStorage[x].length * 2) / 1024 / 1024;
+        // console.log({amount});
+
+        total += amount;
+    }
+    return total.toFixed(2);
   }
 
   /*  emptyDbAction(exit: boolean) {
