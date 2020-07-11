@@ -14,6 +14,7 @@ export class ProductsService {
 
   public selectedProducts$ = new BehaviorSubject<ProductModel[]>([]);
   selectedProducts = [];
+  selectedP = [];
 
   private apiBaseUrl =
     'https://my.api.mockaroo.com/cartitem_schema.json?key=c1a35bd0';
@@ -34,36 +35,25 @@ export class ProductsService {
   }
 
    // TODO: Maybe a settimeout issue
+   // TODO: When do we clearselected products !important
   addToSelectedProducts(addProd: ProductModel) {
-    // TODO: When do we clearselected products !important
-    try {
-      if (addProd) {
-        console.log({addProd});
-        console.log('selectedProducts$[]:curr', this.selectedProducts$.value);
-        this.selectedProducts.push(addProd);
-        console.log('selectedProducts[]:add', this.selectedProducts);
-
-        this.selectedProducts$.next(this.selectedProducts);
-      }
-    } catch (error) {
-      console.log({ error });
-    }
+    this.selectedProducts.push(addProd);
+    // console.log('selectedProducts[]:add', this.selectedProducts);
+    this.selectedProducts$.next(this.selectedProducts);
   }
+
   // TODO: Maybe a settimeout issue
   removeFromSelectedProducts(removeProd: ProductModel) {
-    // TODO: When do we clearselected products !important
-    try {
-      if (removeProd) {
-        const updatedSelectedProductList = this.selectedProducts.filter(f =>  f.id !== removeProd.id);
-        console.log({removeProd}, {updatedSelectedProductList});
+    // console.log('list:before:del', this.selectedProducts);
 
-        this.selectedProducts.push(updatedSelectedProductList);
-        // console.log({removeProd}, 'selectedProducts[]:del:', this.selectedProducts);
-        this.selectedProducts$.next(this.selectedProducts);
-      }
-    } catch (error) {
-      console.log({ error });
-    }
+    const removeSelected = this.selectedProducts.filter(f => f.id !== removeProd.id);
+    this.selectedProducts = removeSelected;
+    // console.log('remove:selected:', removeProd.id, {removeSelected});
+    this.selectedProducts$.next(removeSelected);
+
+    // this.selectedProducts.push(...updatedSelectedProductList);
+    // console.log({removeProd}, 'selectedProducts[]:del:', this.selectedProducts);
+    // this.selectedProducts$.next(this.selectedProducts);
   }
 }
 

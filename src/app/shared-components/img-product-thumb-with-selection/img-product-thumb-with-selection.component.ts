@@ -20,6 +20,9 @@ export class ImgProductThumbWithSelectionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.productService.selectedProducts$.subscribe(r => {
+      // console.log({r});
+    });
   }
 
   validate() {
@@ -28,15 +31,29 @@ export class ImgProductThumbWithSelectionComponent implements OnInit {
 
   trackSelection() {
     // TODO: Remove item from list after deselected
-    if (this.selected) {
-      // remove item
-      this.productService.removeFromSelectedProducts(this.product);
-      this.selected = !this.selected;
-    } else if (!this.selected) {
-      this.productService.addToSelectedProducts(this.product);
-      this.selected = !this.selected;
+
+    this.selected = !this.selected;
+
+    if (this.selected === true) {
+      console.log('this.selected=:', this.selected);
+      this.addProduct();
+      return;
     }
 
+    if (this.selected === false) {
+      console.log('this.selected=:', this.selected);
+      this.removeProduct();
+      return;
+    }
+
+  }
+
+  addProduct() {
+    this.productService.addToSelectedProducts(this.product);
+  }
+
+  removeProduct() {
+    this.productService.removeFromSelectedProducts(this.product);
   }
 
 }
