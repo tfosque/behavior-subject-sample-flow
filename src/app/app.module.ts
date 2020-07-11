@@ -29,7 +29,7 @@ import { ModalComponent } from './shared-components/modal/modal/modal.component'
 import { SpinnerComponent } from './shared-components/spinner/spinner/spinner.component';
 import { ChildToParentComponent } from './shared-components/child-to-parent/child-to-parent/child-to-parent.component';
 import { ParentToChildComponent } from './shared-components/parent-to-child/parent-to-child/parent-to-child.component';
-import { SidebarComponent } from './nav/sidebar/sidebar.component';
+import { SidebarComponent } from './shared-components/sidebar/sidebar.component';
 import { PaginationComponent } from './shared-components/pagination/pagination.component';
 import { AlertDialogComponent } from './alert/alert-dialog/alert-dialog.component';
 import { SplashScreenComponent } from './splash-screen/splash-screen.component';
@@ -39,6 +39,11 @@ import { SearchService } from './services/search.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { AlertService } from './services/alert.service';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { AlertFormComponent } from './alert-form/alert-form.component';
+import { NotificationComponent } from './forms/notification/notification.component';
+import { ViewContainerComponent } from './shared-components/sidebar/view-container/view-container.component';
+import { CartGalleryComponent } from './cart-gallery/cart-gallery.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +75,12 @@ import { LocalStorageService } from './services/local-storage/local-storage.serv
     AlertDialogComponent,
     SplashScreenComponent,
     LocalDbComponent,
-    AppStartComponent
+    AppStartComponent,
+    NotificationsComponent,
+    AlertFormComponent,
+    NotificationComponent,
+    ViewContainerComponent,
+    CartGalleryComponent
   ],
   imports: [
     BrowserModule,

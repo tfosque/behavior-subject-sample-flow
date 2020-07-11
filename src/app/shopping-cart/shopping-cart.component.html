@@ -4,7 +4,7 @@
       <i class="fa fa-shopping-cart"></i>&nbsp;
       <span class="h5">Shopping Cart</span>
       &nbsp;
-      <span class="badge badge-primary">{{ (cart | async)?.length }}</span>
+      <span class="badge badge-primary">{{ (cartItems | async)?.length }}</span>
     </p>
   </div>
 
@@ -15,7 +15,7 @@
   </ng-template>
 
   <!-- Search Input -->
-  <ng-container *ngIf="(cart | async)?.length; else spinner">
+  <ng-container>
     <div class="col-sm-12 col-lg-9">
       <div class="row">
         <!-- Input -->
@@ -23,12 +23,7 @@
           <app-filter-input></app-filter-input>
         </div>
         <div class="col btn-group">
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-toggle="modal"
-            data-target="#exampleModal"
-          >
+          <button type="button" (click)="fetchProducts()" class="btn btn-primary" data-toggle="modal" data-target="#productModel">
             Add Product
           </button>
           <button type="button" class="btn btn-secondary">
@@ -38,28 +33,36 @@
       </div>
 
       <!-- Cart Line Items -->
-      <div
-        class="list-group-item line-item"
-        *ngFor="
-          let item of cart
+      <ng-container *ngIf="(cartItems | async)?.length < 1 ; else emptyMsg">
+        <div
+          class="list-group-item line-item"
+          *ngFor="let item of cartItems
             | async
             | filterSearch: searchTxt:'itemOrProductDescription'
-        "
-      >
-        <img [src]="item.product" class="rounded" />
-        <div>{{ item.details.itemOrProductDescription }}</div>
-        <div>#{{ item.details.productId }}</div>
-        <div (click)="deleteItem(item)" class="float-right col-1">
-          <i class="fa fa-trash"></i>
+        ">
+          <img [src]="item.product" class="rounded" />
+          <div>{{ item.details.itemOrProductDescription }}</div>
+          <div>#{{ item.details.productId }}</div>
+          <div (click)="deleteItem(item)" class="float-right col-1">
+            <i class="fa fa-trash"></i>
+          </div>
         </div>
+      </ng-container>
+
+      <!-- Empty Cart  -->
+      <ng-container>
+        <ng-template #emptyMsg class="alert alert-warning">
+          <h5>Click the ADD PRODUCT button to populate your cart.</h5>
+        </ng-template>
+      </ng-container>
+
+    </div>
+
+    <div class="col-sm-12 col-lg-3 sidebar">
+      <div class="row">
+        <app-sidebar></app-sidebar>
       </div>
     </div>
 
-    <div class="col-sm-12 col-lg-3 hidden-up sidebar">
-      <!-- <div style="margin: 10px 0px;">&nbsp;</div> -->
-      <app-order-summary></app-order-summary>
-      <div class="mt-1 MB-1">&nbsp;</div>
-      <app-suggestive-items></app-suggestive-items>
-    </div>
   </ng-container>
 </div>

@@ -4,6 +4,8 @@ import { BehaviorSubject } from 'rxjs';
 import { CartItem } from '../models/shopping-cart-model';
 import { FilterInputComponent } from '../shared-components/filter-input/filter-input/filter-input.component';
 import { SearchService } from '../services/search.service';
+import { ProductsService } from '../services/products.service';
+import { ModalService } from '../services/modal.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -11,7 +13,7 @@ import { SearchService } from '../services/search.service';
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
-  public cart = new BehaviorSubject<CartItem[]>([]);
+  public cartItems = new BehaviorSubject<CartItem[]>([]);
 
   searchTxt: string;
 
@@ -19,17 +21,24 @@ export class ShoppingCartComponent implements OnInit {
 
   constructor(
     private readonly cartService: ShoppingCartService,
-    private readonly searchService: SearchService
+    private readonly searchService: SearchService,
+    private readonly productService: ProductsService,
+    private readonly modalService: ModalService
   ) { }
 
   ngOnInit(): void {
     this.cartService.cartItems.subscribe((items: CartItem[]) => {
-      this.cart.next(items);
+      this.cartItems.next(items);
     });
 
     this.searchService.txtStr.subscribe(str => {
       this.searchTxt = str;
     });
+  }
+
+  fetchProducts() {
+    this.modalService.title.next('Select a Product');
+    this.productService.getProducts();
   }
 
   deleteItem(item: any) {

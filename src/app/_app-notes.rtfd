@@ -1,0 +1,1 @@
+npx -p @storybook/cli sb init --type angular (npm run storybook - to launch)

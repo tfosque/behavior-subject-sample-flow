@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
+export interface Home {
+  title: string;
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

@@ -1,0 +1,23 @@
+<form name="form" #f="ngForm" novalidate>
+  <div class="list-group">
+    <div class="list-group-item">
+      <h5><b>Notification Form:</b></h5>
+    </div>
+    <div class="list-group-item">
+      <label for="filterItem">Filter-Item</label>
+      <input autocomplete="off" type="text" class="form-control" name="filterItem" [(ngModel)]="model.filterItem"
+        #filterItem="ngModel" [ngClass]="{ 'is-invalid': f.submitted && filterItem.invalid }" required />
+
+      <div *ngIf="f.submitted && filterItem.invalid" class="invalid-feedback">
+        <div *ngIf="filterItem.errors.required">Filter Value is required</div>
+      </div>
+
+
+      <p style="display: block; margin: 8px 0px;">
+        <span>Dirty: {{filterItem.dirty}}</span>&nbsp;|
+        <span>Toched: {{filterItem.touched}}</span>
+      </p>
+    </div>
+  </div>
+
+</form>

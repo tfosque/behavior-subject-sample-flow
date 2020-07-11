@@ -1,0 +1,13 @@
+<div *ngIf="products">
+  <div class="row">
+    <div class="col-lg-3 mb-2" *ngFor="let product of products| async"
+      style="border-bottom: solid thin #e6e6e6; padding-top: 2px; padding-bottom: 2px;">
+      <div>
+        <img class="rounded img-fluid" [src]="product.product" />
+        <div style="padding: 4px 4px;">
+          <h6>{{product.details.itemOrProductDescription}}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
