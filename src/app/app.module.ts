@@ -44,6 +44,7 @@ import { AlertFormComponent } from './alert-form/alert-form.component';
 import { NotificationComponent } from './forms/notification/notification.component';
 import { ViewContainerComponent } from './shared-components/sidebar/view-container/view-container.component';
 import { CartGalleryComponent } from './cart-gallery/cart-gallery.component';
+import { ImgProductThumbWithSelectionComponent } from './shared-components/img-product-thumb-with-selection/img-product-thumb-with-selection.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { CartGalleryComponent } from './cart-gallery/cart-gallery.component';
     AlertFormComponent,
     NotificationComponent,
     ViewContainerComponent,
-    CartGalleryComponent
+    CartGalleryComponent,
+    ImgProductThumbWithSelectionComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,16 @@
+<div class="thumb" *ngIf="!selected; else selection" (click)="trackSelection()">
+  <img class="rounded img-fluid" [src]="product.product" style="width:100%" />
+  <div style="padding: 4px 4px;">
+    <h6>{{product.details.itemOrProductDescription}}</h6>
+  </div>
+</div>
+
+<ng-template #selection>
+  <div class="thumb" (click)="trackSelection()">
+    <i class="fa fa-check-square" style="position: relative; top: 0; left: 0; z-index: 1000; color: cornflowerblue "></i>
+    <img class="rounded img-fluid" [src]="product.product" style="width:100%" />
+    <div style="padding: 4px 4px;">
+      <h6>{{product.details.itemOrProductDescription}}</h6>
+    </div>
+  </div>
+</ng-template>

@@ -36,8 +36,9 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
 
+  // TODO: evaluate repeated calls performance and strategy
   fetchProducts() {
-    this.modalService.title.next('Select a Product');
+    this.modalService.title.next('Select Products');
     this.productService.getProducts();
   }
 
