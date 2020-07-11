@@ -45,6 +45,7 @@ import { NotificationComponent } from './forms/notification/notification.compone
 import { ViewContainerComponent } from './shared-components/sidebar/view-container/view-container.component';
 import { CartGalleryComponent } from './cart-gallery/cart-gallery.component';
 import { ImgProductThumbWithSelectionComponent } from './shared-components/img-product-thumb-with-selection/img-product-thumb-with-selection.component';
+import { ListOfSelectedProductsComponent } from './cart-gallery/list-of-selected-products/list-of-selected-products.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { ImgProductThumbWithSelectionComponent } from './shared-components/img-p
     NotificationComponent,
     ViewContainerComponent,
     CartGalleryComponent,
-    ImgProductThumbWithSelectionComponent
+    ImgProductThumbWithSelectionComponent,
+    ListOfSelectedProductsComponent
   ],
   imports: [
     BrowserModule,

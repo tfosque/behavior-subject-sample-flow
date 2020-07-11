@@ -35,13 +35,13 @@ export class ImgProductThumbWithSelectionComponent implements OnInit {
     this.selected = !this.selected;
 
     if (this.selected === true) {
-      console.log('this.selected=:', this.selected);
+      // console.log('this.selected=:', this.selected);
       this.addProduct();
       return;
     }
 
     if (this.selected === false) {
-      console.log('this.selected=:', this.selected);
+      // console.log('this.selected=:', this.selected);
       this.removeProduct();
       return;
     }
