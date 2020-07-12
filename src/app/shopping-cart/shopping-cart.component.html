@@ -24,16 +24,25 @@
         </div>
         <div class="col btn-group">
           <button type="button" (click)="fetchProducts()" class="btn btn-primary" data-toggle="modal" data-target="#productModel">
-            Add Product
+            <b>ADD PRODUCT</b>&nbsp; <i class="fa fa-plus-square fa-lg" ></i>
           </button>
           <button type="button" class="btn btn-secondary">
-            Pick From Template
+            <b>PICK FROM TEMPLATE</b>
           </button>
         </div>
       </div>
 
+       <!-- Empty Cart  -->
+
+        <ng-template #emptyMsg class="alert alert-warning">
+          <div class="alert alert-warning">
+            <h5>Click the <kbd>ADD PRODUCT</kbd> button to populate cart.</h5>
+          </div>
+        </ng-template>
+
+
       <!-- Cart Line Items -->
-      <ng-container *ngIf="(cartItems | async)?.length < 1 ; else emptyMsg">
+      <ng-container *ngIf="(cartItems | async)?.length > 1 ; else emptyMsg">
         <div
           class="list-group-item line-item"
           *ngFor="let item of cartItems
@@ -49,12 +58,7 @@
         </div>
       </ng-container>
 
-      <!-- Empty Cart  -->
-      <ng-container>
-        <ng-template #emptyMsg class="alert alert-warning">
-          <h5>Click the ADD PRODUCT button to populate your cart.</h5>
-        </ng-template>
-      </ng-container>
+
 
     </div>
 

@@ -1,4 +1,6 @@
-<div *ngIf="products">
+
+
+<ng-container *ngIf="(products | async)?.length > 0; else spinner">
   <div class="row">
     <div class="col-lg-12">
       <div class="row" style="height: 220px;">
@@ -19,7 +21,11 @@
       </div>
     </div>
   </div>
-</div>
+</ng-container>
+
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>
 
 <!-- Template -->
 <!-- <ng-container *ngIf="products">

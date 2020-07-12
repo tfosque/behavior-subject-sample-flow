@@ -6,6 +6,7 @@ import { FilterInputComponent } from '../shared-components/filter-input/filter-i
 import { SearchService } from '../services/search.service';
 import { ProductsService } from '../services/products.service';
 import { ModalService } from '../services/modal.service';
+import { ProductModel } from '../models/product';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -13,7 +14,7 @@ import { ModalService } from '../services/modal.service';
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
-  public cartItems = new BehaviorSubject<CartItem[]>([]);
+  public cartItems = new BehaviorSubject<ProductModel[]>([]);
 
   searchTxt: string;
 
@@ -27,7 +28,7 @@ export class ShoppingCartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.cartService.cartItems.subscribe((items: CartItem[]) => {
+    this.cartService.cartItems.subscribe((items: ProductModel[]) => {
       this.cartItems.next(items);
     });
 

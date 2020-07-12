@@ -3,6 +3,7 @@ import { ProductsService } from 'src/app/services/products.service';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { ProductModel } from 'src/app/models/product';
 import { ModalService } from 'src/app/services/modal.service';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
 @Component({
   selector: 'app-modal',
@@ -13,13 +14,21 @@ export class ModalComponent implements OnInit {
   products = new BehaviorSubject<ProductModel[]>([]);
   title = new Subject<string>();
   public disabled = true;
+  public selectedProducts = new BehaviorSubject<ProductModel[]>([]);
+
+  // track modal activePage
+  // product gallery - list of selected products - save/preview
+  public activePage = new BehaviorSubject<string>('');
 
   constructor(
     private readonly productService: ProductsService,
-    private readonly modalService: ModalService
+    private readonly modalService: ModalService,
+    private readonly cartService: ShoppingCartService
   ) { }
 
   ngOnInit(): void {
+    this.activePage.next('productGallery');
+
     this.modalService.title.subscribe(nextTitle => {
       this.title.next(nextTitle);
     });
@@ -27,7 +36,26 @@ export class ModalComponent implements OnInit {
       this.products.next(fetchProducts);
       console.log({fetchProducts});
     });
-    console.log('fetch:products', this.products.value);
+    this.productService.selectedProducts$.subscribe(selProducts => {
+      if (selProducts.length > 0) {
+         this.disabled = false;
+      } else { this.disabled = true; }
+    });
+    this.activePage.subscribe(next => {
+      console.log({next});
+    });
+  }
+
+  continue(nextPage: string): void {
+    this.activePage.next(nextPage);
+  }
+
+  addToCart() {
+    //
+    this.productService.selectedProducts$
+      .subscribe((items: ProductModel[]) => {
+        this.cartService.addMultipleItems(items);
+      });
   }
 
 }

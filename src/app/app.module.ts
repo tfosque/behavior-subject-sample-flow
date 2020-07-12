@@ -46,6 +46,8 @@ import { ViewContainerComponent } from './shared-components/sidebar/view-contain
 import { CartGalleryComponent } from './cart-gallery/cart-gallery.component';
 import { ImgProductThumbWithSelectionComponent } from './shared-components/img-product-thumb-with-selection/img-product-thumb-with-selection.component';
 import { ListOfSelectedProductsComponent } from './cart-gallery/list-of-selected-products/list-of-selected-products.component';
+import { ItemCountComponent } from './shared-components/item-count/item-count.component';
+import { TaskComponent } from './_app/task/task.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +86,9 @@ import { ListOfSelectedProductsComponent } from './cart-gallery/list-of-selected
     ViewContainerComponent,
     CartGalleryComponent,
     ImgProductThumbWithSelectionComponent,
-    ListOfSelectedProductsComponent
+    ListOfSelectedProductsComponent,
+    ItemCountComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,

@@ -1,32 +1,36 @@
 import { Injectable, } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { LocalStorageService } from './local-storage/local-storage.service';
 // import { AlertService } from './alert.service';
 import { CartItem } from '../models/shopping-cart-model';
+import { ProductsService } from './products.service';
+import { ProductModel } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingCartService {
 
-  public cartItems = new BehaviorSubject<CartItem[]>([]);
+  public cartItems = new BehaviorSubject<ProductModel[]>([]);
 
-  constructor() {
-    /* this.storageService.LOC_DATA.subscribe(res => {
-      this.cartItems.next(res);
-    }); */
-  }
+  constructor() { }
 
   getCartsItems() {
-    return this.cartItems.value;
+    return this.cartItems;
   }
 
-  /* Add Product Button */
-  addItem() {
+  /* Add CartItems */
+  addItem(item: ProductModel) {
+    this.cartItems.next({...this.cartItems.value, ...item});
     console.log('add item');
   }
 
+  addMultipleItems(items: ProductModel[]) {
+    // this.cartItems.next({...this.cartItems.value, ...items});
+    this.cartItems.next(items);
+    console.log('addMultiplItems:...', {...this.cartItems.value, ...items});
+  }
+
+  /* Delete CartItems */
   deleteItem(key: any) {
     const results = this.deleteFilter(this.cartItems.value, key);
 
@@ -38,14 +42,11 @@ export class ShoppingCartService {
       // update localDb
       this.cartItems.next(results);
     }, 1000);
-
   }
 
 
-  // Helpers
+  /* Helper Functions */
   deleteFilter(items: any, key: number) {
-    // console.log({items}, {key});
-
     return items.filter((f: any) => {
       return f.id !== key;
     });
