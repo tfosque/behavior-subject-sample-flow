@@ -1,21 +1,15 @@
-import { Injectable, } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-// import { AlertService } from './alert.service';
-import { CartItem } from '../models/shopping-cart-model';
-import { ProductsService } from './products.service';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { ProductModel } from '../models/product';
 import { AlertService } from './alert.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShoppingCartService {
-
   public cartItems = new BehaviorSubject<ProductModel[]>([]);
 
-  constructor(
-    private readonly alertService: AlertService
-  ) { }
+  constructor(private readonly alertService: AlertService) {}
 
   getCartsItems() {
     return this.cartItems;
@@ -23,17 +17,22 @@ export class ShoppingCartService {
 
   /* Add CartItems */
   addItem(item: ProductModel) {
-    this.cartItems.next({...this.cartItems.value, ...item});
+    this.cartItems.next({ ...this.cartItems.value, ...item });
     console.log('add item');
   }
 
   addMultipleItems(items: ProductModel[]) {
     // this.cartItems.next({...this.cartItems.value, ...items});
     this.cartItems.next(items);
-    console.log('addMultiplItems:...', {...this.cartItems.value, ...items});
+    console.log('addMultiplItems:...', { ...this.cartItems.value, ...items });
 
     // send alert
-    this.alertService.send(`${items.length} items were added to the cart`, 'success', items, 0);
+    this.alertService.send(
+      `${items.length} items were added to the cart`,
+      'success',
+      items,
+      0
+    );
 
     // TODO: How to return 200 from observable !important
     return items.length > 1;
@@ -53,15 +52,10 @@ export class ShoppingCartService {
     }, 1000);
   }
 
-
   /* Helper Functions */
   deleteFilter(items: any, key: number) {
     return items.filter((f: any) => {
       return f.id !== key;
     });
   }
-
 }
-
-
-

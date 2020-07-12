@@ -6,17 +6,15 @@ import { ProductModel } from 'src/app/models/product';
 @Component({
   selector: 'app-list-of-selected-products',
   templateUrl: './list-of-selected-products.component.html',
-  styleUrls: ['./list-of-selected-products.component.scss']
+  styleUrls: ['./list-of-selected-products.component.scss'],
 })
 export class ListOfSelectedProductsComponent implements OnInit {
   public selectedProducts$ = new BehaviorSubject<ProductModel[]>([]);
 
-  constructor(
-    private readonly productService: ProductsService
-  ) { }
+  constructor(private readonly productService: ProductsService) {}
 
   ngOnInit(): void {
-    this.productService.selectedProducts$.subscribe(selectedProducts => {
+    this.productService.selectedProducts$.subscribe((selectedProducts) => {
       this.selectedProducts$.next(selectedProducts);
     });
   }
@@ -25,5 +23,4 @@ export class ListOfSelectedProductsComponent implements OnInit {
     // deleteFromSelectedProducts
     this.productService.removeFromSelectedProducts(item);
   }
-
 }

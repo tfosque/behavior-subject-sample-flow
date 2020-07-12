@@ -11,14 +11,11 @@ import { Alert } from 'src/app/models/alert';
 export class AlertDialogComponent implements OnInit {
   @Input() alertItem = new BehaviorSubject<Alert>(null);
 
-  // public alert = new BehaviorSubject<Alert>(null);
-
   public progressNow = 30;
 
   constructor(private readonly alertService: AlertService) {}
 
   ngOnInit(): void {
     console.log('alert-dialog:alertItem', this.alertItem.value);
-
   }
 }

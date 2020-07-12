@@ -4,7 +4,6 @@ import { ProductModel } from '../models/product';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from './local-storage/local-storage.service';
 import { AlertService } from './alert.service';
-import { remove } from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -34,8 +33,8 @@ export class ProductsService {
     });
   }
 
-   // TODO: Maybe a settimeout issue
-   // TODO: When do we clearselected products !important
+  // TODO: Maybe a settimeout issue
+  // TODO: When do we clearselected products !important
   addToSelectedProducts(addProd: ProductModel) {
     this.selectedProducts.push(addProd);
     // console.log('selectedProducts[]:add', this.selectedProducts);
@@ -44,16 +43,11 @@ export class ProductsService {
 
   // TODO: Maybe a settimeout issue
   removeFromSelectedProducts(removeProd: ProductModel) {
-    // console.log('list:before:del', this.selectedProducts);
-
-    const removeSelected = this.selectedProducts.filter(f => f.id !== removeProd.id);
+    const removeSelected = this.selectedProducts.filter(
+      (f) => f.id !== removeProd.id
+    );
     this.selectedProducts = removeSelected;
-    // console.log('remove:selected:', removeProd.id, {removeSelected});
     this.selectedProducts$.next(removeSelected);
-
-    // this.selectedProducts.push(...updatedSelectedProductList);
-    // console.log({removeProd}, 'selectedProducts[]:del:', this.selectedProducts);
-    // this.selectedProducts$.next(this.selectedProducts);
   }
 }
 

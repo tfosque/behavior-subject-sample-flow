@@ -23,8 +23,14 @@
           <app-filter-input></app-filter-input>
         </div>
         <div class="col btn-group">
-          <button type="button" (click)="fetchProducts()" class="btn btn-primary" data-toggle="modal" data-target="#productModel">
-            <b>ADD PRODUCT</b>&nbsp; <i class="fa fa-plus-square fa-lg" ></i>
+          <button
+            type="button"
+            (click)="fetchProducts()"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#productModel"
+          >
+            <b>ADD PRODUCT</b>&nbsp; <i class="fa fa-plus-square fa-lg"></i>
           </button>
           <button type="button" class="btn btn-secondary">
             <b>PICK FROM TEMPLATE</b>
@@ -32,23 +38,24 @@
         </div>
       </div>
 
-       <!-- Empty Cart  -->
+      <!-- Empty Cart  -->
 
-        <ng-template #emptyMsg class="alert alert-warning">
-          <div class="alert alert-warning">
-            <div>Click the <b>ADD PRODUCT</b> button to populate cart.</div>
-          </div>
-        </ng-template>
-
+      <ng-template #emptyMsg class="alert alert-warning">
+        <div class="alert alert-warning">
+          <div>Click the <b>ADD PRODUCT</b> button to populate cart.</div>
+        </div>
+      </ng-template>
 
       <!-- Cart Line Items -->
-      <ng-container *ngIf="(cartItems | async)?.length > 1 ; else emptyMsg">
+      <ng-container *ngIf="(cartItems | async)?.length > 1; else emptyMsg">
         <div
           class="list-group-item line-item"
-          *ngFor="let item of cartItems
-            | async
-            | filterSearch: searchTxt:'itemOrProductDescription'
-        ">
+          *ngFor="
+            let item of cartItems
+              | async
+              | filterSearch: searchTxt:'itemOrProductDescription'
+          "
+        >
           <img [src]="item.product" class="rounded" />
           <div>{{ item.details.itemOrProductDescription }}</div>
           <div>#{{ item.details.productId }}</div>
@@ -57,9 +64,6 @@
           </div>
         </div>
       </ng-container>
-
-
-
     </div>
 
     <div class="col-sm-12 col-lg-3 sidebar">
@@ -67,6 +71,5 @@
         <app-sidebar></app-sidebar>
       </div>
     </div>
-
   </ng-container>
 </div>
