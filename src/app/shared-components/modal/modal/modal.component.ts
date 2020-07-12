@@ -14,6 +14,9 @@ import { AlertService } from 'src/app/services/alert.service';
 export class ModalComponent implements OnInit {
   products = new BehaviorSubject<ProductModel[]>([]);
   title = new Subject<string>();
+
+  public dismissModal = '';
+
   public disabled = true;
   public selectedProducts = new BehaviorSubject<ProductModel[]>([]);
 
@@ -36,7 +39,6 @@ export class ModalComponent implements OnInit {
     });
     this.productService.products.subscribe((fetchProducts: ProductModel[]) => {
       this.products.next(fetchProducts);
-      // console.log({ fetchProducts });
     });
     this.productService.selectedProducts$.subscribe((selProducts) => {
       if (selProducts.length > 0) {
@@ -53,11 +55,15 @@ export class ModalComponent implements OnInit {
 
   addToCart() {
     this.productService.selectedProducts$.subscribe((items: ProductModel[]) => {
-      this.newMethod(items);
+      this.add(items);
     });
   }
 
-  private newMethod(items: ProductModel[]) {
+  private add(items: ProductModel[]) {
     this.cartService.addMultipleItems(items);
+    this.dismissModal = 'modal';
+    setTimeout(() => {
+      this.activePage.next('productGallery');
+    }, 1000);
   }
 }
