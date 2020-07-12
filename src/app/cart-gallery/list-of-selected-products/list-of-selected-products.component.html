@@ -21,7 +21,7 @@
           <div class="col"><b>Qty: </b> {{ item.qty }}</div>
           <div class="col"><b>Total: </b>{{ item.total | currency }}</div>
           <div
-            class="col-lg-1 offset-1 remove-icon"
+            class="col remove-icon text-right"
             (click)="removeItemFromSelectedProducts(item)"
           >
             <i class="fa fa-minus-square text-secondary float-lg-left"></i>

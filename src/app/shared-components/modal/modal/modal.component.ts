@@ -15,7 +15,7 @@ export class ModalComponent implements OnInit {
   products = new BehaviorSubject<ProductModel[]>([]);
   title = new Subject<string>();
 
-  public dismissModal = '';
+  // public dismissModal = '';
 
   public disabled = true;
   public selectedProducts = new BehaviorSubject<ProductModel[]>([]);
@@ -61,7 +61,7 @@ export class ModalComponent implements OnInit {
 
   private add(items: ProductModel[]) {
     this.cartService.addMultipleItems(items);
-    this.dismissModal = 'modal';
+    // this.dismissModal = 'modal';
     setTimeout(() => {
       this.activePage.next('productGallery');
     }, 1000);
