@@ -27,10 +27,10 @@ export class ProductsService {
 
   // Products
   getProducts(): void {
-    console.log('prod:service:');
+    // console.log('prod:service:');
     this.http.get(this.apiBaseUrl).subscribe((productList: ProductModel[]) => {
       this.products.next(productList);
-      console.log({ productList });
+      // console.log({ productList });
     });
   }
 

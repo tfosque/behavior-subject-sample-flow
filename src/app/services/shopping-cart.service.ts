@@ -1,9 +1,10 @@
 import { Injectable, } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 // import { AlertService } from './alert.service';
 import { CartItem } from '../models/shopping-cart-model';
 import { ProductsService } from './products.service';
 import { ProductModel } from '../models/product';
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,9 @@ export class ShoppingCartService {
 
   public cartItems = new BehaviorSubject<ProductModel[]>([]);
 
-  constructor() { }
+  constructor(
+    private readonly alertService: AlertService
+  ) { }
 
   getCartsItems() {
     return this.cartItems;
@@ -28,6 +31,12 @@ export class ShoppingCartService {
     // this.cartItems.next({...this.cartItems.value, ...items});
     this.cartItems.next(items);
     console.log('addMultiplItems:...', {...this.cartItems.value, ...items});
+
+    // send alert
+    this.alertService.send(`${items.length} items were added to the cart`, 'success', items, 0);
+
+    // TODO: How to return 200 from observable !important
+    return items.length > 1;
   }
 
   /* Delete CartItems */

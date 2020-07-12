@@ -4,11 +4,12 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { ProductModel } from 'src/app/models/product';
 import { ModalService } from 'src/app/services/modal.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
   products = new BehaviorSubject<ProductModel[]>([]);
@@ -23,26 +24,26 @@ export class ModalComponent implements OnInit {
   constructor(
     private readonly productService: ProductsService,
     private readonly modalService: ModalService,
-    private readonly cartService: ShoppingCartService
-  ) { }
+    private readonly cartService: ShoppingCartService,
+    private readonly alertService: AlertService
+  ) {}
 
   ngOnInit(): void {
     this.activePage.next('productGallery');
 
-    this.modalService.title.subscribe(nextTitle => {
+    this.modalService.title.subscribe((nextTitle) => {
       this.title.next(nextTitle);
     });
     this.productService.products.subscribe((fetchProducts: ProductModel[]) => {
       this.products.next(fetchProducts);
-      console.log({fetchProducts});
+      // console.log({ fetchProducts });
     });
-    this.productService.selectedProducts$.subscribe(selProducts => {
+    this.productService.selectedProducts$.subscribe((selProducts) => {
       if (selProducts.length > 0) {
-         this.disabled = false;
-      } else { this.disabled = true; }
-    });
-    this.activePage.subscribe(next => {
-      console.log({next});
+        this.disabled = false;
+      } else {
+        this.disabled = true;
+      }
     });
   }
 
@@ -51,11 +52,12 @@ export class ModalComponent implements OnInit {
   }
 
   addToCart() {
-    //
-    this.productService.selectedProducts$
-      .subscribe((items: ProductModel[]) => {
-        this.cartService.addMultipleItems(items);
-      });
+    this.productService.selectedProducts$.subscribe((items: ProductModel[]) => {
+      this.newMethod(items);
+    });
   }
 
+  private newMethod(items: ProductModel[]) {
+    this.cartService.addMultipleItems(items);
+  }
 }

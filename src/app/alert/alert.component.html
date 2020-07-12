@@ -1,8 +1,17 @@
-<ng-container *ngIf="alertList.length > 0">
- <div *ngFor="let alertItem of alertList">
+<!-- <ng-container *ngIf="(alertStatus | async)?.length > 0">
+ <div *ngFor="let alertItem of alertStatus">
   <app-alert-dialog [alertItem]="alertItem"></app-alert-dialog>
  </div>
 </ng-container>
-
+<div class="col">
+   <h2 class='text-primary'>alertStatus: <span>{{(alertStatus | async)?.length > 0}}</span></h2>
+</div>
+ -->
 
 <!-- Create instance to that multiple alerts can show -->
+<ng-container>
+  <div>
+    <app-alert-dialog [alertItem]="alert"></app-alert-dialog>
+  </div>
+</ng-container>
+

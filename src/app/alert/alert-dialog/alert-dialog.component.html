@@ -1,20 +1,33 @@
 <!-- Add primary classes here -->
-<ng-container>
-  <div class="alert" [ngClass]="{
-    'alert-info': alertItem.status === 'info',
-    'alert-success': alertItem.status === 'success',
-    'alert-danger': alertItem.status === 'danger',
-    'alert-warning': alertItem.status === 'warning'
-   }">
+<ng-container *ngIf="(alertItem | async)?.msg">
+  <div
+    class="alert alert-container"
+    [ngClass]="{
+      'alert-info': (alertItem | async)?.status === 'info',
+      'alert-success': (alertItem | async)?.status === 'success',
+      'alert-danger': (alertItem | async)?.status === 'danger',
+      'alert-warning': (alertItem | async)?.status === 'warning'
+    }"
+  >
     <div>
       <strong>Message:</strong> &nbsp;
-      <span>{{ alertItem.msg }}</span>
+      <span>{{ (alertItem | async)?.msg }}</span>
       &nbsp;
       <!-- <small>{{ (progressNow * 10) / 10 }} %</small> -->
     </div>
+   <div class="flush">
     <div class="progress" style="height: 5px; border-radius: 0;">
-      <div class="progress-bar bg-success" role="progressbar" style="border-radius: 0;"
-        [ngStyle]="{'width': progressNow + '%'}" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+      <div
+        class="progress-bar bg-success"
+        role="progressbar"
+        style="border-radius: 0;"
+        [ngStyle]="{ width: progressNow + '%' }"
+        aria-valuenow="0"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      ></div>
     </div>
+   </div>
   </div>
+
 </ng-container>
