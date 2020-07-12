@@ -23,4 +23,10 @@ export class ListOfSelectedProductsComponent implements OnInit {
     // deleteFromSelectedProducts
     this.productService.removeFromSelectedProducts(item);
   }
+
+  // TODO: updaate globally for shopping-cart
+  updateQty(newQty: number, item: ProductModel) {
+    item.qty = newQty;
+    // this.filterOnUpdateQty(newQty, item);
+  }
 }
