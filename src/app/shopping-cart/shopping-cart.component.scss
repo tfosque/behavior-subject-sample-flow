@@ -15,7 +15,18 @@
   font-size: .975rem;
 }
 
-.no-border-top {
-  border-top: none;
+.col.no-border-top > list-group-item:nth-child(1){
+  border-bottom: none;
 }
 
+/* list-group:first-child  {
+  border-top: none;
+  color: red;
+// border-top: none;
+} */
+
+/* :host list-group-item {
+  background-color: pink;
+  border: solid thick green;
+  color: red;
+} */

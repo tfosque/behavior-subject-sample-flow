@@ -49,6 +49,7 @@ import { ListOfSelectedProductsComponent } from './cart-gallery/list-of-selected
 import { ItemCountComponent } from './shared-components/item-count/item-count.component';
 import { TaskComponent } from './_app/task/task.component';
 import { CartLineItemComponent } from './shopping-cart/cart-line-item/cart-line-item.component';
+import { CartPreviewComponent } from './cart-gallery/cart-preview/cart-preview.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { CartLineItemComponent } from './shopping-cart/cart-line-item/cart-line-
     ListOfSelectedProductsComponent,
     ItemCountComponent,
     TaskComponent,
-    CartLineItemComponent
+    CartLineItemComponent,
+    CartPreviewComponent
   ],
   imports: [
     BrowserModule,
