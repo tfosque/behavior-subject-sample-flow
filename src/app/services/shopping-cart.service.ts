@@ -18,15 +18,13 @@ export class ShoppingCartService {
   /* Add CartItems */
   addItem(item: ProductModel) {
     this.cartItems.next({ ...this.cartItems.value, ...item });
-    // console.log('add item');
   }
 
+  // TODO: test adding single vs multiple !important
   addMultipleItems(items: ProductModel[]) {
-    // this.cartItems.next({...this.cartItems.value, ...items});
     this.cartItems.next(items);
-    // console.log('addMultiplItems:...', { ...this.cartItems.value, ...items });
 
-    // send alert
+    // send user notificatioin
     this.alertService.send(
       `${items.length} items were added to the cart`,
       'success',
@@ -42,9 +40,8 @@ export class ShoppingCartService {
   deleteItem(key: any) {
     const results = this.deleteFilter(this.cartItems.value, key);
 
-    // delete from db
-    localStorage.setItem('localDb', JSON.stringify(results));
-
+    // delete from shopping-cart
+    // - no need to delete from localDb -:localStorage.setItem('localDb', JSON.stringify(results));
     // update cartItems TODO: Remove timeout and use observable
     setTimeout(() => {
       // update localDb
