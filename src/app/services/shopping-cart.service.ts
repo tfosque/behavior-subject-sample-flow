@@ -18,13 +18,13 @@ export class ShoppingCartService {
   /* Add CartItems */
   addItem(item: ProductModel) {
     this.cartItems.next({ ...this.cartItems.value, ...item });
-    console.log('add item');
+    // console.log('add item');
   }
 
   addMultipleItems(items: ProductModel[]) {
     // this.cartItems.next({...this.cartItems.value, ...items});
     this.cartItems.next(items);
-    console.log('addMultiplItems:...', { ...this.cartItems.value, ...items });
+    // console.log('addMultiplItems:...', { ...this.cartItems.value, ...items });
 
     // send alert
     this.alertService.send(

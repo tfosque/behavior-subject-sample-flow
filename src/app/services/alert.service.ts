@@ -22,7 +22,7 @@ export class AlertService {
   send(msg: string, status: string, token: any, currNow?: number): void {
     // this.alertStatus.next({ msg, status, token, currNow });
     this.alert.next({ msg, status, token, currNow });
-    console.log('alertService:send:', this.alert.value);
+    // console.log('alertService:send:', this.alert.value);
   }
 
   dismiss(token: any) {

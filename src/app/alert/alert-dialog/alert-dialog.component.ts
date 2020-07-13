@@ -16,6 +16,6 @@ export class AlertDialogComponent implements OnInit {
   constructor(private readonly alertService: AlertService) {}
 
   ngOnInit(): void {
-    console.log('alert-dialog:alertItem', this.alertItem.value);
+    // console.log('alert-dialog:alertItem', this.alertItem.value);
   }
 }

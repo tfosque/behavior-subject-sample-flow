@@ -48,6 +48,7 @@ import { ImgProductThumbWithSelectionComponent } from './shared-components/img-p
 import { ListOfSelectedProductsComponent } from './cart-gallery/list-of-selected-products/list-of-selected-products.component';
 import { ItemCountComponent } from './shared-components/item-count/item-count.component';
 import { TaskComponent } from './_app/task/task.component';
+import { CartLineItemComponent } from './shopping-cart/cart-line-item/cart-line-item.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { TaskComponent } from './_app/task/task.component';
     ImgProductThumbWithSelectionComponent,
     ListOfSelectedProductsComponent,
     ItemCountComponent,
-    TaskComponent
+    TaskComponent,
+    CartLineItemComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,7 @@ export class ItemCountComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log('item.qty::', this.qty, typeof this.qty);
-    console.log('model:', this.model);
+    // console.log('model:', this.model);
     this.model.qty = this.qty;
   }
 

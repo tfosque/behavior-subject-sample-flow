@@ -30,6 +30,8 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.cartItems.subscribe((items: ProductModel[]) => {
       this.cartItems.next(items);
+      // console.log('xxx:Behavior', this.cartItems);
+      // console.log('xxx:items', this.cartItems.value);
     });
 
     this.searchService.txtStr.subscribe(str => {
@@ -47,6 +49,14 @@ export class ShoppingCartComponent implements OnInit {
     // console.log('del:item', {item});
     alert(`Are you sure you want to delete item #${item.details.productId} : ${item.details.itemOrProductDescription}.`);
     this.cartService.deleteItem(item.id);
+  }
+
+  updateQty(event: number, item: ProductModel) {
+    //
+  }
+
+  removeItemFromSelectedProducts(item: ProductModel) {
+    //
   }
 
 }
