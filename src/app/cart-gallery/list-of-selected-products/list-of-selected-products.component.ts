@@ -27,6 +27,5 @@ export class ListOfSelectedProductsComponent implements OnInit {
   // TODO: updaate globally for shopping-cart
   updateQty(newQty: number, item: ProductModel) {
     item.qty = newQty;
-    // this.filterOnUpdateQty(newQty, item);
   }
 }
