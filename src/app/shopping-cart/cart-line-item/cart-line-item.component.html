@@ -1,23 +1,20 @@
+<div class="media mb-2">
+  <img [src]="(cartItem).product" style="margin-right: 15px;" />
 
-        <div class="col">
-          <div class="row">
-            <div class="media">
-              <img [src]="(cartItem).product" style="margin-right: 15px;" />
-              <div class="media-body">
-                <h5 class="">{{ cartItem.details.itemOrProductDescription }}</h5>
-                <div class="row">
-                  <div class="col"><b>#</b>{{ cartItem.details.productId }}</div>
-                  <div class="col"><b>Price: </b>{{ cartItem.price.unitPrice | currency}}</div>
-                  <div class="col"><b> </b> <app-item-count (updateQty)="updateQty($event, cartItem)" [qty]="cartItem.qty"></app-item-count></div>
-                  <div class="col"><b>Total: </b>{{ cartItem.qty * cartItem.price.unitPrice | currency }}</div>
-                  <div
-                    class="col-lg-1 remove-icon text-right"
-                    (click)="removeItemFromSelectedProducts(cartItem)"
-                  >
-                    <i class="fa fa-minus-square text-secondary float-lg-left"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div class="media-body">
+    <h5>{{ cartItem.details.itemOrProductDescription }}</h5>
+
+    <div style="display: flex; align-items: center; align-content: center; justify-content: flex-start;">
+      <div class="col"><b>#</b>{{ cartItem.details.productId }}</div>
+      <div class="col"><b>Price: </b>{{ cartItem.price.unitPrice | currency}}</div>
+      <div class="col">
+        <app-item-count (updateQty)="updateQty($event, cartItem)" [qty]="cartItem.qty"></app-item-count>
+      </div>
+      <div class="col"><b>Total: </b>{{ cartItem.qty * cartItem.price.unitPrice | currency }}</div>
+      <div (click)="removeItemFromSelectedProducts(cartItem)">
+        <i class="fa fa-minus-square text-secondary float-lg-left"></i>
+      </div>
+    </div>
+
+  </div>
+</div>

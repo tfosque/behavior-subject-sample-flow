@@ -1,26 +1,21 @@
-.col.btn-group {
-  justify-content: flex-end;
+.btn-group {
+  // justify-content: flex-end;
   button {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
 }
 
-.line-item {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-
-  * {
-    margin-right: 12px;
+  div.alert.alert-warning {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
   }
-}
 
 .badge.badge-primary {
   font-size: .975rem;
 }
 
-.alert {
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
+.no-border-top {
+  border-top: none;
 }
+

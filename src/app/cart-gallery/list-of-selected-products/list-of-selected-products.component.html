@@ -1,3 +1,4 @@
+
 <div class="row">
   <div class="col-lg-12 mb-3" *ngFor="let item of selectedProducts$ | async">
     <div class="media">
@@ -13,10 +14,12 @@
             class="col-lg-1 remove-icon text-right"
             (click)="removeItemFromSelectedProducts(item)"
           >
-            <i class="fa fa-minus-square text-secondary float-lg-left"></i>
+            <i class="fa fa-minus-square text-secondary fa-lg"></i>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
