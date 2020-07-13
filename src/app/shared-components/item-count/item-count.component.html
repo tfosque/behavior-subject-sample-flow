@@ -1,26 +1,12 @@
 <div class="row">
-  <div
-    class="col"
-    (click)="decrease()"
-    style="padding: 5px 8px; cursor: pointer; text-align: right;"
-  >
+  <div class="col" (click)="decrease()" style="padding: 5px 8px; cursor: pointer; text-align: right;">
     <i class="fa fa-minus fa-sm"></i>
   </div>
   <div>
-    <input
-      class="col"
-      name="counter"
-      #counter
-      [(ngModel)]="model.qty"
-      max-lengh="5"
-      [value]="model.qty"
-    />
+    <input type="number" class="col" name="counter" #counter [(ngModel)]="model.qty" max-lengh="5" [value]="model.qty"
+      (change)="change()" />
   </div>
-  <div
-    class="col"
-    (click)="increase()"
-    style="padding: 5px 8px; cursor: pointer;"
-  >
+  <div class="col" (click)="increase()" style="padding: 5px 8px; cursor: pointer;">
     <i class="fa fa-plus fa-sm"></i>
   </div>
 </div>

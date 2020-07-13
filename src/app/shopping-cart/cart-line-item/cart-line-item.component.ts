@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProductModel } from 'src/app/models/product';
 import { BehaviorSubject } from 'rxjs';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-cart-line-item',
@@ -10,33 +11,24 @@ import { BehaviorSubject } from 'rxjs';
 export class CartLineItemComponent implements OnInit {
   @Input() cartItem: ProductModel; // new BehaviorSubject<ProductModel[]>([]);
 
-  constructor() { }
+  constructor(
+    private readonly productService: ProductsService
+  ) { }
 
   ngOnInit(): void {
     // console.log('abcTTT:cartItem:from:shopping', this.cartItem.details);
   }
 
-  updateQty(event: number, item: ProductModel) {
-    //
+  removeItemFromSelectedProducts(item: ProductModel) {
+    // deleteFromSelectedProducts
+    this.productService.removeFromSelectedProducts(item);
   }
 
-  removeItemFromSelectedProducts(item: ProductModel) {
-    //
+  // TODO: Qty updates in products selection modal but not in shopping cart
+  // TODO: updaate globally for shopping-cart
+  updateQty(newQty: number, item: ProductModel) {
+    item.qty = newQty;
+    // this.filterOnUpdateQty(newQty, item);
   }
 
 }
-
-/* details:
-{ itemOrProductDescription: '',
-  catalogRefId: '',
-  productId: '',
-  commerceId: ''
-},
-price: {
-unitPrice: 0,
-uom: ''
-},
-qty: 0,
-total: 0,
-product: ''
-} */

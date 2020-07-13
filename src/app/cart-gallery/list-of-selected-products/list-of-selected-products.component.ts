@@ -11,7 +11,7 @@ import { ProductModel } from 'src/app/models/product';
 export class ListOfSelectedProductsComponent implements OnInit {
   public selectedProducts$ = new BehaviorSubject<ProductModel[]>([]);
 
-  constructor(private readonly productService: ProductsService) {}
+  constructor(private readonly productService: ProductsService) { }
 
   ngOnInit(): void {
     this.productService.selectedProducts$.subscribe((selectedProducts) => {

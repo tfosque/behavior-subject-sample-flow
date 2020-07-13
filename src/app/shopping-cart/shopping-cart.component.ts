@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { BehaviorSubject } from 'rxjs';
-import { CartItem } from '../models/shopping-cart-model';
 import { FilterInputComponent } from '../shared-components/filter-input/filter-input/filter-input.component';
 import { SearchService } from '../services/search.service';
 import { ProductsService } from '../services/products.service';
@@ -51,12 +50,15 @@ export class ShoppingCartComponent implements OnInit {
     this.cartService.deleteItem(item.id);
   }
 
-  updateQty(event: number, item: ProductModel) {
-    //
+  removeItemFromSelectedProducts(item: ProductModel) {
+    // deleteFromSelectedProducts
+    this.productService.removeFromSelectedProducts(item);
   }
 
-  removeItemFromSelectedProducts(item: ProductModel) {
-    //
+  // TODO: updaate globally for shopping-cart
+  updateQty(newQty: number, item: ProductModel) {
+    item.qty = newQty;
+    // this.filterOnUpdateQty(newQty, item);
   }
 
 }
