@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { ProductModel } from 'src/app/models/product';
@@ -14,8 +14,6 @@ import { AlertService } from 'src/app/services/alert.service';
 export class ModalComponent implements OnInit {
   products = new BehaviorSubject<ProductModel[]>([]);
   title = new Subject<string>();
-
-  // public dismissModal = '';
 
   public disabled = true;
   public selectedProducts = new BehaviorSubject<ProductModel[]>([]);
@@ -34,12 +32,16 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {
     this.activePage.next('productGallery');
 
+    // fetch title for modal
     this.modalService.title.subscribe((nextTitle) => {
       this.title.next(nextTitle);
     });
+
+    // fetch products to populate modal
     this.productService.products.subscribe((fetchProducts: ProductModel[]) => {
       this.products.next(fetchProducts);
     });
+    // set disabled button
     this.productService.selectedProducts$.subscribe((selProducts) => {
       if (selProducts.length > 0) {
         this.disabled = false;
@@ -49,6 +51,7 @@ export class ModalComponent implements OnInit {
     });
   }
 
+  // continue to next modal stepper
   continue(nextPage: string): void {
     this.activePage.next(nextPage);
   }

@@ -6,6 +6,15 @@ import { Subject } from 'rxjs';
 })
 export class ModalService {
   public title = new Subject<string>();
+  public display = false;
 
   constructor() { }
+
+  openModal() {
+    this.display = true;
+  }
+
+  closenModal() {
+    this.display = false;
+  }
 }

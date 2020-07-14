@@ -38,8 +38,12 @@ export class ShoppingCartComponent implements OnInit {
 
   // TODO: evaluate repeated calls performance and strategy
   fetchProducts() {
-    this.modalService.title.next('Select Products');
     this.productService.getProducts();
+    this.configureModal();
+  }
+
+  configureModal() {
+    this.modalService.title.next('Select Products');
   }
 
   deleteItem(item: any) {

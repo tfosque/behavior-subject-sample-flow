@@ -50,6 +50,8 @@ import { ItemCountComponent } from './shared-components/item-count/item-count.co
 import { TaskComponent } from './_app/task/task.component';
 import { CartLineItemComponent } from './shopping-cart/cart-line-item/cart-line-item.component';
 import { CartPreviewComponent } from './cart-gallery/cart-preview/cart-preview.component';
+import { ProductModalComponent } from './modals/product-modal/product-modal.component';
+import { GenericModalComponent } from './modals/generic-modal/generic-modal.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +94,9 @@ import { CartPreviewComponent } from './cart-gallery/cart-preview/cart-preview.c
     ItemCountComponent,
     TaskComponent,
     CartLineItemComponent,
-    CartPreviewComponent
+    CartPreviewComponent,
+    ProductModalComponent,
+    GenericModalComponent
   ],
   imports: [
     BrowserModule,
