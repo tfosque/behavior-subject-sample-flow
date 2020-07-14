@@ -9,27 +9,29 @@
   </form>
 </nav>
 
-  <!-- Menu Links -->
+<!-- Remove Empty Menu Links -->
 <nav class="navbar navbar-light bg-dark">
+ <!--  TODO: Fixed: remove this empty menu and float pills menu right -->
   <ul class="nav nav-pills" style="visibility: hidden;">
     <li class="nav-item">
-      <a class="nav-link" href="#">Order History</a>
+      <a class="nav-link" href="#"></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Templates</a>
+      <a class="nav-link" href="#"></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" href="#">Cart</a>
+      <a class="nav-link active" href="#"></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link disabled" href="#">Disabled</a>
+      <a class="nav-link disabled" href="#"></a>
     </li>
   </ul>
 
   <ul class="nav nav-pills" style="font-size: .8075rem;">
     <li class="nav-item">
       <div class="dropdown btn-sm">
-        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <b>{{'DENVER'}}</b> &nbsp;| &nbsp;Switch Account
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -39,19 +41,23 @@
         </div>
       </div>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Order History</a>
+    <li class="nav-item btn-sm">
+      <button class="btn btn-primary btn-sm" href="#">Order History</button>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Templates</a>
+    <li class="nav-item btn-sm">
+      <button class="btn btn-primary btn-sm" href="#">Templates</button>
     </li>
-    <li class="nav-item">
-      <a class="nav-link active cart-trigger" href="#">
-        &nbsp; <i class="fa fa-shopping-cart"></i>
-        Cart
-      </a>
-      <div class="dd">
-
+    <li routerLink="/cart">
+      <div class="dropdown btn-sm">
+        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-shopping-cart"></i>&nbsp;Cart
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
       </div>
     </li>
   </ul>
