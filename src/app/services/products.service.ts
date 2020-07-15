@@ -21,15 +21,18 @@ export class ProductsService {
   constructor(
     private readonly http: HttpClient,
     private readonly storageService: LocalStorageService,
-    private readonly alertService: AlertService
+    private readonly alertService: AlertService,
+    private readonly localStorageService: LocalStorageService
   ) {}
 
   // Products
   getProducts(): void {
     // console.log('prod:service:');
-    this.http.get(this.apiBaseUrl).subscribe((productList: ProductModel[]) => {
+    /* this.http.get(this.apiBaseUrl).subscribe((productList: ProductModel[]) => {
       this.products.next(productList);
-      // console.log({ productList });
+    }); */
+    this.localStorageService.PRODUCTS.subscribe(prod => {
+      this.products.next(prod);
     });
   }
 

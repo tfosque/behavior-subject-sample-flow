@@ -11,8 +11,12 @@ export class ShoppingCartService {
 
   constructor(private readonly alertService: AlertService) {}
 
-  getCartsItems() {
-    return this.cartItems;
+  getCartsItems(): void {
+    const localCart = JSON.parse(localStorage.getItem('shoppingCart'));
+    console.log({localCart});
+
+    this.cartItems.next(localCart);
+    // return this.cartItems;
   }
 
   /* Add CartItems */
@@ -22,7 +26,17 @@ export class ShoppingCartService {
 
   // TODO: test adding single vs multiple !important
   addMultipleItems(items: ProductModel[]) {
-    this.cartItems.next(items);
+    const getLocalStorageCart = JSON.parse(localStorage.getItem('shoppingCart'));
+    console.log({getLocalStorageCart})
+
+    const update = getLocalStorageCart.concat(items);
+    console.log('concat::::::', update);
+
+    this.cartItems.next(update);
+    console.log('cartItems:from"shopCart', this.cartItems.value);
+
+    localStorage.setItem('shoppingCart', JSON.stringify(update));
+
 
     // send user notificatioin
     this.alertService.send(
