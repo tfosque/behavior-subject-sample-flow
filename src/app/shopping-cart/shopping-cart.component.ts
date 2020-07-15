@@ -38,7 +38,6 @@ export class ShoppingCartComponent implements OnInit {
 
   // TODO: evaluate repeated calls performance and strategy
   openProductModal() {
-    console.log('fetch products......')
     this.modalService.title.next('Select Products');
     this.productService.getProducts();
     this.configureModal();
