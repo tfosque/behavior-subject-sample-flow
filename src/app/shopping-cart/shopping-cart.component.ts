@@ -17,7 +17,7 @@ export class ShoppingCartComponent implements OnInit {
 
   searchTxt: string;
 
-  @ViewChild(FilterInputComponent) child;
+  // @ViewChild(FilterInputComponent) child;
 
   constructor(
     private readonly cartService: ShoppingCartService,
@@ -37,7 +37,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   // TODO: evaluate repeated calls performance and strategy
-  fetchProducts() {
+  openProductModal() {
     console.log('fetch products......')
     this.modalService.title.next('Select Products');
     this.productService.getProducts();
