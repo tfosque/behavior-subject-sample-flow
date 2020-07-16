@@ -14,19 +14,20 @@ interface Config {
 
 enum Storage {
   local,
-  session
+  session,
 }
 
 enum Data_Type {
   json = 'json',
-  xml = 'xml'
+  xml = 'xml',
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocalStorageService {
-  private readonly apiBaseUrl = 'https://my.api.mockaroo.com/cartitem_schema.json?key=c1a35bd0';
+  private readonly apiBaseUrl =
+    'https://my.api.mockaroo.com/cartitem_schema.json?key=c1a35bd0';
 
   // public LOC_DATA = new BehaviorSubject<any>([]);
 
@@ -39,21 +40,22 @@ export class LocalStorageService {
   private products = JSON.parse(localStorage.getItem('products'));
   private shoppingCart = JSON.parse(localStorage.getItem('shoppingCart'));
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient) {}
 
   /**
    * Check Local Storage to see if data exist (and if storage space is available 5MB max)
    */
-    // Scan for localDbs..
+  // Scan for localDbs..
   startLocalDb(): void {
-
-      /* init SHOPPING_CART */
+    /* init SHOPPING_CART */
     if (this.shoppingCart) {
       console.log('localDb:ShoppingCart is live!', this.shoppingCart);
       console.groupEnd();
       console.log('localDb logs:', 'completed');
       setTimeout(() => {
-        this.SHOPPING_CART.next(JSON.parse(localStorage.getItem(JSON.stringify('shopping-cart'))));
+        this.SHOPPING_CART.next(
+          JSON.parse(localStorage.getItem(JSON.stringify('shopping-cart')))
+        );
       }, 1000);
       // return;
     }
@@ -70,7 +72,6 @@ export class LocalStorageService {
       console.log('localDb logs:', 'completed');
       setTimeout(() => {
         this.PRODUCTS.next(this.currStorage);
-
       }, 1000);
       // return;
     }
@@ -105,5 +106,4 @@ export class LocalStorageService {
   /**
    * Returns the total amount of disk space used (in MB) by localStorage for the current domain.
    */
-
 }
