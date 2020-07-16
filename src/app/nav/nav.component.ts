@@ -6,7 +6,7 @@ import { ProductModel } from '../models/product';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss']
+  styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements OnInit {
   cartPreview = new BehaviorSubject<ProductModel[]>([]);
@@ -14,17 +14,14 @@ export class NavComponent implements OnInit {
 
   public form: any = {};
 
-  constructor(
-    private readonly cartService: ShoppingCartService
-  ) {
+  constructor(private readonly cartService: ShoppingCartService) {
     this.form.searchText = '';
   }
 
   ngOnInit(): void {
-    this.cartService.cartItems.subscribe(cart => {
+    this.cartService.cartItems.subscribe((cart) => {
       this.cartPreview.next(cart);
       this.total.next(cart.length);
     });
   }
-
 }

@@ -2,11 +2,20 @@
   <div class="list-group-item">
     <h5><b>Order Summary:</b></h5>
   </div>
+  <div class="list-group-item subtotal">Items: {{ subtotal | currency }}</div>
+  <div class="list-group-item">
+    <span class="text-secondary">Other Charges:</span>&nbsp;
+    <i class="fa fa-info-circle"></i>
+  </div>
+  <div class="list-group-item">
+    Estimate Taxes: {{ subtotal * 0.07 | currency }}
+  </div>
+
   <div class="list-group-item">
     Will be calculated at the time of invoicing.
   </div>
-  <div>
-
-  </div>
-  <button class="btn btn-primary">Proceed To Checkout <i class="fa fa-chevron-circle-right fa-small"></i></button>
+  <div></div>
+  <button class="btn btn-primary">
+    Proceed To Checkout <i class="fa fa-chevron-circle-right fa-small"></i>
+  </button>
 </div>

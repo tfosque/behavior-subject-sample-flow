@@ -8,12 +8,13 @@ import { AlertService } from './alert.service';
 })
 export class ShoppingCartService {
   public cartItems = new BehaviorSubject<ProductModel[]>([]);
+  public SUBTOTAL = new BehaviorSubject<number>(0);
 
   constructor(private readonly alertService: AlertService) {}
 
   getCartsItems(): void {
     const localCart = JSON.parse(localStorage.getItem('shoppingCart'));
-    console.log({localCart});
+    // console.log({localCart});
 
     this.cartItems.next(localCart);
     // return this.cartItems;
@@ -26,17 +27,20 @@ export class ShoppingCartService {
 
   // TODO: test adding single vs multiple !important
   addMultipleItems(items: ProductModel[]) {
-    const getLocalStorageCart = JSON.parse(localStorage.getItem('shoppingCart'));
-    console.log({getLocalStorageCart})
+    const getLocalStorageCart = JSON.parse(
+      localStorage.getItem('shoppingCart')
+    );
+    // console.log({getLocalStorageCart})
 
     const update = getLocalStorageCart.concat(items);
-    console.log('concat::::::', update);
+    // console.log('concat::::::', update);
 
     this.cartItems.next(update);
-    console.log('cartItems:from"shopCart', this.cartItems.value);
+    // console.log('cartItems:from"shopCart', this.cartItems.value);
 
     localStorage.setItem('shoppingCart', JSON.stringify(update));
 
+    this.subtotal();
 
     // send user notificatioin
     this.alertService.send(
@@ -48,6 +52,18 @@ export class ShoppingCartService {
 
     // TODO: How to return 200 from observable !important
     return items.length > 1;
+  }
+
+  // TODO: update order summary when qty changes
+  subtotal() {
+    /* Add all items */
+    let total = 0;
+
+    this.cartItems.value.map((m) => {
+      total = total + m.total;
+    });
+    this.SUBTOTAL.next(total);
+    console.log({ total });
   }
 
   /* Delete CartItems */
