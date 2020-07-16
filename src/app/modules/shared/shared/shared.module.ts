@@ -19,6 +19,7 @@ import { ItemCountComponent } from 'src/app/shared-components/item-count/item-co
 import { ListOfSelectedProductsComponent } from 'src/app/cart-gallery/list-of-selected-products/list-of-selected-products.component';
 import { CartGalleryComponent } from 'src/app/cart-gallery/cart-gallery.component';
 import { AlertDialogComponent } from 'src/app/alert/alert-dialog/alert-dialog.component';
+import { CarouselComponent } from 'src/app/shared-components/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AlertDialogComponent } from 'src/app/alert/alert-dialog/alert-dialog.co
     ItemCountComponent,
     ListOfSelectedProductsComponent,
     CartGalleryComponent,
-    AlertDialogComponent
+    AlertDialogComponent,
+    CarouselComponent
   ],
   providers: [],
   imports: [
@@ -56,7 +58,8 @@ import { AlertDialogComponent } from 'src/app/alert/alert-dialog/alert-dialog.co
     ItemCountComponent,
     ListOfSelectedProductsComponent,
     CartGalleryComponent,
-    AlertDialogComponent
+    AlertDialogComponent,
+    CarouselComponent
   ]
 })
 export class SharedModule {}
