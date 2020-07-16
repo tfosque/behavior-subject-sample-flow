@@ -17,6 +17,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { TooltipComponent } from './shared-components/tooltip/tooltip.component';
 import { ScrollsbyComponent } from './shared-components/scrollsby/scrollsby.component';
 import { CardComponent } from './shared-components/card/card.component';
+import { PluralPipe } from './pipes/plural/plural.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CardComponent } from './shared-components/card/card.component';
     CarouselComponent,
     TooltipComponent,
     ScrollsbyComponent,
-    CardComponent
+    CardComponent,
+    PluralPipe
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ import { CardComponent } from './shared-components/card/card.component';
   ],
   providers: [LocalStorageService],
   exports: [
-    BreadCrumbsComponent
+    BreadCrumbsComponent,
+    PluralPipe
   ],
   bootstrap: [AppComponent]
 })
