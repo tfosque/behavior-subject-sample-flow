@@ -34,11 +34,12 @@ export class ShoppingCartService {
           const nextItem = union(this.cartItems.value.concat(f));
           // this.cartItems.next(nextItem);
 
-          // this.subtotal();
+          this.subtotal();
           // console.log('eq:f:total', item.qty * item.price.unitPrice);
-          return;
+          // return;
         } else {
-          f.total = item.price.unitPrice;
+          f.total = 0;
+          this.subtotal();
         }
       }
     });
@@ -46,7 +47,7 @@ export class ShoppingCartService {
 
   initItemTotal() {
     this.cartItems.value.filter((f: any) => {
-      console.log('f:', f);
+      // console.log('f:', f);
       // mutate global observable
       // this.cartItems.next(this.cartItems.value.concat(f))
 
@@ -56,11 +57,13 @@ export class ShoppingCartService {
         const nextItem = union(this.cartItems.value.concat(f));
         this.cartItems.next(nextItem);
 
-        // this.subtotal();
+        this.subtotal();
         console.log('eq:f:total', f.qty * f.price.unitPrice);
         return;
       } else {
         f.total = f.price.unitPrice;
+        // this.cartItems.next(this.cartItems.value);
+        this.subtotal();
       }
     });
   }
@@ -103,12 +106,19 @@ export class ShoppingCartService {
   subtotal() {
     /* Add all items */
     let total = 0;
+    let qty = 0;
 
-    this.cartItems.value.map((m) => {
-      total = total + m.total;
-    });
-    this.SUBTOTAL.next(total);
-    console.log({ total });
+    console.log('subtotal:', this.cartItems.value);
+
+
+    setTimeout(() => {
+      this.cartItems.value.map((m) => {
+        total = total + m.total;
+      });
+
+      this.SUBTOTAL.next(total);
+    }, 2000);
+    // console.log({ total });
   }
 
   /* Delete CartItems */
