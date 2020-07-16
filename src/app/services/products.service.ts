@@ -4,14 +4,16 @@ import { ProductModel } from '../models/product';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from './local-storage/local-storage.service';
 import { AlertService } from './alert.service';
+import { ShoppingCartService } from './shopping-cart.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService {
   public products = new BehaviorSubject<ProductModel[]>([]);
-
   public selectedProducts$ = new BehaviorSubject<ProductModel[]>([]);
+  public suggestiveSelling$ = new BehaviorSubject<ProductModel[]>([]);
+
   selectedProducts = [];
   selectedP = [];
 
@@ -20,17 +22,13 @@ export class ProductsService {
 
   constructor(
     private readonly http: HttpClient,
-    private readonly storageService: LocalStorageService,
     private readonly alertService: AlertService,
-    private readonly localStorageService: LocalStorageService
-  ) {}
+    private readonly localStorageService: LocalStorageService,
+    private readonly cartService: ShoppingCartService
+  ) { }
 
   // Products
   getProducts(): void {
-    // console.log('prod:service:');
-    /* this.http.get(this.apiBaseUrl).subscribe((productList: ProductModel[]) => {
-      this.products.next(productList);
-    }); */
     this.localStorageService.PRODUCTS.subscribe(prod => {
       this.products.next(prod);
     });
@@ -52,7 +50,33 @@ export class ProductsService {
     this.selectedProducts = removeSelected;
     this.selectedProducts$.next(removeSelected);
   }
+
+  suggestiveSelling() {
+    // filter for similar names
+
+  /*   const cart = this.cartService.cartItems.value;
+    this.localStorageService.PRODUCTS.subscribe(ab => {
+      console.log({ ab });
+      this.products.next(ab);
+    }); */
+
+   /*  const prod = this.products.value.map(m => {
+      console.log({m});
+      cart.map(x => {
+        console.log({x});
+        m.details.itemOrProductDescription.includes(x.details.itemOrProductDescription)
+      });
+    }); */
+
+    /* this.suggestiveSelling$.next([]);
+    console.log('suggestive:prods:cart:', { prod }, { cart }); */
+
+    // console.log('filter:suggestive:', result);
+  }
+
 }
+
+
 
 /* public cart = new BehaviorSubject<CartItem[]>([]);
 

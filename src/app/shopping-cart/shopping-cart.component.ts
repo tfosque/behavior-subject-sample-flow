@@ -28,11 +28,10 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.getCartsItems();
+    // this.productService.suggestiveSelling();
 
     this.cartService.cartItems.subscribe((items: ProductModel[]) => {
       this.cartItems.next(items);
-      console.log('items:OnInit:value', this.cartItems.value);
-
     });
 
     this.searchService.txtStr.subscribe(str => {

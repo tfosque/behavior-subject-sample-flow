@@ -14,16 +14,13 @@ ul.nav.nav-pills li a {
   margin-bottom: -500px;
 }
 
-/* a.cart-trigger {
-  width: 84 px;
+div.dropdown-menu.show {
+  left: -557px;
+  width: 670px;
+  color: black;
+}
 
-  &:hover + div {
-    display: block;
-  color: red;
-  }
-} */
-
-/* a.cart-trigger:hover + .cart-dropdown {
-  display: block;
-  color: red;
-} */
+.container-fluid {
+  height: 555px;
+  overflow-y: scroll;
+}

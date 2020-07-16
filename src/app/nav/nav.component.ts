@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ShoppingCartService } from '../services/shopping-cart.service';
+import { BehaviorSubject } from 'rxjs';
+import { ProductModel } from '../models/product';
 
 @Component({
   selector: 'app-nav',
@@ -6,10 +9,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
+  cartPreview = new BehaviorSubject<ProductModel[]>([]);
+  total = new BehaviorSubject<number>(0);
 
-  constructor() { }
+  constructor(
+    private readonly cartService: ShoppingCartService
+  ) { }
 
   ngOnInit(): void {
+    this.cartService.cartItems.subscribe(cart => {
+      this.cartPreview.next(cart);
+      this.total.next(cart.length);
+    });
   }
 
 }

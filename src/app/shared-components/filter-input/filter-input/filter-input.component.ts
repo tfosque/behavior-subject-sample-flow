@@ -17,7 +17,7 @@ export class FilterInputComponent implements OnInit {
   }
 
   trackFilterStr(str: string) {
-    console.log('trackFilterStr', str);
+   // console.log('trackFilterStr', str);
 
     this.searchService.filter(this.form.searchInput);
   }

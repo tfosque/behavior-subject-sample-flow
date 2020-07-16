@@ -15,9 +15,7 @@ export class CartLineItemComponent implements OnInit {
     private readonly productService: ProductsService
   ) { }
 
-  ngOnInit(): void {
-    // console.log('abcTTT:cartItem:from:shopping', this.cartItem.details);
-  }
+  ngOnInit(): void { }
 
   removeItemFromSelectedProducts(item: ProductModel) {
     // deleteFromSelectedProducts

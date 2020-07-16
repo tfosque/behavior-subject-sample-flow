@@ -1,17 +1,40 @@
-<!-- Menu Header -->
-<nav class="navbar navbar-light bg-light">
-  <span class="navbar-brand mb-0 h1">Angualr - <small>Behavior Subjects | MongoDB</small></span>
+<!-- Possible Notifications can go here -->
+<ul class="nav nav-tabs navbar-light">
+  <li class="nav-item">
+    <a class="nav-link" href="#">Beacon</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Beacon Pro+</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Beacon 3D+</a>
+  </li>
+</ul>
 
-  <!-- Menu Search -->
+<!-- Search Menu with Logo -->
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1"
+    >Angualr - <small>Behavior Subjects | MongoDB</small></span
+  >
+
+  <!-- Search -->
   <form class="form-inline my-2 my-lg-0">
-    <input size="38" class="form-control  form-control-sm mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-secondary btn-sm my-2 my-sm-0" type="submit">Search</button>
+    <input
+      size="38"
+      class="form-control form-control-sm mr-sm-2"
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+    />
+    <button class="btn btn-outline-secondary btn-sm my-2 my-sm-0" type="submit">
+      Search
+    </button>
   </form>
 </nav>
 
-<!-- Remove Empty Menu Links -->
+<!-- Remove Empty Menu Links used as spacer for now -->
 <nav class="navbar navbar-light bg-dark">
- <!--  TODO: Fixed: remove this empty menu and float pills menu right -->
+  <!--  TODO: Fixed: remove this empty menu and float pills menu right -->
   <ul class="nav nav-pills" style="visibility: hidden;">
     <li class="nav-item">
       <a class="nav-link" href="#"></a>
@@ -27,12 +50,19 @@
     </li>
   </ul>
 
-  <ul class="nav nav-pills" style="font-size: .8075rem;">
+  <!-- User Menu -->
+  <ul class="nav nav-pills" style="font-size: 0.8075rem;">
     <li class="nav-item">
       <div class="dropdown btn-sm">
-        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <b>{{'DENVER'}}</b> &nbsp;| &nbsp;Switch Account
+        <button
+          class="btn btn-primary btn-sm dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <b>{{ "DENVER" }}</b> &nbsp;| &nbsp;Switch Account
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#">Action</a>
@@ -49,19 +79,62 @@
     </li>
     <li routerLink="/cart">
       <div class="dropdown btn-sm">
-        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-shopping-cart"></i>&nbsp;Cart
+        <button
+          class="btn btn-secondary btn-sm dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <i class="fa fa-shopping-cart"></i>&nbsp;Cart
         </button>
+        <!-- Cart Preview -->
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <div class="col" style="border-bottom: solid thin #e8e8e8; margin-bottom: 15px; display: block;">
+            <h5><b>Shopping Cart</b>&nbsp;<span class="badge badge-primary">{{total | async}}</span></h5>
+          </div>
+          <div class="container-fluid">
+           <div *ngFor="let cartItem of cartPreview | async">
+            <app-cart-line-item [cartItem]="cartItem"></app-cart-line-item>
+           </div>
+          </div>
         </div>
       </div>
     </li>
   </ul>
 </nav>
 
-<!-- Bread Crumbs Bar -->
+<!-- Bread Crumbs Menubar -->
 <app-bread-crumbs></app-bread-crumbs>
+
+<nav
+  class="nav"
+  style="
+    align-items: center;
+    justify-content: center;
+    border-bottom: solid thin #e8e8e8;
+    margin-bottom: 15px;
+  "
+>
+  <a class="nav-link active" href="#">Roofing</a>
+  <a class="nav-link" href="#">Siding</a>
+  <a class="nav-link" href="#">Gutters</a>
+  <a class="nav-link disabled" href="#">Insulation</a>
+  <a class="nav-link" href="#">Waterproofing</a>
+  <a class="nav-link" href="#">Tools & Equipment</a>
+  <a class="nav-link" href="#">Building Materials</a>
+  <a class="nav-link" href="#">Solar Energy</a>
+  <a class="nav-link" href="#">Industries</a>
+  <a class="nav-link" href="#">Brands</a>
+</nav>
+
+
+<!-- <div class="row">
+  <div class="col-lg-2">Image</div>
+  <div class="col">Title</div>
+  <div class="col">#Item</div>
+  <div class="col">Price</div>
+  <div class="col">Qty</div>
+  <div class="col">Total</div>
+</div> -->

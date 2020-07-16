@@ -10,7 +10,7 @@ export class SearchService {
   constructor() { }
 
   filter(str: string) {
-    console.log('from:filter:', {str});
+    // console.log('from:filter:', {str});
     this.txtStr.next(str);
   }
 }

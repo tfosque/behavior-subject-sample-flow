@@ -58,6 +58,8 @@ const routes: Routes = [
   providers: [ShoppingCartService],
   exports: [
     RouterModule,
+    ShoppingCartComponent,
+    CartLineItemComponent
   ],
 })
 export class AppRoutingModule { }
