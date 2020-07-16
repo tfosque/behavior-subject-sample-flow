@@ -12,13 +12,23 @@ import { LocalDbComponent } from './_app/local-db/local-db.component';
 
 /* Services */
 import { LocalStorageService } from './services/local-storage/local-storage.service';
+import { CollapseComponent } from './shared-components/collapse/collapse.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { TooltipComponent } from './shared-components/tooltip/tooltip.component';
+import { ScrollsbyComponent } from './shared-components/scrollsby/scrollsby.component';
+import { CardComponent } from './shared-components/card/card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     BreadCrumbsComponent,
-    LocalDbComponent
+    LocalDbComponent,
+    CollapseComponent,
+    CarouselComponent,
+    TooltipComponent,
+    ScrollsbyComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
