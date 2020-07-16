@@ -28,6 +28,7 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.getCartsItems();
+    this.cartService.initItemTotal();
     // this.productService.suggestiveSelling();
 
     this.cartService.cartItems.subscribe((items: ProductModel[]) => {
@@ -62,6 +63,7 @@ export class ShoppingCartComponent implements OnInit {
 
   // TODO: updaate globally for shopping-cart
   updateQty(newQty: number, item: ProductModel) {
+    this.cartService.softUpdateItemTotal(item, newQty);
     item.qty = newQty;
   }
 

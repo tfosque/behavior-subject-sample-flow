@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ProductModel } from '../models/product';
 import { AlertService } from './alert.service';
-import { uniq, union } from 'lodash';
+import { union } from 'lodash';
 @Injectable({
   providedIn: 'root',
 })
@@ -18,27 +18,14 @@ export class ShoppingCartService {
     this.cartItems.next(localCart);
   }
 
-  softUpdateItemTotal(item: any, qty: number): void {
-    // console.log('beginning of update.....');
-
+  softUpdateItemTotal(item: any, newQty: number): void {
     this.cartItems.value.filter((f: any) => {
-      // console.log('f:', f);
-
       if (f.id === item.id) {
         // mutate global observable
-        // this.cartItems.next(this.cartItems.value.concat(f))
-
         // result has to be larger than 0;
-        if (item.qty * item.price.unitPrice > 0) {
-          f.total = item.qty * item.price.unitPrice;
-          const nextItem = union(this.cartItems.value.concat(f));
-          // this.cartItems.next(nextItem);
-
-          this.subtotal();
-          // console.log('eq:f:total', item.qty * item.price.unitPrice);
-          // return;
-        } else {
-          f.total = 0;
+        // here we insert the new ('newQty')
+        if (newQty * item.price.unitPrice > 0) {
+          f.total = newQty * item.price.unitPrice;
           this.subtotal();
         }
       }
@@ -47,22 +34,15 @@ export class ShoppingCartService {
 
   initItemTotal() {
     this.cartItems.value.filter((f: any) => {
-      // console.log('f:', f);
       // mutate global observable
-      // this.cartItems.next(this.cartItems.value.concat(f))
-
       // result has to be larger than 0;
-      if (f.qty * f.price.unitPrice > 0) {
+      if (f.qty < 1) {
+        f.total = 0;
+      }
+      if (f.qty >= 1) {
         f.total = f.qty * f.price.unitPrice;
         const nextItem = union(this.cartItems.value.concat(f));
         this.cartItems.next(nextItem);
-
-        this.subtotal();
-        console.log('eq:f:total', f.qty * f.price.unitPrice);
-        return;
-      } else {
-        f.total = f.price.unitPrice;
-        // this.cartItems.next(this.cartItems.value);
         this.subtotal();
       }
     });
@@ -74,17 +54,14 @@ export class ShoppingCartService {
   }
 
   // TODO: test adding single vs multiple !important
-  addMultipleItems(items: ProductModel[]) {
+  addMultipleItems(items: ProductModel[]): void {
     const getLocalStorageCart = JSON.parse(
       localStorage.getItem('shoppingCart')
     );
-    // console.log({getLocalStorageCart})
 
     const update = getLocalStorageCart.concat(items);
-    // console.log('concat::::::', update);
 
     this.cartItems.next(update);
-    // console.log('cartItems:from"shopCart', this.cartItems.value);
 
     localStorage.setItem('shoppingCart', JSON.stringify(update));
 
@@ -97,28 +74,24 @@ export class ShoppingCartService {
       items,
       0
     );
-
     // TODO: How to return 200 from observable !important
-    return items.length > 1;
   }
 
   // TODO: update order summary when qty changes
   subtotal() {
-    /* Add all items */
+    /* Add total unitPrice of all items */
     let total = 0;
-    let qty = 0;
-
-    console.log('subtotal:', this.cartItems.value);
-
 
     setTimeout(() => {
       this.cartItems.value.map((m) => {
-        total = total + m.total;
+        if (m.qty === 0) {
+          total = total;
+        } else {
+          total = total + m.total;
+        }
       });
-
       this.SUBTOTAL.next(total);
-    }, 2000);
-    // console.log({ total });
+    }, 500);
   }
 
   /* Delete CartItems */
@@ -127,7 +100,7 @@ export class ShoppingCartService {
 
     // delete from shopping-cart
     // - no need to delete from localDb -:localStorage.setItem('localDb', JSON.stringify(results));
-    // update cartItems TODO: Remove timeout and use observable
+    // update cartItems // TODO: Remove timeout and use observable
     setTimeout(() => {
       // update localDb
       this.cartItems.next(results);
