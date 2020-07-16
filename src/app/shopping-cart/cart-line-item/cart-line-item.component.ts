@@ -31,7 +31,7 @@ export class CartLineItemComponent implements OnInit {
 
   removeItemFromSelectedProducts(item: ProductModel) {
     // deleteFromSelectedProducts
-    this.productService.removeFromSelectedProducts(item);
+    this.cartService.deleteItem(item);
   }
 
   // TODO: totals modal but not in shopping cart
