@@ -12,7 +12,6 @@ import { SidebarComponent } from './shared-components/sidebar/sidebar.component'
 import { PaginationComponent } from './shared-components/pagination/pagination.component';
 import { ParentToChildComponent } from './shared-components/parent-to-child/parent-to-child/parent-to-child.component';
 import { ChildToParentComponent } from './shared-components/child-to-parent/child-to-parent/child-to-parent.component';
-import { LineItemComponent } from './shared-components/line-item/line-item/line-item.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { StepperComponent } from './shared-components/steppeer/stepper/stepper.component';
 import { ViewContainerComponent } from './shared-components/sidebar/view-container/view-container.component';
@@ -40,7 +39,6 @@ const routes: Routes = [
     OrderSummaryComponent,
     OrderSummaryComponent,
     StepperComponent,
-    LineItemComponent,
     CartLineItemComponent,
     ChildToParentComponent,
     ParentToChildComponent,

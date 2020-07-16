@@ -10,7 +10,7 @@
       <div class="col">
         <app-item-count (updateQty)="updateQty($event, cartItem)" [qty]="cartItem.qty"></app-item-count>
       </div>
-      <div class="col"><b>Total: </b>{{ cartItem.qty * cartItem.price.unitPrice | currency }}</div>
+      <div class="col"><b>Total: </b>{{ cartItem.total | currency }}</div>
       <div (click)="removeItemFromSelectedProducts(cartItem)">
         <i class="fa fa-minus-square text-secondary float-lg-left"></i>
       </div>
