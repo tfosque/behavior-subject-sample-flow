@@ -13,19 +13,12 @@
 
 <!-- Search Menu with Logo -->
 <nav class="navbar navbar-light bg-light">
-  <span class="navbar-brand mb-0 h1"
-    >Angualr - <small>Behavior Subjects | MongoDB</small></span
-  >
+  <span class="navbar-brand mb-0 h1">Angualr - <small>Behavior Subjects | MongoDB</small></span>
 
   <!-- Search -->
   <form class="form-inline my-2 my-lg-0">
-    <input
-      size="38"
-      class="form-control form-control-sm mr-sm-2"
-      type="search"
-      placeholder="Search"
-      aria-label="Search"
-    />
+    <input size="38" class="form-control form-control-sm mr-sm-2" type="search" placeholder="Search"
+      aria-label="Search" />
     <button class="btn btn-outline-secondary btn-sm my-2 my-sm-0" type="submit">
       Search
     </button>
@@ -54,14 +47,8 @@
   <ul class="nav nav-pills" style="font-size: 0.8075rem;">
     <li class="nav-item">
       <div class="dropdown btn-sm">
-        <button
-          class="btn btn-primary btn-sm dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
+        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <b>{{ "DENVER" }}</b> &nbsp;| &nbsp;Switch Account
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -77,27 +64,53 @@
     <li class="nav-item btn-sm">
       <button class="btn btn-primary btn-sm" href="#">Templates</button>
     </li>
-    <li routerLink="/cart">
+    <li>
       <div class="dropdown btn-sm">
-        <button
-          class="btn btn-secondary btn-sm dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
+        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-shopping-cart"></i>&nbsp;Cart
         </button>
         <!-- Cart Preview -->
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <div class="col" style="border-bottom: solid thin #e8e8e8; margin-bottom: 15px; display: block;">
+          <div class="col" style="border-bottom: solid thin #e8e8e8; margin-bottom: 0px; display: block;">
             <h5><b>Shopping Cart</b>&nbsp;<span class="badge badge-primary">{{total | async}}</span></h5>
           </div>
+          <div class="col">
+            <form #f>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-filter fa-sm"></i></span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-label="Amount (to the nearest dollar)"
+                  #searchText
+                  name="searchText"
+                  [(ngModel)]="form.searchText"
+                >
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    {{ (cartPreview | async | filterSearch:form.searchText:'itemOrProductDescription')?.length }}</span>
+                </div>
+              </div>
+            </form>
+          </div>
           <div class="container-fluid">
-           <div *ngFor="let cartItem of cartPreview | async">
-            <app-cart-line-item [cartItem]="cartItem"></app-cart-line-item>
-           </div>
+            <div *ngFor="let cartItem of cartPreview | async | filterSearch:form.searchText:'itemOrProductDescription' as result">
+              <app-cart-line-item [cartItem]="cartItem"></app-cart-line-item>
+            </div>
+          </div>
+          <div class="alert alert-secondary" style="border-top: solid thin #b4b4b4">
+            <div class="text-right">
+              <div>Other Charges:</div>
+              <div>Items: </div>
+              <p><b class="text-primary">SUBTOTAL:</b> Will be calculated at the time of invoicing.</p>
+              <button type="button" class="btn btn-secondary" routerLink="/cart">
+                <i class="fa fa-shopping-cart"></i>
+                &nbsp; View Shopping Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -108,15 +121,12 @@
 <!-- Bread Crumbs Menubar -->
 <app-bread-crumbs></app-bread-crumbs>
 
-<nav
-  class="nav"
-  style="
+<nav class="nav" style="
     align-items: center;
     justify-content: center;
     border-bottom: solid thin #e8e8e8;
     margin-bottom: 15px;
-  "
->
+  ">
   <a class="nav-link active" href="#">Roofing</a>
   <a class="nav-link" href="#">Siding</a>
   <a class="nav-link" href="#">Gutters</a>

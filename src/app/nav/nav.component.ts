@@ -12,9 +12,13 @@ export class NavComponent implements OnInit {
   cartPreview = new BehaviorSubject<ProductModel[]>([]);
   total = new BehaviorSubject<number>(0);
 
+  public form: any = {};
+
   constructor(
     private readonly cartService: ShoppingCartService
-  ) { }
+  ) {
+    this.form.searchText = '';
+  }
 
   ngOnInit(): void {
     this.cartService.cartItems.subscribe(cart => {

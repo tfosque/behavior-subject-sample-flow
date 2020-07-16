@@ -18,9 +18,11 @@ div.dropdown-menu.show {
   left: -557px;
   width: 670px;
   color: black;
+  font-size: .9rem;
+  max-height: 681px;
 }
 
 .container-fluid {
-  height: 555px;
+  height: 478px;
   overflow-y: scroll;
 }
