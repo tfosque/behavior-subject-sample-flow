@@ -10,7 +10,7 @@ import { ProductModel } from '../models/product';
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
-  styleUrls: ['./shopping-cart.component.scss']
+  styleUrls: ['./shopping-cart.component.scss'],
 })
 export class ShoppingCartComponent implements OnInit {
   public cartItems = new BehaviorSubject<ProductModel[]>([]);
@@ -24,7 +24,7 @@ export class ShoppingCartComponent implements OnInit {
     private readonly searchService: SearchService,
     private readonly productService: ProductsService,
     private readonly modalService: ModalService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.cartService.getCartsItems();
@@ -35,7 +35,7 @@ export class ShoppingCartComponent implements OnInit {
       this.cartItems.next(items);
     });
 
-    this.searchService.txtStr.subscribe(str => {
+    this.searchService.txtStr.subscribe((str) => {
       this.searchTxt = str;
     });
   }
@@ -52,7 +52,9 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   deleteItem(item: any) {
-    alert(`Are you sure you want to delete item #${item.details.productId} : ${item.details.itemOrProductDescription}.`);
+    alert(
+      `Are you sure you want to delete item #${item.details.productId} : ${item.details.itemOrProductDescription}.`
+    );
     this.cartService.deleteItem(item.id);
   }
 
@@ -66,6 +68,4 @@ export class ShoppingCartComponent implements OnInit {
     this.cartService.softUpdateItemTotal(item, newQty);
     item.qty = newQty;
   }
-
 }
-
