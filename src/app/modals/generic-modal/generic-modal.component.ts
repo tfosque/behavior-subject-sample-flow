@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, Input, AfterViewInit, ElementRef } from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
-import { ThroughComponent } from './through/through.component';
 import { ProductModel } from 'src/app/models/product';
 
 @Component({
@@ -9,8 +8,10 @@ import { ProductModel } from 'src/app/models/product';
   styleUrls: ['./generic-modal.component.scss']
 })
 export class GenericModalComponent implements OnInit, AfterViewInit {
-  item: ProductModel;
+  body: ProductModel;
   title: string;
+  footer: any = {};
+  actions: any = {};
 
   constructor(
     private readonly modalService: ModalService
@@ -22,11 +23,8 @@ export class GenericModalComponent implements OnInit, AfterViewInit {
       this.title = Title;
     });
     this.modalService.item.subscribe(Item => {
-      this.item = Item;
+      this.body = Item;
     });
-
-    console.log('modal:service:title:', this.modalService.title);
-    console.log('modal:service:title:', this.modalService.item);
 
   }
 

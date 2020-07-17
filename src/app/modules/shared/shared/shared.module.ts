@@ -18,7 +18,7 @@ import { GenericModalComponent } from 'src/app/modals/generic-modal/generic-moda
 
 /* Services */
 import { FilterSearchPipe } from 'src/app/pipes/filter-search/filter-search.pipe';
-import { ThroughComponent } from 'src/app/modals/generic-modal/through/through.component';
+import { ProductDescComponent } from 'src/app/shared-components/product-desc/product-desc.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { ThroughComponent } from 'src/app/modals/generic-modal/through/through.c
     AlertDialogComponent,
     CarouselComponent,
     GenericModalComponent,
-    ThroughComponent
+    ProductDescComponent,
   ],
   providers: [],
   imports: [
@@ -60,7 +60,7 @@ import { ThroughComponent } from 'src/app/modals/generic-modal/through/through.c
     AlertDialogComponent,
     CarouselComponent,
     GenericModalComponent,
-    ThroughComponent
+    ProductDescComponent
   ]
 })
 export class SharedModule {}

@@ -8,12 +8,12 @@ import { ProductModel } from 'src/app/models/product';
   styleUrls: ['./product-desc.component.scss']
 })
 export class ProductDescComponent implements OnInit {
-  @Input() product: ProductModel;
+  @Input() body: ProductModel;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log('product:', this.product);
+    console.log('body:', this.body);
   }
 
 }

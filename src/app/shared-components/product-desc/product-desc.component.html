@@ -1,7 +1,22 @@
-<div class="container-fluid">
-  <div class="row">
-  <div class="col">
-    Hello
+<div class="row" *ngIf="body && body.product">
+  <div class="col-2">
+    <img [src]="body.product" />
   </div>
-</div>
+  <div class="col-10">
+    <h5>{{ body.details.itemOrProductDescription }}</h5>
+    <div class="row">
+      <div class="col">
+        {{ body.details.productId }}
+      </div>
+      <div class="col">
+        {{ body.price.unitPrice | currency }}
+      </div>
+      <div class="col">
+        {{ body.qty }}
+      </div>
+      <div class="col">
+        {{ body.total | currency}}
+      </div>
+    </div>
+  </div>
 </div>

@@ -7,7 +7,7 @@
   aria-labelledby="genericModalLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="genericModalLabel">{{ title }}</h5>
@@ -20,9 +20,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <!-- body -->
       <div class="modal-body">
-        {{ item.details.itemOrProductDescription }}
+        <app-product-desc [body]="body"></app-product-desc>
       </div>
+      <!-- footer -->
       <div class="modal-footer">
 
       </div>

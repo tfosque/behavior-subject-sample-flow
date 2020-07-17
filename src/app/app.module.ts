@@ -17,7 +17,6 @@ import { TooltipComponent } from './shared-components/tooltip/tooltip.component'
 import { ScrollsbyComponent } from './shared-components/scrollsby/scrollsby.component';
 import { CardComponent } from './shared-components/card/card.component';
 import { PluralPipe } from './pipes/plural/plural.pipe';
-import { ProductDescComponent } from './shared-components/product-desc/product-desc.component';
 import { AdComponent } from './marketing/ad/ad.component';
 
 @NgModule({
@@ -31,7 +30,6 @@ import { AdComponent } from './marketing/ad/ad.component';
     ScrollsbyComponent,
     CardComponent,
     PluralPipe,
-    ProductDescComponent,
     AdComponent
   ],
   imports: [
