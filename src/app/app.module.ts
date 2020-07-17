@@ -18,6 +18,7 @@ import { ScrollsbyComponent } from './shared-components/scrollsby/scrollsby.comp
 import { CardComponent } from './shared-components/card/card.component';
 import { PluralPipe } from './pipes/plural/plural.pipe';
 import { AdComponent } from './marketing/ad/ad.component';
+import { FlyoutMenusComponent } from './nav/flyout-menus/flyout-menus.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AdComponent } from './marketing/ad/ad.component';
     ScrollsbyComponent,
     CardComponent,
     PluralPipe,
-    AdComponent
+    AdComponent,
+    FlyoutMenusComponent
   ],
   imports: [
     BrowserModule,

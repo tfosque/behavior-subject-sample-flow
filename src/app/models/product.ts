@@ -12,6 +12,10 @@ export interface ProductModel {
     unitPrice: number;
     uom: string;
   };
+  color?: string;
+  manufacturerNumber?: string;
+  specificatoins?: [];
+  documents?: [];
   qty: number;
   total: number;
   variations?: Variations;
