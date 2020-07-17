@@ -19,6 +19,7 @@ import { CardComponent } from './shared-components/card/card.component';
 import { PluralPipe } from './pipes/plural/plural.pipe';
 import { ProductDescComponent } from './shared-components/product-desc/product-desc.component';
 import { AdComponent } from './marketing/ad/ad.component';
+import { DiscountComponent } from './shared-components/discount/discount.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AdComponent } from './marketing/ad/ad.component';
     CardComponent,
     PluralPipe,
     ProductDescComponent,
-    AdComponent
+    AdComponent,
+    DiscountComponent
   ],
   imports: [
     BrowserModule,
