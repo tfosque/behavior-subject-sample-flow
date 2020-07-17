@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, Input, AfterViewInit, ElementRef } from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
-import { ThroughComponent } from './through/through.component';
 import { ProductModel } from 'src/app/models/product';
 
 @Component({

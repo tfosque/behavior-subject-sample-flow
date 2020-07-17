@@ -20,6 +20,8 @@ import { PluralPipe } from './pipes/plural/plural.pipe';
 import { ProductDescComponent } from './shared-components/product-desc/product-desc.component';
 import { AdComponent } from './marketing/ad/ad.component';
 import { DiscountComponent } from './shared-components/discount/discount.component';
+import { SearchComponent } from './search/search.component';
+import { MainSearchComponent } from './search/main-search/main-search.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { DiscountComponent } from './shared-components/discount/discount.compone
     PluralPipe,
     ProductDescComponent,
     AdComponent,
-    DiscountComponent
+    DiscountComponent,
+    SearchComponent,
+    MainSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +50,13 @@ import { DiscountComponent } from './shared-components/discount/discount.compone
   providers: [LocalStorageService],
   exports: [
     BreadCrumbsComponent,
+    SearchComponent,
+    MainSearchComponent,
+    ProductDescComponent,
+    CardComponent,
+    ScrollsbyComponent,
+    TooltipComponent,
+    CollapseComponent,
     PluralPipe
   ],
   bootstrap: [AppComponent]

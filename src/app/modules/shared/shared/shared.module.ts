@@ -17,9 +17,9 @@ import { GenericModalComponent } from 'src/app/modals/generic-modal/generic-moda
 
 /* Services */
 import { FilterSearchPipe } from 'src/app/pipes/filter-search/filter-search.pipe';
-import { ThroughComponent } from 'src/app/modals/generic-modal/through/through.component';
 import { ListOfSelectedProductsComponent } from 'src/app/shopping-cart/list-of-selected-products/list-of-selected-products.component';
 import { CartGalleryComponent } from 'src/app/cart-gallery/cart-gallery.component';
+import { PdpComponent } from 'src/app/product/pdp/pdp.component';
 
 
 @NgModule({
@@ -38,7 +38,7 @@ import { CartGalleryComponent } from 'src/app/cart-gallery/cart-gallery.componen
     AlertDialogComponent,
     CarouselComponent,
     GenericModalComponent,
-    ThroughComponent
+    PdpComponent
   ],
   providers: [],
   imports: [
@@ -62,7 +62,7 @@ import { CartGalleryComponent } from 'src/app/cart-gallery/cart-gallery.componen
     AlertDialogComponent,
     CarouselComponent,
     GenericModalComponent,
-    ThroughComponent
+    PdpComponent
   ]
 })
 export class SharedModule {}
