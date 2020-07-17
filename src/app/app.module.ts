@@ -19,6 +19,8 @@ import { CardComponent } from './shared-components/card/card.component';
 import { PluralPipe } from './pipes/plural/plural.pipe';
 import { AdComponent } from './marketing/ad/ad.component';
 import { FlyoutMenusComponent } from './nav/flyout-menus/flyout-menus.component';
+import { ProductComponent } from './product/product.component';
+import { DescriptionComponent } from './product/description/description.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { FlyoutMenusComponent } from './nav/flyout-menus/flyout-menus.component'
     CardComponent,
     PluralPipe,
     AdComponent,
-    FlyoutMenusComponent
+    FlyoutMenusComponent,
+    ProductComponent,
+    DescriptionComponent
   ],
   imports: [
     BrowserModule,

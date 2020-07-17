@@ -12,7 +12,10 @@ export interface ProductModel {
     unitPrice: number;
     uom: string;
   };
+  size?: string;
+  thickness?: string;
   color?: string;
+  desc?: string;
   manufacturerNumber?: string;
   specificatoins?: [];
   documents?: [];
