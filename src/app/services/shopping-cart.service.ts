@@ -95,15 +95,23 @@ export class ShoppingCartService {
   }
 
   /* Delete CartItems */
-  deleteItem(key: any) {
-    const results = this.deleteFilter(this.cartItems.value, key);
+  deleteItem(item: any) {
+    // TODO: user prompt
+    // on page reload detect if items need to be saved, if so display user prompt
 
-    // delete from shopping-cart
-    // - no need to delete from localDb -:localStorage.setItem('localDb', JSON.stringify(results));
+    const results = this.deleteFilter(this.cartItems.value, item.id);
+    // delete from shopping-cart Observable
+    // delete from localDb - shoppingCart ;
+
     // update cartItems // TODO: Remove timeout and use observable
     setTimeout(() => {
       // update localDb
       this.cartItems.next(results);
+      this.subtotal();
+      // TODO: Observable
+      setTimeout(() => {
+        localStorage.setItem('shoppingCart', JSON.stringify(results));
+      }, 1200);
     }, 1000);
   }
 

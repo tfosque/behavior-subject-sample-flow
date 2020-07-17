@@ -33,7 +33,7 @@ export class CartLineItemComponent implements OnInit {
 
   removeItemFromSelectedProducts(item: ProductModel) {
     // deleteFromSelectedProducts
-    this.productService.removeFromSelectedProducts(item);
+    this.cartService.deleteItem(item);
   }
 
   // TODO: updaate globally for shopping-cart
