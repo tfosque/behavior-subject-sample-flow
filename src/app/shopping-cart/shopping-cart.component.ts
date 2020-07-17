@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { BehaviorSubject } from 'rxjs';
-import { FilterInputComponent } from '../shared-components/filter-input/filter-input/filter-input.component';
 import { SearchService } from '../services/search.service';
 import { ProductsService } from '../services/products.service';
 import { ModalService } from '../services/modal.service';
 import { ProductModel } from '../models/product';
+import { GenericModalComponent } from '../modals/generic-modal/generic-modal.component';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -14,6 +14,8 @@ import { ProductModel } from '../models/product';
 })
 export class ShoppingCartComponent implements OnInit {
   public cartItems = new BehaviorSubject<ProductModel[]>([]);
+
+  public View: GenericModalComponent;
 
   searchTxt: string;
 
@@ -47,6 +49,13 @@ export class ShoppingCartComponent implements OnInit {
     this.configureModal();
   }
 
+ /*  openPdpModal() {
+    // this.modalService.createModal('Product', this.View);
+    // this.productService.getProducts();
+    // this.configureModal();
+  } */
+
+  // TODO: Rework
   configureModal() {
     this.modalService.title.next('Select Products');
   }

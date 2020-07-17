@@ -9,17 +9,16 @@ import { SpinnerComponent } from 'src/app/shared-components/spinner/spinner/spin
 import { SuggestiveItemsComponent } from 'src/app/shared-components/suggestive-items/suggestive-items/suggestive-items.component';
 import { FilterInputComponent } from 'src/app/shared-components/filter-input/filter-input/filter-input.component';
 import { ModalComponent } from 'src/app/shared-components/modal/modal/modal.component';
-
-
-/* Services */
-// import { AlertService } from 'src/app/services/alert.service';
-// import { SearchService } from 'src/app/services/search.service';
-import { FilterSearchPipe } from 'src/app/pipes/filter-search/filter-search.pipe';
 import { ItemCountComponent } from 'src/app/shared-components/item-count/item-count.component';
 import { ListOfSelectedProductsComponent } from 'src/app/cart-gallery/list-of-selected-products/list-of-selected-products.component';
 import { CartGalleryComponent } from 'src/app/cart-gallery/cart-gallery.component';
 import { AlertDialogComponent } from 'src/app/alert/alert-dialog/alert-dialog.component';
 import { CarouselComponent } from 'src/app/shared-components/carousel/carousel.component';
+import { GenericModalComponent } from 'src/app/modals/generic-modal/generic-modal.component';
+
+/* Services */
+import { FilterSearchPipe } from 'src/app/pipes/filter-search/filter-search.pipe';
+import { ThroughComponent } from 'src/app/modals/generic-modal/through/through.component';
 
 @NgModule({
   declarations: [
@@ -35,14 +34,14 @@ import { CarouselComponent } from 'src/app/shared-components/carousel/carousel.c
     ListOfSelectedProductsComponent,
     CartGalleryComponent,
     AlertDialogComponent,
-    CarouselComponent
+    CarouselComponent,
+    GenericModalComponent,
+    ThroughComponent
   ],
   providers: [],
   imports: [
     CommonModule,
     FormsModule,
-   // AlertService,
-    // SearchService
   ],
   exports: [
     FormsModule,
@@ -59,7 +58,9 @@ import { CarouselComponent } from 'src/app/shared-components/carousel/carousel.c
     ListOfSelectedProductsComponent,
     CartGalleryComponent,
     AlertDialogComponent,
-    CarouselComponent
+    CarouselComponent,
+    GenericModalComponent,
+    ThroughComponent
   ]
 })
 export class SharedModule {}
