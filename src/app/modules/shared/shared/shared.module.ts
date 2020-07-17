@@ -10,8 +10,8 @@ import { SuggestiveItemsComponent } from 'src/app/shared-components/suggestive-i
 import { FilterInputComponent } from 'src/app/shared-components/filter-input/filter-input/filter-input.component';
 import { ModalComponent } from 'src/app/shared-components/modal/modal/modal.component';
 import { ItemCountComponent } from 'src/app/shared-components/item-count/item-count.component';
-import { ListOfSelectedProductsComponent } from 'src/app/cart-gallery/list-of-selected-products/list-of-selected-products.component';
-import { CartGalleryComponent } from 'src/app/cart-gallery/cart-gallery.component';
+
+import { CartGalleryComponent } from 'src/app/shopping-cart/cart-gallery/cart-gallery.component';
 import { AlertDialogComponent } from 'src/app/alert/alert-dialog/alert-dialog.component';
 import { CarouselComponent } from 'src/app/shared-components/carousel/carousel.component';
 import { GenericModalComponent } from 'src/app/modals/generic-modal/generic-modal.component';
@@ -19,6 +19,7 @@ import { GenericModalComponent } from 'src/app/modals/generic-modal/generic-moda
 /* Services */
 import { FilterSearchPipe } from 'src/app/pipes/filter-search/filter-search.pipe';
 import { ProductDescComponent } from 'src/app/shared-components/product-desc/product-desc.component';
+import { ListOfSelectedProductsComponent } from 'src/app/shopping-cart/list-of-selected-products/list-of-selected-products.component';
 
 @NgModule({
   declarations: [

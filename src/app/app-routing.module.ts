@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from './modules/shared/shared/shared.module';
 
 /* Supportive Components */
-import { CartPreviewComponent } from './cart-gallery/cart-preview/cart-preview.component';
 import { CreateComponent } from './create/create.component';
 import { ReadComponent } from './read/read.component';
 import { CartLineItemComponent } from 'src/app/shopping-cart/cart-line-item/cart-line-item.component';
@@ -23,6 +22,7 @@ import { TemplatesComponent } from './templates/templates.component';
 
 /* Services */
 import { ShoppingCartService } from './services/shopping-cart.service';
+import { CartPreviewComponent } from './shopping-cart/cart-preview/cart-preview.component';
 
 /* Routes */
 const routes: Routes = [

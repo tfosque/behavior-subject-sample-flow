@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ProductModel } from '../models/product';
+import { ProductModel } from '../../models/product';
 import { BehaviorSubject } from 'rxjs';
-import { ProductsService } from '../services/products.service';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-cart-gallery',
