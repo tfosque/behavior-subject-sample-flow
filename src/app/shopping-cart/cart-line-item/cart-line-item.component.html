@@ -38,7 +38,7 @@
         ></app-item-count>
       </div>
       <div class="col"><b>Total: </b>{{ cartItem.total | currency }}</div>
-      <div (click)="removeItemFromSelectedProducts(cartItem)">
+      <div (click)="removeItemFromSelectedProducts(cartItem)" class="del-icon">
         <i class="fa fa-minus-square text-secondary float-lg-left"></i>
       </div>
     </div>
