@@ -1,5 +1,4 @@
 <div class="row">
-
   <div class="col-lg-12">
     <p>
       <i class="fa fa-shopping-cart"></i>&nbsp;
@@ -17,7 +16,6 @@
   </div>
 
   <div class="col-lg-9">
-
     <div class="row">
       <!-- Search Input -->
       <div class="col-5">
@@ -27,7 +25,13 @@
       <!-- Action Buttons -->
       <div class="col-7 text-right">
         <div class="btn-group">
-          <button data-toggle="modal" data-target="#productModel" type="button" (click)="openProductModal()" class="btn btn-primary">
+          <button
+            data-toggle="modal"
+            data-target="#productModel"
+            type="button"
+            (click)="openProductModal()"
+            class="btn btn-primary"
+          >
             <b>ADD PRODUCT</b>&nbsp; <i class="fa fa-plus-square fa-lg"></i>
           </button>
           <button type="button" class="btn btn-secondary">
@@ -38,7 +42,7 @@
             &nbsp;
             <b>UPDATE CART</b>
             &nbsp;
-             <i class="fa fa-info-circlex fa-lg"></i>
+            <i class="fa fa-info-circlex fa-lg"></i>
           </button>
         </div>
       </div>
@@ -50,26 +54,29 @@
         </div>
       </div>
 
-
       <!-- Cart Line Items -->
       <div class="col-lg-12" *ngIf="(cartItems | async)?.length > 0">
-      <div class="list-group">
-        <div class="row" *ngFor="
-        let item of cartItems
-          | async
-          | filterSearch: searchTxt:'itemOrProductDescription'
-      ">
+        <div class="list-group">
+          <div
+            class="row"
+            *ngFor="
+              let item of cartItems
+                | async
+                | filterSearch: searchTxt:'itemOrProductDescription'
+            "
+          >
             <div class="col no-border-top">
               <div class="list-group-item">
                 <app-cart-line-item [cartItem]="item"></app-cart-line-item>
               </div>
             </div>
+          </div>
         </div>
-        </div>
-      </div><!-- Col-12 -->
+      </div>
+      <!-- Col-12 -->
     </div>
-
-  </div><!-- End of Inner Col-lg-9 -->
+  </div>
+  <!-- End of Inner Col-lg-9 -->
 
   <!-- Sidebar -->
   <div class="col-sm-12 col-lg-3 sidebar">
@@ -77,8 +84,6 @@
       <app-sidebar></app-sidebar>
     </div>
   </div>
-
 </div>
-
 
 // genericModal

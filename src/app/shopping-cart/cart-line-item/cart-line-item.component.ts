@@ -5,11 +5,10 @@ import { ProductsService } from 'src/app/services/products.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { ModalService } from 'src/app/services/modal.service';
 
-
 @Component({
   selector: 'app-cart-line-item',
   templateUrl: './cart-line-item.component.html',
-  styleUrls: ['./cart-line-item.component.scss']
+  styleUrls: ['./cart-line-item.component.scss'],
 })
 export class CartLineItemComponent implements OnInit {
   @ViewChild('content') content: HTMLElement;
@@ -20,7 +19,7 @@ export class CartLineItemComponent implements OnInit {
     private readonly productService: ProductsService,
     private readonly cartService: ShoppingCartService,
     private readonly modalService: ModalService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.cartService.initItemTotal();
@@ -43,5 +42,4 @@ export class CartLineItemComponent implements OnInit {
     this.cartService.softUpdateItemTotal(item, newQty);
     item.qty = newQty;
   }
-
 }
