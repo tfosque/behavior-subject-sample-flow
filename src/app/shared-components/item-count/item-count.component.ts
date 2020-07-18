@@ -26,7 +26,9 @@ export class ItemCountComponent implements OnInit {
 
   constructor(
     private readonly cartService: ShoppingCartService
-   ) {}
+   ) {
+    // this.cartService.onUpdateBtnEmphasis('btn btn-secondary disabled');
+   }
 
  /*  ngOnChanges(changes: SimpleChanges): void {
     // console.log({ changes });
@@ -49,7 +51,6 @@ export class ItemCountComponent implements OnInit {
   }
  */
   ngOnInit(): void {
-    this.cartService.onUpdateBtnEmphasis('btn btn-secondary');
     this.model.qty = this.qty;
   }
 

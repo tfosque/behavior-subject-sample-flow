@@ -10,7 +10,7 @@ export class ShoppingCartService {
   public cartItems = new BehaviorSubject<ProductModel[]>([]);
   public SUBTOTAL = new BehaviorSubject<number>(0);
   public ITEM_TOTAL = new BehaviorSubject<number>(0);
-  public updateBtnEmphasis = new BehaviorSubject<string>('btn-secondary');
+  public updateBtnEmphasis = new BehaviorSubject<string>('btn btn-secondary');
 
   constructor(private readonly alertService: AlertService) {}
 
@@ -20,6 +20,8 @@ export class ShoppingCartService {
   }
 
   onUpdateBtnEmphasis(emphasis: string) {
+    console.log({emphasis});
+
     this.updateBtnEmphasis.next(emphasis);
   }
 

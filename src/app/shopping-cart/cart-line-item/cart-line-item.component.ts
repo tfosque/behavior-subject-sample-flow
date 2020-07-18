@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ProductModel } from 'src/app/models/product';
-import { BehaviorSubject } from 'rxjs';
 import { ProductsService } from 'src/app/services/products.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { ModalService } from 'src/app/services/modal.service';
@@ -12,7 +11,7 @@ import { ModalService } from 'src/app/services/modal.service';
   styleUrls: ['./cart-line-item.component.scss']
 })
 export class CartLineItemComponent implements OnInit {
-  @ViewChild('content') content: HTMLElement;
+  // @ViewChild('content') content: HTMLElement;
 
   @Input() cartItem: ProductModel; // new BehaviorSubject<ProductModel[]>([]);
 

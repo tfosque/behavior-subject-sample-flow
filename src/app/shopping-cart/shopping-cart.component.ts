@@ -18,7 +18,7 @@ export class ShoppingCartComponent implements OnInit {
 
   public View: GenericModalComponent;
 
-  public updateBtnEmphasis = 'secondary';
+  public updateBtnEmphasis = new BehaviorSubject<string>('btn btn-secondary');
 
   searchTxt: string;
 
@@ -33,6 +33,7 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.getCartsItems();
     this.cartService.initItemTotal();
+    this.cartService.onUpdateBtnEmphasis('btn btn-secondary');
     // this.productService.suggestiveSelling();
 
     this.cartService.cartItems.subscribe((items: ProductModel[]) => {
@@ -44,11 +45,12 @@ export class ShoppingCartComponent implements OnInit {
     });
 
     this.cartService.updateBtnEmphasis.subscribe(emphasis => {
-      this.updateBtnEmphasis = emphasis;
-    })
+      // console.log({emphasis});
+      this.updateBtnEmphasis.next(emphasis);
+    });
 
     // chking qty
-    console.log('curr:');
+    // console.log('curr:');
   }
 
   updateCart() {
