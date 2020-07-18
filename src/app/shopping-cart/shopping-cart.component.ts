@@ -18,7 +18,7 @@ export class ShoppingCartComponent implements OnInit {
 
   public View: GenericModalComponent;
 
-  public updateCartEmphasis = 'secondary';
+  public updateBtnEmphasis = 'secondary';
 
   searchTxt: string;
 
@@ -42,6 +42,10 @@ export class ShoppingCartComponent implements OnInit {
     this.searchService.txtStr.subscribe((str) => {
       this.searchTxt = str;
     });
+
+    this.cartService.updateBtnEmphasis.subscribe(emphasis => {
+      this.updateBtnEmphasis = emphasis;
+    })
 
     // chking qty
     console.log('curr:');

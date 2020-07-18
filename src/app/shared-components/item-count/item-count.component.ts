@@ -1,4 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  SimpleChanges,
+  OnChanges,
+} from '@angular/core';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
 interface Model {
   qty: number;
@@ -9,18 +18,36 @@ interface Model {
   styleUrls: ['./item-count.component.scss'],
 })
 export class ItemCountComponent implements OnInit, OnChanges {
-  @Input() qty = 0; // new BehaviorSubject<number>(0);
-  @Input() updateCartEmphasis: string;
+  @Input() qty = 0;
+  // TODO: change do not emit use observable
   @Output() updateQty = new EventEmitter<number>();
+
+  public qtyStartValue: number;
 
   model: Model = { qty: 0 };
 
-  constructor() {}
+  constructor(
+    private readonly cartService: ShoppingCartService
+   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-   console.log({changes});
+    // console.log({ changes });
+    const QTY = changes.qty;
 
-
+    // init start value
+    if (QTY.previousValue === undefined) {
+      this.qtyStartValue = QTY.currentValue;
+      // console.log('undefined: qty:');
+      // console.log('start:', this.qtyStartValue);
+    }
+    if (QTY.currentValue === this.qtyStartValue) {
+      // console.log('This is my startValue::', QTY.currentValue, this.qtyStartValue);
+      this.cartService.onUpdateBtnEmphasis('btn-secondary');
+    }
+    if (QTY.currentValue !== this.qtyStartValue) {
+      // console.log('This is my startValue::', QTY.currentValue, this.qtyStartValue);
+      this.cartService.onUpdateBtnEmphasis('btn-success');
+    }
   }
 
   ngOnInit(): void {
@@ -28,16 +55,14 @@ export class ItemCountComponent implements OnInit, OnChanges {
   }
 
   increase() {
-
     this.model.qty = this.model.qty + 1;
     this.updateQty.emit(this.model.qty);
-
   }
 
   decrease() {
     if (this.model.qty !== 0) {
-    this.model.qty = (this.model.qty) - 1;
-    this.updateQty.emit(this.model.qty);
+      this.model.qty = this.model.qty - 1;
+      this.updateQty.emit(this.model.qty);
     }
   }
 

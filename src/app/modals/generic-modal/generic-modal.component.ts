@@ -24,8 +24,8 @@ export class GenericModalComponent implements OnInit, AfterViewInit {
       this.item = Item;
     });
 
-    console.log('modal:service:title:', this.modalService.title);
-    console.log('modal:service:title:', this.modalService.item);
+    // console.log('modal:service:title:', this.modalService.title);
+    // console.log('modal:service:title:', this.modalService.item);
 
   }
 

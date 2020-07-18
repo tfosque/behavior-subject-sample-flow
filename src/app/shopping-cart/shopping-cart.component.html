@@ -40,7 +40,8 @@
           <button
             (click)="updateCart()"
             type="button"
-            class="btn btn-secondary"
+            class="btn"
+            [ngClass]="updateBtnEmphasis"
             style="cursor: pointer;"
           >
             <i class="fa fa-save fa-lg"></i>

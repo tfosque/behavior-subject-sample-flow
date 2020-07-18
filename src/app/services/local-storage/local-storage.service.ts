@@ -51,7 +51,6 @@ export class LocalStorageService {
     if (this.shoppingCart) {
       console.log('localDb:ShoppingCart is live!', this.shoppingCart);
       console.groupEnd();
-      console.log('localDb logs:', 'completed');
       setTimeout(() => {
         this.SHOPPING_CART.next(JSON.parse(localStorage.getItem(JSON.stringify('shopping-cart'))));
       }, 1000);

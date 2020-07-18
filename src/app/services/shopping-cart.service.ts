@@ -10,12 +10,17 @@ export class ShoppingCartService {
   public cartItems = new BehaviorSubject<ProductModel[]>([]);
   public SUBTOTAL = new BehaviorSubject<number>(0);
   public ITEM_TOTAL = new BehaviorSubject<number>(0);
+  public updateBtnEmphasis = new BehaviorSubject<string>('btn-secondary');
 
   constructor(private readonly alertService: AlertService) {}
 
   getCartsItems(): void {
     const localCart = JSON.parse(localStorage.getItem('shoppingCart'));
     this.cartItems.next(localCart);
+  }
+
+  onUpdateBtnEmphasis(emphasis: string) {
+    this.updateBtnEmphasis.next(emphasis);
   }
 
   softUpdateItemTotal(item: any, newQty: number): void {
