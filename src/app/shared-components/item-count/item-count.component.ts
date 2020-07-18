@@ -3,9 +3,7 @@ import {
   OnInit,
   Input,
   Output,
-  EventEmitter,
-  SimpleChanges,
-  OnChanges,
+  EventEmitter
 } from '@angular/core';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
@@ -17,7 +15,7 @@ interface Model {
   templateUrl: './item-count.component.html',
   styleUrls: ['./item-count.component.scss'],
 })
-export class ItemCountComponent implements OnInit, OnChanges {
+export class ItemCountComponent implements OnInit {
   @Input() qty = 0;
   // TODO: change do not emit use observable
   @Output() updateQty = new EventEmitter<number>();
@@ -30,7 +28,7 @@ export class ItemCountComponent implements OnInit, OnChanges {
     private readonly cartService: ShoppingCartService
    ) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
+ /*  ngOnChanges(changes: SimpleChanges): void {
     // console.log({ changes });
     const QTY = changes.qty;
 
@@ -49,8 +47,9 @@ export class ItemCountComponent implements OnInit, OnChanges {
       this.cartService.onUpdateBtnEmphasis('btn-success');
     }
   }
-
+ */
   ngOnInit(): void {
+    this.cartService.onUpdateBtnEmphasis('btn btn-secondary');
     this.model.qty = this.qty;
   }
 
