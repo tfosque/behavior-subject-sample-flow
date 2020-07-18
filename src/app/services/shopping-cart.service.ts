@@ -34,7 +34,6 @@ export class ShoppingCartService {
 
   initItemTotal() {
     this.cartItems.value.filter((f: any) => {
-      // mutate global observable
       // result has to be larger than 0;
       if (f.qty < 1) {
         f.total = 0;
@@ -48,9 +47,9 @@ export class ShoppingCartService {
     });
   }
 
-  /* Add CartItems */
-  addItem(item: ProductModel) {
-    this.cartItems.next({ ...this.cartItems.value, ...item });
+  hardUpdateCart(items: ProductModel[]) {
+    // console.log({items})
+    localStorage.setItem('shoppingCart', JSON.stringify(this.cartItems.value));
   }
 
   // TODO: test adding single vs multiple !important

@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 
 interface Model {
   qty: number;
@@ -9,13 +8,20 @@ interface Model {
   templateUrl: './item-count.component.html',
   styleUrls: ['./item-count.component.scss'],
 })
-export class ItemCountComponent implements OnInit {
+export class ItemCountComponent implements OnInit, OnChanges {
   @Input() qty = 0; // new BehaviorSubject<number>(0);
+  @Input() updateCartEmphasis: string;
   @Output() updateQty = new EventEmitter<number>();
 
   model: Model = { qty: 0 };
 
   constructor() {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+   console.log({changes});
+
+
+  }
 
   ngOnInit(): void {
     this.model.qty = this.qty;

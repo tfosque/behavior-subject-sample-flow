@@ -28,7 +28,6 @@ export class CartLineItemComponent implements OnInit {
 
   sendModalContent() {
     console.log('Sending....');
-
     this.modalService.createModal('Product Page', this.cartItem);
   }
 
