@@ -6,7 +6,6 @@ import { SharedModule } from './modules/shared/shared/shared.module';
 
 import { CreateComponent } from './create/create.component';
 import { ReadComponent } from './read/read.component';
-import { CartLineItemComponent } from 'src/app/shopping-cart/cart-line-item/cart-line-item.component';
 import { SidebarComponent } from './shared-components/sidebar/sidebar.component';
 
 import { PaginationComponent } from './shared-components/pagination/pagination.component';
@@ -24,6 +23,7 @@ import { TemplatesComponent } from './templates/templates.component';
 /* Services */
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { CartPreviewComponent } from './shopping-cart/cart-preview/cart-preview.component';
+import { CartLineItemComponent } from './shopping-cart/cart-line-item/cart-line-item.component';
 
 /* Routes */
 const routes: Routes = [
