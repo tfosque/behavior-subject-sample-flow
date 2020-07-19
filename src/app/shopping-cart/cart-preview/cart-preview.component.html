@@ -1,3 +1,7 @@
-<div>
-  <app-cart-line-item></app-cart-line-item>
-</div>
+
+
+    <div class="col" *ngFor="let cartItem of cartItems | async">
+      <app-cart-line-item [cartItem]="cartItem"></app-cart-line-item>
+    </div>
+
+

@@ -78,6 +78,7 @@
       <button class="btn btn-primary btn-sm" href="#">Templates</button>
     </li>
     <li>
+      <!-- Cart Preview Button Starts Here -->
       <div class="dropdown btn-sm">
         <button
           class="btn btn-secondary btn-sm dropdown-toggle"
@@ -89,7 +90,7 @@
         >
           <i class="fa fa-shopping-cart"></i>&nbsp;Cart
         </button>
-        <!-- Cart Preview -->
+        <!-- Cart Preview Layout -->
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <div
             class="col"
@@ -105,6 +106,7 @@
               }}</span>
             </h5>
           </div>
+          <!-- Filter Search Frame -->
           <div class="col">
             <form #f>
               <div class="input-group mb-3">
@@ -122,6 +124,7 @@
                   [(ngModel)]="form.searchText"
                   placeholder="Type here to filter shopping cart"
                 />
+                <!-- Filter Search -->
                 <div class="input-group-append">
                   <span class="input-group-text">
                     {{
@@ -138,19 +141,16 @@
               </div>
             </form>
           </div>
-          <div class="container-fluid">
-            <div
-              *ngFor="
-                let cartItem of cartPreview
-                  | async
-                  | filterSearch
-                    : form.searchText
-                    : 'itemOrProductDescription' as result
-              "
-            >
-              <app-cart-line-item [cartItem]="cartItem"></app-cart-line-item>
+          <!-- Cart Preview -->
+          <div class="col-lg-12" *ngIf="(cartPreview | async)?.length > 0">
+            <div class="list-group">
+              <div class="">
+                <app-cart-preview [cartItems]="cartPreview"></app-cart-preview>
+              </div>
             </div>
           </div>
+
+        <!-- Order Summary -->
           <div
             class="alert alert-secondary"
             style="border-top: solid thin #b4b4b4;"
@@ -181,6 +181,7 @@
 <!-- Bread Crumbs Menubar -->
 <app-bread-crumbs></app-bread-crumbs>
 
+<!-- Menu -->
 <nav
   class="nav"
   style="
