@@ -16,7 +16,7 @@ export class ModalService {
     this.title.next(title);
     this.item.next(item);
 
-    console.log({ title }, { item });
+    // console.log({ title }, { item });
   }
 
 }
