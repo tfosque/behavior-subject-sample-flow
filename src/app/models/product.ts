@@ -1,19 +1,20 @@
 export interface ProductModel {
   id?: number;
-  product: string;
+  product?: string;
   mongoId?: {};
-  details: {
-    itemOrProductDescription: string;
-    catalogRefId: string;
-    commerceId: string;
-    productId: string;
+  details?: {
+    itemOrProductDescription?: string;
+    catalogRefId?: string;
+    commerceId?: string;
+    productId?: string;
   };
-  price: {
-    unitPrice: number;
-    uom: string;
+  price?: {
+    unitPrice?: number;
+    uom?: string;
   };
-  qty: number;
-  total: number;
+  iconColor?: string;
+  qty?: number;
+  total?: number;
   variations?: Variations;
 }
 

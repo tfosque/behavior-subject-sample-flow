@@ -36,8 +36,8 @@ export class ShoppingCartService {
       compareState.push({ first: false, defaultQty: m.qty, currentQty:  m.qty});
    });
     this.COMPAREQTYSTATE.next(compareState);
-    console.log({compareState});
-    console.log('default:', this.defaultQtyState.value);
+    // console.log({compareState});
+    // console.log('default:', this.defaultQtyState.value);
 
   }
 
@@ -52,6 +52,7 @@ export class ShoppingCartService {
     // console.log({defaultState});
   }
 
+  // pertains to qty increments
   softUpdateItemTotal(item: any, newQty: number): void {
     this.cartItems.value.filter((f: any) => {
       if (f.id === item.id) {
@@ -61,6 +62,14 @@ export class ShoppingCartService {
         if (newQty * item.price.unitPrice > 0) {
           f.total = newQty * item.price.unitPrice;
           this.subtotal();
+        } else {
+          // equals zero
+          f.total = 0;
+          f.iconColor = 'text-danger';
+          this.subtotal();
+          console.log('prepare:', this.cartItems.value, {f});
+          // this.cartItems.next(this.cartItems.value);
+
         }
       }
     });

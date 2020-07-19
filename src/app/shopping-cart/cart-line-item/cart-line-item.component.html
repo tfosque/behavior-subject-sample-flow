@@ -7,7 +7,8 @@
       (click)="sendModalContent()"
       data-toggle="modal"
       data-target="#genericModal"
-      class="btn btn-link">
+      class="btn btn-link"
+    >
       {{ cartItem.details.itemOrProductDescription }}
     </h5>
 
@@ -38,7 +39,12 @@
       </div>
       <div class="col"><b>Total: </b>{{ cartItem.total | currency }}</div>
       <div (click)="removeItemFromSelectedProducts(cartItem)">
-        <i class="fa fa-minus-square text-secondary fa-lg"></i>
+        <i
+          [ngClass]="{
+            'fa fa-minus-square fa-lg text-secondary': cartItem.iconColor === 'text-secondary' || cartItem.iconColor === undefined,
+            'fa fa-minus-square fa-lg text-danger': cartItem.iconColor === 'text-danger'
+          }"
+        ></i>
       </div>
     </div>
   </div>

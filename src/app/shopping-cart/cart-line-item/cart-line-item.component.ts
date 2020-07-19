@@ -4,7 +4,6 @@ import { ProductsService } from 'src/app/services/products.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { ModalService } from 'src/app/services/modal.service';
 
-
 @Component({
   selector: 'app-cart-line-item',
   templateUrl: './cart-line-item.component.html',
@@ -13,7 +12,8 @@ import { ModalService } from 'src/app/services/modal.service';
 export class CartLineItemComponent implements OnInit {
   // @ViewChild('content') content: HTMLElement;
 
-  @Input() cartItem: ProductModel; // new BehaviorSubject<ProductModel[]>([]);
+  // @Input() cartItem: ProductModel; // new BehaviorSubject<ProductModel[]>([]);
+  @Input() cartItem: ProductModel;
 
   constructor(
     private readonly productService: ProductsService,
@@ -23,10 +23,10 @@ export class CartLineItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.initItemTotal();
+    console.log('defalt:', this.cartItem.iconColor);
   }
 
   sendModalContent() {
-    console.log('Sending....');
     this.modalService.createModal('Product Page', this.cartItem);
   }
 
@@ -37,9 +37,14 @@ export class CartLineItemComponent implements OnInit {
 
   // TODO: updaate globally for shopping-cart
   updateQty(newQty: number, item: ProductModel) {
-    // use cartService
+    // use cartService TODO: add the iconColor here????
+
     this.cartService.softUpdateItemTotal(item, newQty);
     item.qty = newQty;
+
+    const hasKey = this.cartItem.hasOwnProperty('iconColor');
+    console.log({hasKey}, Object.keys(this.cartItem));
+    console.log('cartItem:', this.cartItem);
   }
 
 }
