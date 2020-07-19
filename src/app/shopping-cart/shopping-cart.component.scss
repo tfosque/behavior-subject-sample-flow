@@ -15,9 +15,17 @@
   font-size: .975rem;
 }
 
-.col.no-border-top > list-group-item:nth-child(1){
-  border-bottom: none;
+.list-group {
+  border-bottom: solid thin #e6e6e6;
 }
+.list-group-item {
+  border-bottom: none;
+  border-radius: 0;
+}
+
+/* .col.no-border-top > list-group-item:nth-child(1){
+  border-bottom: none;
+} */
 
 /* list-group:first-child  {
   border-top: none;

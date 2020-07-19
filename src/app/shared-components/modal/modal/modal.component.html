@@ -44,7 +44,29 @@
           </button>
         </div>
         <div>
-          <div class="btn-group">
+          <div class="btn-group btn-group-sm">
+            <div class="btn-group">
+              <button type="button" class="btn btn-secondary">
+                ADD RECENT
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+              </div>
+            </div>
+
             <button
               *ngIf="(activePage | async) === 'listOfSelectedProducts'"
               type="button"
@@ -54,6 +76,7 @@
             >
               ADD PRODUCTS TO CART
             </button>
+
             <button
               *ngIf="(activePage | async) === 'productGallery'"
               type="button"
@@ -67,17 +90,6 @@
             >
               CONTINUE WITH SELECTED PRODUCTS
             </button>
-            <button
-              type="button"
-              class="btn btn-secondary dropdown-toggle"
-              data-toggle="dropdown"
-            >
-              ADD RECENT
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Tablet</a>
-              <a class="dropdown-item" href="#">Smartphone</a>
-            </div>
           </div>
         </div>
       </div>

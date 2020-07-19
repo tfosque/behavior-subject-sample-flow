@@ -11,6 +11,11 @@ export class ShoppingCartService {
   public SUBTOTAL = new BehaviorSubject<number>(0);
   public ITEM_TOTAL = new BehaviorSubject<number>(0);
 
+  public updateBtnEmphasis = new BehaviorSubject<string>('');
+  public defaultQtyState = new BehaviorSubject<any>({});
+  public COMPAREQTYSTATE = new BehaviorSubject<any>({});
+  public QtyState = new BehaviorSubject<boolean>(true);
+
   constructor(private readonly alertService: AlertService) {}
 
   getCartsItems(): void {
@@ -18,39 +23,79 @@ export class ShoppingCartService {
     this.cartItems.next(localCart);
   }
 
+  onUpdateBtnEmphasis(emphasis: string): void {
+    // build the defaultQty state, {first: true, emphasis: { startValue: emphasis, currValue: currentValue }}
+    this.updateBtnEmphasis.next(emphasis);
+  }
+
+  compareQtyState(): void {
+    // compare qty state vs currState
+    const compareState: any = [];
+
+    this.cartItems.value.map(m => {
+      compareState.push({ first: false, defaultQty: m.qty, currentQty:  m.qty});
+   });
+    this.COMPAREQTYSTATE.next(compareState);
+    // console.log({compareState});
+    // console.log('default:', this.defaultQtyState.value);
+  }
+
+  // default qty state (defaultQtyState)
+  getDefaultQtyState(): void {
+    const defaultState: any = [];
+
+    this.cartItems.value.map(m => {
+      defaultState.push({ first: true, defaultQty: m.qty, currentQty:  m.qty});
+    });
+    this.defaultQtyState.next(defaultState);
+    // console.log({defaultState});
+  }
+
+  // pertains to qty increments
   softUpdateItemTotal(item: any, newQty: number): void {
     this.cartItems.value.filter((f: any) => {
       if (f.id === item.id) {
-        // mutate global observable
+        // update global(in-memory) observable
         // result has to be larger than 0;
         // here we insert the new ('newQty')
         if (newQty * item.price.unitPrice > 0) {
           f.total = newQty * item.price.unitPrice;
           this.subtotal();
+        } else {
+          // equals zero
+          f.total = 0;
+          f.iconColor = 'text-danger';
+          this.subtotal();
+          // console.log('prepare:', this.cartItems.value, {f});
+          // this.cartItems.next(this.cartItems.value);
+
         }
       }
     });
   }
 
-  initItemTotal() {
+  initItemTotal(): void {
     this.cartItems.value.filter((f: any) => {
-      // mutate global observable
       // result has to be larger than 0;
       if (f.qty < 1) {
         f.total = 0;
+        f.iconColor = 'text-danger';
       }
       if (f.qty >= 1) {
         f.total = f.qty * f.price.unitPrice;
+
         const nextItem = union(this.cartItems.value.concat(f));
         this.cartItems.next(nextItem);
+        // remove iconColor
+        f.iconColor = 'text-secondary';
         this.subtotal();
       }
     });
   }
 
-  /* Add CartItems */
-  addItem(item: ProductModel) {
-    this.cartItems.next({ ...this.cartItems.value, ...item });
+  hardUpdateCart(items: ProductModel[]): void {
+    // console.log({items})
+    localStorage.setItem('shoppingCart', JSON.stringify(this.cartItems.value));
   }
 
   // TODO: test adding single vs multiple !important

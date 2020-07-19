@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ProductModalComponent } from 'src/app/modals/product-modal/product-modal.component';
+import { ProductModel } from 'src/app/models/product';
 
 @Component({
   selector: 'app-product-desc',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-desc.component.scss']
 })
 export class ProductDescComponent implements OnInit {
+  @Input() product: ProductModel;
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log('product:', this.product);
   }
 
 }

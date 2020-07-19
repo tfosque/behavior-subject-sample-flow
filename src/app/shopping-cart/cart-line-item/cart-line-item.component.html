@@ -1,8 +1,24 @@
-<div class="media mb-2">
+<div class="media mb-0">
   <img [src]="cartItem.product" style="margin-right: 15px;" class="rounded" />
 
   <div class="media-body">
-    <h5 class="btn btn-link">{{ cartItem.details.itemOrProductDescription }}</h5>
+    <!-- !important the click event comes before the data-toggle and data-target -->
+    <h5
+      (click)="sendModalContent()"
+      data-toggle="modal"
+      data-target="#genericModal"
+      class="btn btn-link"
+    >
+      {{ cartItem.details.itemOrProductDescription }}
+    </h5>
+
+    <!-- Dynamic content -->
+    <!-- <h5
+      data-toggle="modal"
+      [attr.data-target]="#incoming_modal_id"
+      class="btn btn-link">
+      {{ cartItem.details.itemOrProductDescription }}
+    </h5> -->
 
     <div
       style="
@@ -24,7 +40,10 @@
       </div>
       <div class="col"><b>Total: </b>{{ cartItem.total | currency }}</div>
       <div (click)="removeItemFromSelectedProducts(cartItem)">
-        <i class="fa fa-minus-square text-secondary float-lg-left"></i>
+       <span *ngIf="deleteIconAlert === true">
+        <i class="fa fa-times fa-lg text-danger"></i>
+       </span>
+        <span *ngIf="deleteIconAlert === false"><i class="fa fa-minus-square fa-lg text-secondary"></i></span>
       </div>
     </div>
   </div>
