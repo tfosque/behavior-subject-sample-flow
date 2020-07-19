@@ -39,7 +39,7 @@
         ></app-item-count>
       </div>
       <div class="col"><b>Total: </b>{{ cartItem.total | currency }}</div>
-      <div (click)="removeItemFromSelectedProducts(cartItem)">
+      <div (click)="removeItemFromSelectedProducts(cartItem)" style="cursor: pointer">
        <span *ngIf="deleteIconAlert === true">
         <i class="fa fa-times fa-lg text-danger"></i>
        </span>

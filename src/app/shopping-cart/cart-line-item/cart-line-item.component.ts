@@ -46,6 +46,6 @@ export class CartLineItemComponent implements OnInit {
     const hasZeroQty =
       this.cartItem.qty === 0 && this.cartItem.iconColor === 'text-danger';
     hasZeroQty ? (this.deleteIconAlert = true) : (this.deleteIconAlert = false);
-    console.log({ hasZeroQty });
+    // console.log({ hasZeroQty });
   }
 }
