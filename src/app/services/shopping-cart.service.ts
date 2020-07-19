@@ -38,7 +38,6 @@ export class ShoppingCartService {
     this.COMPAREQTYSTATE.next(compareState);
     // console.log({compareState});
     // console.log('default:', this.defaultQtyState.value);
-
   }
 
   // default qty state (defaultQtyState)
@@ -67,7 +66,7 @@ export class ShoppingCartService {
           f.total = 0;
           f.iconColor = 'text-danger';
           this.subtotal();
-          console.log('prepare:', this.cartItems.value, {f});
+          // console.log('prepare:', this.cartItems.value, {f});
           // this.cartItems.next(this.cartItems.value);
 
         }
@@ -80,11 +79,15 @@ export class ShoppingCartService {
       // result has to be larger than 0;
       if (f.qty < 1) {
         f.total = 0;
+        f.iconColor = 'text-danger';
       }
       if (f.qty >= 1) {
         f.total = f.qty * f.price.unitPrice;
+
         const nextItem = union(this.cartItems.value.concat(f));
         this.cartItems.next(nextItem);
+        // remove iconColor
+        f.iconColor = 'text-secondary';
         this.subtotal();
       }
     });

@@ -7,23 +7,21 @@ import { ModalService } from 'src/app/services/modal.service';
 @Component({
   selector: 'app-cart-line-item',
   templateUrl: './cart-line-item.component.html',
-  styleUrls: ['./cart-line-item.component.scss']
+  styleUrls: ['./cart-line-item.component.scss'],
 })
 export class CartLineItemComponent implements OnInit {
-  // @ViewChild('content') content: HTMLElement;
-
-  // @Input() cartItem: ProductModel; // new BehaviorSubject<ProductModel[]>([]);
   @Input() cartItem: ProductModel;
+  public deleteIconAlert = false;
 
   constructor(
     private readonly productService: ProductsService,
     private readonly cartService: ShoppingCartService,
     private readonly modalService: ModalService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.cartService.initItemTotal();
-    console.log('defalt:', this.cartItem.iconColor);
+    this.detectQty();
   }
 
   sendModalContent() {
@@ -31,20 +29,22 @@ export class CartLineItemComponent implements OnInit {
   }
 
   removeItemFromSelectedProducts(item: ProductModel) {
-    // deleteFromSelectedProducts
     this.productService.removeFromSelectedProducts(item);
   }
 
-  // TODO: updaate globally for shopping-cart
+  // TODO: update globally for shopping-cart
   updateQty(newQty: number, item: ProductModel) {
-    // use cartService TODO: add the iconColor here????
+    // TODO: ?? use cartService TODO: add the iconColor here ???
 
     this.cartService.softUpdateItemTotal(item, newQty);
     item.qty = newQty;
-
-    const hasKey = this.cartItem.hasOwnProperty('iconColor');
-    console.log({hasKey}, Object.keys(this.cartItem));
-    console.log('cartItem:', this.cartItem);
+    this.detectQty();
   }
 
+  detectQty() {
+    const hasZeroQty =
+      this.cartItem.qty === 0 && this.cartItem.iconColor === 'text-danger';
+    hasZeroQty ? (this.deleteIconAlert = true) : (this.deleteIconAlert = false);
+    console.log({ hasZeroQty });
+  }
 }

@@ -1,4 +1,4 @@
-<div class="media mb-2">
+<div class="media mb-0">
   <img [src]="cartItem.product" style="margin-right: 15px;" class="rounded" />
 
   <div class="media-body">
@@ -12,6 +12,7 @@
       {{ cartItem.details.itemOrProductDescription }}
     </h5>
 
+    <!-- Dynamic content -->
     <!-- <h5
       data-toggle="modal"
       [attr.data-target]="#incoming_modal_id"
@@ -39,12 +40,10 @@
       </div>
       <div class="col"><b>Total: </b>{{ cartItem.total | currency }}</div>
       <div (click)="removeItemFromSelectedProducts(cartItem)">
-        <i
-          [ngClass]="{
-            'fa fa-minus-square fa-lg text-secondary': cartItem.iconColor === 'text-secondary' || cartItem.iconColor === undefined,
-            'fa fa-minus-square fa-lg text-danger': cartItem.iconColor === 'text-danger'
-          }"
-        ></i>
+       <span *ngIf="deleteIconAlert === true">
+        <i class="fa fa-times fa-lg text-danger"></i>
+       </span>
+        <span *ngIf="deleteIconAlert === false"><i class="fa fa-minus-square fa-lg text-secondary"></i></span>
       </div>
     </div>
   </div>

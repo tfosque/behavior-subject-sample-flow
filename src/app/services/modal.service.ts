@@ -12,7 +12,7 @@ export class ModalService {
   // public display = false;
   constructor() { }
 
-  createModal(title: string, item: any) {
+  public createModal(title: string, item: any) {
     this.title.next(title);
     this.item.next(item);
 
