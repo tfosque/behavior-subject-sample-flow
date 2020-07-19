@@ -7,7 +7,7 @@ import { ModalService } from '../services/modal.service';
 import { ProductModel } from '../models/product';
 import { GenericModalComponent } from '../modals/generic-modal/generic-modal.component';
 import { AlertService } from '../services/alert.service';
-
+import { isEmpty } from 'lodash';
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
@@ -33,7 +33,23 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.getCartsItems();
     this.cartService.initItemTotal();
-    this.cartService.onUpdateBtnEmphasis('btn btn-secondary');
+    // this.cartService.onUpdateBtnEmphasis('btn btn-secondary');
+
+    const state = this.cartService.defaultQtyState.value;
+
+    if (isEmpty(state)) {
+      this.cartService.getDefaultQtyState();
+      console.log('OnInit:isEmpty');
+    }
+    if (!isEmpty(state)) {
+      this.cartService.compareQtyState();
+      console.log('!isEmpty:', );
+    }
+
+    this.cartService.defaultQtyState.subscribe(State => {
+      // console.log({State}, );
+    });
+    // console.log('getDefaultQtyState:', this.cartService.getDefaultQtyState());
     // this.productService.suggestiveSelling();
 
     this.cartService.cartItems.subscribe((items: ProductModel[]) => {

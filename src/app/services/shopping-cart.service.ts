@@ -10,7 +10,11 @@ export class ShoppingCartService {
   public cartItems = new BehaviorSubject<ProductModel[]>([]);
   public SUBTOTAL = new BehaviorSubject<number>(0);
   public ITEM_TOTAL = new BehaviorSubject<number>(0);
-  public updateBtnEmphasis = new BehaviorSubject<string>('btn btn-secondary');
+
+  public updateBtnEmphasis = new BehaviorSubject<string>('');
+  public defaultQtyState = new BehaviorSubject<any>({});
+  public COMPAREQTYSTATE = new BehaviorSubject<any>({});
+  public QtyState = new BehaviorSubject<boolean>(true);
 
   constructor(private readonly alertService: AlertService) {}
 
@@ -19,16 +23,39 @@ export class ShoppingCartService {
     this.cartItems.next(localCart);
   }
 
-  onUpdateBtnEmphasis(emphasis: string) {
-    console.log({emphasis});
-
+  onUpdateBtnEmphasis(emphasis: string): void {
+    // build the defaultQty state, {first: true, emphasis: { startValue: emphasis, currValue: currentValue }}
     this.updateBtnEmphasis.next(emphasis);
+  }
+
+  compareQtyState(): void {
+    // compare qty state vs currState
+    const compareState: any = [];
+
+    this.cartItems.value.map(m => {
+      compareState.push({ first: false, defaultQty: m.qty, currentQty:  m.qty});
+   });
+    this.COMPAREQTYSTATE.next(compareState);
+    console.log({compareState});
+    console.log('default:', this.defaultQtyState.value);
+
+  }
+
+  // default qty state (defaultQtyState)
+  getDefaultQtyState(): void {
+    const defaultState: any = [];
+
+    this.cartItems.value.map(m => {
+      defaultState.push({ first: true, defaultQty: m.qty, currentQty:  m.qty});
+    });
+    this.defaultQtyState.next(defaultState);
+    // console.log({defaultState});
   }
 
   softUpdateItemTotal(item: any, newQty: number): void {
     this.cartItems.value.filter((f: any) => {
       if (f.id === item.id) {
-        // mutate global observable
+        // update global(in-memory) observable
         // result has to be larger than 0;
         // here we insert the new ('newQty')
         if (newQty * item.price.unitPrice > 0) {
@@ -39,7 +66,7 @@ export class ShoppingCartService {
     });
   }
 
-  initItemTotal() {
+  initItemTotal(): void {
     this.cartItems.value.filter((f: any) => {
       // result has to be larger than 0;
       if (f.qty < 1) {
@@ -54,7 +81,7 @@ export class ShoppingCartService {
     });
   }
 
-  hardUpdateCart(items: ProductModel[]) {
+  hardUpdateCart(items: ProductModel[]): void {
     // console.log({items})
     localStorage.setItem('shoppingCart', JSON.stringify(this.cartItems.value));
   }

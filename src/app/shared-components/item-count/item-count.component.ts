@@ -57,12 +57,14 @@ export class ItemCountComponent implements OnInit {
   increase() {
     this.model.qty = this.model.qty + 1;
     this.updateQty.emit(this.model.qty);
+    this.cartService.compareQtyState();
   }
 
   decrease() {
     if (this.model.qty !== 0) {
       this.model.qty = this.model.qty - 1;
       this.updateQty.emit(this.model.qty);
+      this.cartService.compareQtyState();
     }
   }
 
