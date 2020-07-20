@@ -1,7 +1,7 @@
+h5 {
+  cursor: pointer;
 
-div.media-body {
-  h5 {
-    font-size: 1rem;
+  &:hover {
+    text-decoration: underline;
   }
 }
-

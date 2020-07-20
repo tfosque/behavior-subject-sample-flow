@@ -11,7 +11,7 @@ import { ProductModel } from '../models/product';
 export class NavComponent implements OnInit {
   cartPreview = new BehaviorSubject<ProductModel[]>([]);
   total = new BehaviorSubject<number>(0);
-
+  public searchVisibility = false;
   public form: any = {};
 
   constructor(private readonly cartService: ShoppingCartService) {
@@ -23,5 +23,9 @@ export class NavComponent implements OnInit {
       this.cartPreview.next(cart);
       this.total.next(cart.length);
     });
+  }
+
+  toggleSearch() {
+    this.searchVisibility = !this.searchVisibility;
   }
 }

@@ -9,44 +9,35 @@
   <li class="nav-item">
     <a class="nav-link" href="#">Beacon 3D+</a>
   </li>
+
+  <!-- Search -->
+  <li>
+    <div style="padding-top: 6px; padding-left: 677px;">
+      <form class="form-inline my-2 my-lg-0" (click)="toggleSearch()">
+        <input
+          [ngStyle]="{'visibility': searchVisibility ? 'visible' : 'hidden'}"
+          size="38"
+          class="form-control form-control-sm mr-sm-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <i class="fa fa-search fa-lg text-secondary" style="cursor: pointer;"></i>
+        &nbsp; &nbsp;
+      </form>
+    </div>
+  </li>
+
 </ul>
 
 <!-- Search Menu with Logo -->
-<nav class="navbar navbar-light bg-light">
-  <span class="navbar-brand mb-0 h1"
-    >Angualr - <small>Behavior Subjects | MongoDB | GraphQL</small></span
-  >
-
-  <!-- Search -->
-  <form class="form-inline my-2 my-lg-0">
-    <input
-      size="38"
-      class="form-control form-control-sm mr-sm-2"
-      type="search"
-      placeholder="Search"
-      aria-label="Search"
-    />
-    <button class="btn btn-outline-secondary btn-sm my-2 my-sm-0" type="submit">
-      Search
-    </button>
-  </form>
-</nav>
 
 <!-- Remove Empty Menu Links used as spacer for now -->
-<nav class="navbar navbar-light bg-dark bg-light">
+<nav class="navbar navbar-dark bg-dark">
   <!--  TODO: Fixed: remove this empty menu and float pills menu right -->
-  <ul class="nav nav-pills" style="visibility: hidden;">
+  <ul class="nav nav-pills">
     <li class="nav-item">
-      <a class="nav-link" href="#"></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" href="#"></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#"></a>
+      <img width="155" src="../../assets/images/beacon-logo-new.png" />
     </li>
   </ul>
 
@@ -143,14 +134,10 @@
           </div>
           <!-- Cart Preview -->
           <div class="col-lg-12" *ngIf="(cartPreview | async)?.length > 0">
-            <div class="list-group">
-              <div class="">
-                <app-cart-preview [cartItems]="cartPreview"></app-cart-preview>
-              </div>
-            </div>
+            <div class="row"></div>
           </div>
 
-        <!-- Order Summary -->
+          <!-- Order Summary -->
           <div
             class="alert alert-secondary"
             style="border-top: solid thin #b4b4b4;"
