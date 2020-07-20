@@ -6,7 +6,6 @@ ul.nav.nav-pills li a {
   display: block;
   width: 600px;
   height: 400px;
-  background-color: yellow;
   position: relative;
   z-index: 4000;
   top: 0;
@@ -25,4 +24,9 @@ div.dropdown-menu.show {
 .container-fluid {
   height: 478px;
   overflow-y: scroll;
+}
+
+span.input-group-text, .alert.alert-secondary {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
 }
