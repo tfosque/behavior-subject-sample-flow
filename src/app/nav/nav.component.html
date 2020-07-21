@@ -1,5 +1,5 @@
 <!-- Possible Notifications can go here -->
-<ul class="nav nav-tabs navbar-light" style="background-color: #e3f2fd;">
+<ul class="nav nav-tabs navbar-light">
   <li class="nav-item">
     <a class="nav-link" href="#">Beacon</a>
   </li>
@@ -33,7 +33,7 @@
 <!-- Search Menu with Logo -->
 
 <!-- Remove Empty Menu Links used as spacer for now -->
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar bg-primary">
   <!--  TODO: Fixed: remove this empty menu and float pills menu right -->
   <ul class="nav nav-pills">
     <li class="nav-item">
@@ -53,7 +53,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          <b>{{ "DENVER" }}</b> &nbsp;| &nbsp;Switch Account
+          <b class="text-warning">{{ "DENVER" }}</b> &nbsp;| &nbsp;Switch Account
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#">Action</a>
@@ -72,14 +72,14 @@
       <!-- Cart Preview Button Starts Here -->
       <div class="dropdown btn-sm">
         <button
-          class="btn btn-secondary btn-sm dropdown-toggle"
+          class="btn btn-primary btn-sm dropdown-toggle"
           type="button"
           id="dropdownMenuButton"
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
         >
-          <i class="fa fa-shopping-cart"></i>&nbsp;Cart
+          <span class="badge badge-warning">{{cartPreview.value.length}}</span>&nbsp;Cart
         </button>
         <!-- Cart Preview Layout -->
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
