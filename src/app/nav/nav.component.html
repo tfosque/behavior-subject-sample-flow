@@ -27,7 +27,6 @@
       </form>
     </div>
   </li>
-
 </ul>
 
 <!-- Search Menu with Logo -->
@@ -42,7 +41,7 @@
   </ul>
 
   <!-- User Menu -->
-  <ul class="nav nav-pills" style="font-size: 0.8075rem;">
+  <ul class="nav nav-pills">
     <li class="nav-item">
       <div class="dropdown btn-sm">
         <button
@@ -52,8 +51,9 @@
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
+          style="font-size: 1.1rem;"
         >
-          <b class="text-warning">{{ "DENVER" }}</b> &nbsp;| &nbsp;Switch Account
+          <b class="text-warning" >{{ "DENVER" }}</b> &nbsp;| &nbsp;Switch Account
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#">Action</a>
@@ -63,10 +63,10 @@
       </div>
     </li>
     <li class="nav-item btn-sm">
-      <button class="btn btn-primary btn-sm" href="#">Order History</button>
+      <button style="font-size: 1.07  5rem;" class="btn btn-primary btn-sm" href="#">Order History</button>
     </li>
     <li class="nav-item btn-sm">
-      <button class="btn btn-primary btn-sm" href="#">Templates</button>
+      <button style="font-size: 1.07  5rem;" class="btn btn-primary btn-sm" href="#">Templates</button>
     </li>
     <li>
       <!-- Cart Preview Button Starts Here -->
@@ -78,6 +78,7 @@
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
+          style="font-size: 1.07  5rem;"
         >
           <span class="badge badge-warning">{{cartPreview.value.length}}</span>&nbsp;Cart
         </button>
@@ -89,6 +90,7 @@
               border-bottom: solid thin #e8e8e8;
               margin-bottom: 0px;
               display: block;
+              font-size: 1.07 5rem;
             "
           >
             <h5>
@@ -165,8 +167,7 @@
   </ul>
 </nav>
 
-<!-- Bread Crumbs Menubar -->
-<app-bread-crumbs></app-bread-crumbs>
+
 
 <!-- Menu -->
 <nav
@@ -175,8 +176,8 @@
     align-items: center;
     justify-content: center;
     border-bottom: solid thin #e8e8e8;
-    margin-bottom: 15px;
-    margin-top: -12px;
+    margin-bottom: 0px;
+    margin-top: -0px;
   "
 >
   <a class="nav-link active" href="#">Roofing</a>
@@ -190,3 +191,5 @@
   <a class="nav-link" href="#">Industries</a>
   <a class="nav-link" href="#">Brands</a>
 </nav>
+<!-- Bread Crumbs Menubar -->
+<app-bread-crumbs></app-bread-crumbs>

@@ -50,6 +50,7 @@ export class ItemCountComponent implements OnInit {
     }
   }
  */
+// TODO: BUG: Order Summary not keeping correct items total after increasing qty and hitting update/save
   ngOnInit(): void {
     this.model.qty = this.qty;
   }

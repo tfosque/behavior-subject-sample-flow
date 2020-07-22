@@ -3,17 +3,16 @@
   button {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    font-size: .92rem;
   }
 }
 
-  div.alert.alert-warning {
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-  }
+div.alert.alert-warning {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
 
 .badge.badge-primary {
-  font-size: .975rem;
+  font-size: 0.975rem;
 }
 
 .list-group {
@@ -24,18 +23,6 @@
   border-radius: 0;
 }
 
-/* .col.no-border-top > list-group-item:nth-child(1){
-  border-bottom: none;
-} */
-
-/* list-group:first-child  {
-  border-top: none;
-  color: red;
-// border-top: none;
-} */
-
-/* :host list-group-item {
-  background-color: pink;
-  border: solid thick green;
-  color: red;
+/* nav.nav-item btn-sm > ul > li button {
+  font-size: 1.5rem;
 } */

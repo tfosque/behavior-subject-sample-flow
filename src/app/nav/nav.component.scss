@@ -1,3 +1,4 @@
+$text-primary: #025F9E;
 
 ul.nav.nav-pills li a {
   color: #fff;
@@ -31,3 +32,8 @@ span.input-group-text, .alert.alert-secondary {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
+
+nav.nav > a.nav-link {
+  color: $text-primary;
+}
+

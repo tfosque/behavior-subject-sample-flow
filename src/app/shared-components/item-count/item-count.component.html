@@ -3,7 +3,11 @@
     <i class="fa fa-minus fa-sm"></i>
   </div>
   <div>
-    <input type="number" class="col" name="counter" #counter [(ngModel)]="model.qty" max-lengh="5" [value]="model.qty"
+    <!-- Cart Item is Zero Display User Warning -->
+    <input *ngIf="model.qty === 0" style="background: #a8a7a748; border: solid thin red;" type="number" class="col" name="counter" #counter [(ngModel)]="model.qty" max-lengh="5" [value]="model.qty"
+      (change)="change()" />
+
+      <input *ngIf="model.qty !== 0" type="number" class="col" name="counter" #counter [(ngModel)]="model.qty" max-lengh="5" [value]="model.qty"
       (change)="change()" />
   </div>
   <div class="col" (click)="increase()" style="padding: 5px 8px; cursor: pointer;">
