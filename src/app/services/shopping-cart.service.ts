@@ -107,6 +107,8 @@ export class ShoppingCartService {
 
   // TODO: test adding single vs multiple !important
   addMultipleItems(items: ProductModel[]): void {
+    console.log({items});
+
     const uniqItems = uniq(items);
     console.log({uniqItems});
 

@@ -70,21 +70,33 @@ export class ModalComponent implements OnInit {
   selectedItemsExistInCart(): void {
     // handle duplicates by updating qty if already in cart
     const selectedItems: ProductModel[] = this.selectedProducts.value;
+    const dups: ProductModel[] = [];
     const cart = this.cartService.cartItems.value;
+    const addItemsToCart = [];
 
     // update selecteItems qty's before adding to  cart
     selectedItems.filter((product: ProductModel) => {
-        cart.map((m: ProductModel) => {
-          if (m.id === product.id) {
-            product.qty = m.qty + product.qty;
-            selectedItems.push(product);
-          } else {
-            selectedItems.push(m);
-          }
-        }); // end map
+      if (cart.length < 1) {
+        addItemsToCart.push(product);
+        this.cartService.addMultipleItems(addItemsToCart);
+        return;
+      }
+
+      cart.map((cartItem: ProductModel, index) => {
+        if (product.id === cartItem.id) {
+          product.qty = cartItem.qty + product.qty;
+          // cart.push(product);
+          // replace this cart Item
+          cart[index] = product;
+
+          dups.push(product);
+          console.log({cart});
+        } else {
+          cart.push(product);
+        }
+      }); // end map
+      this.cartService.addMultipleItems(cart);
     }); // end filter
-    // send cartItems and selectedItems with duplicates
-    this.cartService.addMultipleItems(selectedItems);
   }
 
 }

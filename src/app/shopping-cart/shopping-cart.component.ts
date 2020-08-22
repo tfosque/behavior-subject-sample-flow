@@ -34,6 +34,10 @@ export class ShoppingCartComponent implements OnInit {
     this.cartService.getCartsItems();
     this.cartService.initItemTotal();
 
+    this.cartService.cartItems.subscribe(updateCart => {
+      this.cartItems.next(updateCart);
+    });
+
     const state = this.cartService.defaultQtyState.value;
 
     if (isEmpty(state)) {
@@ -50,8 +54,7 @@ export class ShoppingCartComponent implements OnInit {
     });
 
     this.cartService.cartItems.subscribe((items: ProductModel[]) => {
-      console.log('items:subscription', {items});
-
+      // console.log('items:subscription', {items});
       this.cartItems.next(items);
     });
 
@@ -65,8 +68,8 @@ export class ShoppingCartComponent implements OnInit {
     });
 
     this.productService.selectedProducts$.subscribe(products => {
-      console.log({products});
-    })
+      // console.log({products});
+    });
   }
 
   updateCart() {
