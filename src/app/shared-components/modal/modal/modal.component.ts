@@ -41,9 +41,12 @@ export class ModalComponent implements OnInit {
     this.productService.products.subscribe((fetchProducts: ProductModel[]) => {
       this.products.next(fetchProducts);
     });
-    // set disabled button
+    // set disabled button???
+    // this watches everytime a product is selected in the product selection modal
     this.productService.selectedProducts$.subscribe((selProducts) => {
       if (selProducts.length > 0) {
+        // console.log('watching', {selProducts});
+        this.selectedProducts.next(selProducts);
         this.disabled = false;
       } else {
         this.disabled = true;
@@ -52,21 +55,36 @@ export class ModalComponent implements OnInit {
   }
 
   // continue to next modal stepper
-  continue(nextPage: string): void {
+  nextPage(nextPage: string): void {
     this.activePage.next(nextPage);
   }
 
-  addToCart() {
-    this.productService.selectedProducts$.subscribe((items: ProductModel[]) => {
-      this.add(items);
-    });
-  }
-
-  private add(items: ProductModel[]) {
-    this.cartService.addMultipleItems(items);
-    // this.dismissModal = 'modal';
+  addToCart(): void {
+    this.productService.resetSelectedProducts();
     setTimeout(() => {
       this.activePage.next('productGallery');
-    }, 1000);
+    }, 500);
+    this.selectedItemsExistInCart();
   }
+
+  selectedItemsExistInCart(): void {
+    // handle duplicates by updating qty if already in cart
+    const selectedItems: ProductModel[] = this.selectedProducts.value;
+    const cart = this.cartService.cartItems.value;
+
+    // update selecteItems qty's before adding to  cart
+    selectedItems.filter((product: ProductModel) => {
+        cart.map((m: ProductModel) => {
+          if (m.id === product.id) {
+            product.qty = m.qty + product.qty;
+            selectedItems.push(product);
+          } else {
+            selectedItems.push(m);
+          }
+        }); // end map
+    }); // end filter
+    // send cartItems and selectedItems with duplicates
+    this.cartService.addMultipleItems(selectedItems);
+  }
+
 }

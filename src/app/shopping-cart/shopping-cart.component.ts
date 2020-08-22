@@ -33,7 +33,6 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.getCartsItems();
     this.cartService.initItemTotal();
-    // this.cartService.onUpdateBtnEmphasis('btn btn-secondary');
 
     const state = this.cartService.defaultQtyState.value;
 
@@ -49,10 +48,10 @@ export class ShoppingCartComponent implements OnInit {
     this.cartService.defaultQtyState.subscribe(State => {
       // console.log({State}, );
     });
-    // console.log('getDefaultQtyState:', this.cartService.getDefaultQtyState());
-    // this.productService.suggestiveSelling();
 
     this.cartService.cartItems.subscribe((items: ProductModel[]) => {
+      console.log('items:subscription', {items});
+
       this.cartItems.next(items);
     });
 
@@ -65,8 +64,9 @@ export class ShoppingCartComponent implements OnInit {
       this.updateBtnEmphasis.next(emphasis);
     });
 
-    // chking qty
-    // console.log('curr:');
+    this.productService.selectedProducts$.subscribe(products => {
+      console.log({products});
+    })
   }
 
   updateCart() {
@@ -93,8 +93,8 @@ export class ShoppingCartComponent implements OnInit {
     this.cartService.deleteItem(item.id);
   }
 
+  // deleteFromSelectedProducts
   removeItemFromSelectedProducts(item: ProductModel) {
-    // deleteFromSelectedProducts
     this.productService.removeFromSelectedProducts(item);
   }
 

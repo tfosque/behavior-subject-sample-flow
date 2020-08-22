@@ -29,7 +29,7 @@ export class ImgProductThumbWithSelectionComponent implements OnInit {
     //
   }
 
-  trackSelection() {
+  addRemoveProduct() {
     // TODO: Remove item from list after deselected
 
     this.selected = !this.selected;

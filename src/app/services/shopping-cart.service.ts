@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ProductModel } from '../models/product';
 import { AlertService } from './alert.service';
-import { union } from 'lodash';
+import { union, uniq } from 'lodash';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +16,9 @@ export class ShoppingCartService {
   public COMPAREQTYSTATE = new BehaviorSubject<any>({});
   public QtyState = new BehaviorSubject<boolean>(true);
 
-  constructor(private readonly alertService: AlertService) {}
+  constructor(
+    private readonly alertService: AlertService,
+    ) {}
 
   getCartsItems(): void {
     const localCart = JSON.parse(localStorage.getItem('shoppingCart'));
@@ -48,11 +50,13 @@ export class ShoppingCartService {
       defaultState.push({ first: true, defaultQty: m.qty, currentQty:  m.qty});
     });
     this.defaultQtyState.next(defaultState);
-    // console.log({defaultState});
+    console.log({defaultState});
   }
 
   // pertains to qty increments
   softUpdateItemTotal(item: any, newQty: number): void {
+    console.log({item}, {newQty});
+
     this.cartItems.value.filter((f: any) => {
       if (f.id === item.id) {
         // update global(in-memory) observable
@@ -60,12 +64,14 @@ export class ShoppingCartService {
         // here we insert the new ('newQty')
         if (newQty * item.price.unitPrice > 0) {
           f.total = newQty * item.price.unitPrice;
-          this.subtotal();
+          this.addSubtotal();
+          // console.log('f.total=', f.total);
+          // console.log('subtotal', this.addSubtotal());
         } else {
           // equals zero
           f.total = 0;
           f.iconColor = 'text-danger';
-          this.subtotal();
+          this.addSubtotal();
           // console.log('prepare:', this.cartItems.value, {f});
           // this.cartItems.next(this.cartItems.value);
 
@@ -75,6 +81,7 @@ export class ShoppingCartService {
   }
 
   initItemTotal(): void {
+
     this.cartItems.value.filter((f: any) => {
       // result has to be larger than 0;
       if (f.qty < 1) {
@@ -88,7 +95,7 @@ export class ShoppingCartService {
         this.cartItems.next(nextItem);
         // remove iconColor
         f.iconColor = 'text-secondary';
-        this.subtotal();
+        this.addSubtotal();
       }
     });
   }
@@ -100,17 +107,12 @@ export class ShoppingCartService {
 
   // TODO: test adding single vs multiple !important
   addMultipleItems(items: ProductModel[]): void {
-    const getLocalStorageCart = JSON.parse(
-      localStorage.getItem('shoppingCart')
-    );
+    const uniqItems = uniq(items);
+    console.log({uniqItems});
 
-    const update = getLocalStorageCart.concat(items);
-
-    this.cartItems.next(update);
-
-    localStorage.setItem('shoppingCart', JSON.stringify(update));
-
-    this.subtotal();
+    this.cartItems.next(uniqItems);
+    this.hardUpdateCart(uniqItems);
+    this.addSubtotal();
 
     // send user notificatioin
     this.alertService.send(
@@ -122,21 +124,38 @@ export class ShoppingCartService {
     // TODO: How to return 200 from observable !important
   }
 
-  // TODO: update order summary when qty changes
-  subtotal() {
-    /* Add total unitPrice of all items */
-    let total = 0;
+  addProductsToCart(items: ProductModel[]): void {
+    const getLocalStorageCart = JSON.parse(
+      localStorage.getItem('shoppingCart')
+    );
 
-    setTimeout(() => {
-      this.cartItems.value.map((m) => {
-        if (m.qty === 0) {
-          total = total;
-        } else {
-          total = total + m.total;
-        }
-      });
-      this.SUBTOTAL.next(total);
-    }, 500);
+  }
+
+  // TODO: update order summary when qty changes
+  addSubtotal() {
+    /* Add total unitPrice of all items */
+
+    if (this.cartItems.value.length < 1) {
+      return false;
+    } else {
+      let total = 0;
+
+      setTimeout(() => {
+        // console.log('value', this.cartItems.value, typeof this.cartItems.value);
+
+        this.cartItems.value.map((m) => {
+          // console.log({m});
+          if (m.qty === 0) {
+            total = total;
+          } else {
+            total = total + m.total;
+          }
+        });
+        // console.log({total});
+        this.SUBTOTAL.next(total);
+      }, 1000);
+
+    }
   }
 
   /* Delete CartItems */
@@ -152,7 +171,7 @@ export class ShoppingCartService {
     setTimeout(() => {
       // update localDb
       this.cartItems.next(results);
-      this.subtotal();
+      this.addSubtotal();
       // TODO: Observable
       setTimeout(() => {
         localStorage.setItem('shoppingCart', JSON.stringify(results));

@@ -22,6 +22,7 @@ import { AdComponent } from './marketing/ad/ad.component';
 import { DiscountComponent } from './shared-components/discount/discount.component';
 import { SearchComponent } from './search/search.component';
 import { MainSearchComponent } from './search/main-search/main-search.component';
+import { Button2Component } from './shared-components/button2/button2.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MainSearchComponent } from './search/main-search/main-search.component'
     AdComponent,
     DiscountComponent,
     SearchComponent,
-    MainSearchComponent
+    MainSearchComponent,
+    Button2Component
   ],
   imports: [
     BrowserModule,

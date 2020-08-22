@@ -13,7 +13,7 @@ export class OrderSummaryComponent implements OnInit {
   constructor(private readonly cartService: ShoppingCartService) {}
 
   ngOnInit(): void {
-    this.cartService.subtotal();
+    this.cartService.addSubtotal();
     this.cartService.SUBTOTAL.subscribe((total) => {
       this.subtotal = total;
     });

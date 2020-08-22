@@ -42,6 +42,11 @@ export class ProductsService {
     this.selectedProducts$.next(this.selectedProducts);
   }
 
+  resetSelectedProducts() {
+    this.selectedProducts = [];
+    this.selectedProducts$.next([]);
+  }
+
   // TODO: Maybe a settimeout issue
   removeFromSelectedProducts(removeProd: ProductModel) {
     const removeSelected = this.selectedProducts.filter(

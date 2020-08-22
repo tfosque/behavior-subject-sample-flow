@@ -1,5 +1,5 @@
 <ng-container *ngIf="(products | async)?.length > 0; else spinner">
-  <div class="row">
+  <div class="row panel">
     <div class="col-lg-12">
       <div class="row" style="height: 220px;">
         <div
@@ -13,10 +13,6 @@
             [product]="product"
           ></app-img-product-thumb-with-selection>
         </div>
-
-        <!--  <div class="row" style="border-bottom: solid thick orange; margin: 0">
-          &nbsp;
-        </div> -->
       </div>
     </div>
   </div>
@@ -25,22 +21,3 @@
 <ng-template #spinner>
   <app-spinner></app-spinner>
 </ng-template>
-
-<!-- Template -->
-<!-- <ng-container *ngIf="products">
-  <div class="row mb-2" style="background-color: pink;" *ngFor="let product of products| async">
-    <div class="col-lg-12" style="height: 200px;">
-      <div class="row">
-        <div class="col-lg-3" style="background-color: yellow;">
-          <img class="rounded img-fluid" [src]="product.product" />
-        </div>
-        <div class="col-lg-3" style="background-color: yellow;">
-          Item
-        </div>
-      </div>
-      <div class="row" style="border-bottom: solid thick orange; margin: 0">
-        &nbsp;
-      </div>
-    </div>
-  </div>
-</ng-container> -->

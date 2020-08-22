@@ -12,6 +12,7 @@
       >
         {{ cartItem.details.itemOrProductDescription }}
       </h5>
+      <span>{{cartItem.id}}</span>
 
       <!-- Dynamic content -->
       <!-- <h5
@@ -31,7 +32,8 @@
       >
         <div class="col"><b>#</b>{{ cartItem.details.productId }}</div>
         <div class="col">
-          <b>Price: </b>{{ cartItem.price.unitPrice | currency }}
+          <b>Price: </b>{{ cartItem.price.unitPrice | currency }} /
+          {{ cartItem.price.uom}}
         </div>
         <!-- Cart Item -->
         <div class="col">
