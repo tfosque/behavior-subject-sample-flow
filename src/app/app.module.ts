@@ -18,6 +18,7 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { BreadCrumbsComponent } from './nav/bread-crumbs/bread-crumbs/bread-crumbs.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { TemplatesComponent } from './templates/templates.component';
+import { SuggestedSellingComponent } from './suggested-selling/suggested-selling.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +35,9 @@ import { TemplatesComponent } from './templates/templates.component';
     OrderSummaryComponent,
     BreadCrumbsComponent,
     OrderHistoryComponent,
-    TemplatesComponent
-  ],
+    TemplatesComponent,
+    SuggestedSellingComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
