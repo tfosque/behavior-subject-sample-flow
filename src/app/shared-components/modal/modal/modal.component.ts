@@ -5,6 +5,7 @@ import { ProductModel } from 'src/app/models/product';
 import { ModalService } from 'src/app/services/modal.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { AlertService } from 'src/app/services/alert.service';
+import { uniqBy } from 'lodash';
 
 @Component({
   selector: 'app-modal',
@@ -84,13 +85,10 @@ export class ModalComponent implements OnInit {
 
       cart.map((cartItem: ProductModel, index) => {
         if (product.id === cartItem.id) {
-          product.qty = cartItem.qty + product.qty;
-          // cart.push(product);
+          product.qty = product.qty + 1;
           // replace this cart Item
-          cart[index] = product;
-
-          dups.push(product);
-          console.log({cart});
+          console.log({product});
+          console.log('uniqBy:', uniqBy([...cart, product], 'id'));
         } else {
           cart.push(product);
         }

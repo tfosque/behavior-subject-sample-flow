@@ -34,10 +34,6 @@ export class ShoppingCartComponent implements OnInit {
     this.cartService.getCartsItems();
     this.cartService.initItemTotal();
 
-    this.cartService.cartItems.subscribe(updateCart => {
-      this.cartItems.next(updateCart);
-    });
-
     const state = this.cartService.defaultQtyState.value;
 
     if (isEmpty(state)) {
@@ -49,27 +45,31 @@ export class ShoppingCartComponent implements OnInit {
       console.log('!isEmpty:', );
     }
 
+    /* Default State */
     this.cartService.defaultQtyState.subscribe(State => {
       // console.log({State}, );
     });
 
+    /* CartItems */
     this.cartService.cartItems.subscribe((items: ProductModel[]) => {
       // console.log('items:subscription', {items});
       this.cartItems.next(items);
     });
 
+    /* Search */
     this.searchService.txtStr.subscribe((str) => {
       this.searchTxt = str;
     });
 
+    /* Sync cart menu buttons */
     this.cartService.updateBtnEmphasis.subscribe(emphasis => {
       // console.log({emphasis});
       this.updateBtnEmphasis.next(emphasis);
     });
 
-    this.productService.selectedProducts$.subscribe(products => {
+   /*  this.productService.selectedProducts$.subscribe(products => {
       // console.log({products});
-    });
+    }); */
   }
 
   updateCart() {

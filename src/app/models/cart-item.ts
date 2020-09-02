@@ -1,21 +1,22 @@
 export interface CartItem {
   id?: number;
-  product: string;
+  product?: string;
   mongoId?: {};
-  details: {
+  details?: {
     itemOrProductDescription: string;
     catalogRefId: string;
     commerceId: string;
     productId: string;
   };
-  price: {
+  price?: {
     unitPrice: number;
     uom: string;
   };
-  qty: number;
-  total: number;
+  qty?: number;
+  total?: number;
   variations?: Variations;
 }
+
 
 export interface Variations {
   [attribute: string]: AttributeValues;
